@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { Base } from "@/_parts/Base";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, SignedOut, SignIn, SignUpButton } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,11 +27,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable}  `}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable}  `}>
         <ThemeProvider>
           <ClerkProvider>
+            <SignedOut>
+              <Button>
+                <SignIn />
+              </Button>
+              <Button>
+                <SignUpButton />
+              </Button>
+            </SignedOut>
             <Base>{children}</Base>
           </ClerkProvider>
         </ThemeProvider>

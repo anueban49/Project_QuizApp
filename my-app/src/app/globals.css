@@ -124,9 +124,16 @@
     @apply bg-background text-foreground;
   }
 }
-
+body {
+  max-width: 2000px;
+}
 @media (min-width: 1200px) {
   body {
     width: 1200px;
+  }
+}
+@media (min-width: 780px) {
+  body {
+    width: 780px;
   }
 }

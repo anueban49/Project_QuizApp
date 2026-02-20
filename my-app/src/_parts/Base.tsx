@@ -18,9 +18,11 @@ export const Base = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <div
-        className={`w-screen h-screen flex flex-col gap-2 p-10 justify-center`}
+        className={`w-screen h-screen flex flex-col gap-2 justify-center`}
       >
-        <div className={``}></div>
+        <div className={`w-full h-full `}>
+          <Header/>
+        </div>
       </div>
     </>
   );
