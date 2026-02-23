@@ -83,7 +83,7 @@
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
+  --background: oklch(23.436% 0.00247 248.181 / 0.975);
   --foreground: oklch(0.984 0.003 247.858);
   --card: oklch(0.208 0.042 265.755);
   --card-foreground: oklch(0.984 0.003 247.858);
@@ -115,13 +115,92 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
-
+[data-theme="dark"] {
+  :root {
+    --background: #000000;
+    --foreground: #ededed;
+  }
+  body {
+    background: rgb(36, 35, 35);
+    color: rgb(216, 216, 216);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: white;
+  }
+  p {
+    color: rgb(173, 173, 173);
+  }
+}
+[data-theme="light"] {
+  :root {
+    --background: #eaeaea;
+    --foreground: #070707;
+  }
+  body {
+    background-color: rgb(241, 241, 241);
+    color: #131111;
+  }
+}
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Headings - automatically styled */
+  h1 {
+    @apply text-4xl font-bold text-foreground mb-4;
+  }
+  h2 {
+    @apply text-3xl font-bold text-foreground mb-3;
+  }
+  h3 {
+    @apply text-2xl font-bold text-foreground mb-2;
+  }
+
+  /* Paragraphs */
+  p {
+    @apply text-foreground leading-relaxed mb-4;
+  }
+
+  /* Links */
+  a {
+    @apply text-primary hover:text-primary/80 transition-colors;
+  }
+
+  /* Buttons */
+  button {
+    @apply bg-primary text-primary-foreground 
+           px-4 py-2 rounded-md 
+           hover:opacity-90 
+           transition-all
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Inputs */
+  input,
+  textarea,
+  select {
+    @apply bg-background border border-input 
+           text-foreground px-3 py-2 rounded-md
+           focus:outline-none focus:ring-2 focus:ring-ring;
+  }
+
+  /* Create reusable classes */
+  .card {
+    @apply bg-card text-card-foreground 
+           border border-border rounded-lg p-6 shadow-sm;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto px-4;
   }
 }
 body {
@@ -136,4 +215,7 @@ body {
   body {
     width: 780px;
   }
+}
+.no-scrollbar {
+  scrollbar-width: none;
 }

@@ -12,16 +12,26 @@ import { useTheme } from "@/providers/ThemeProvider";
 export const ContentSideBar = () => {
   const { theme } = useTheme();
   return (
-    <Drawer direction="left">
-      <DrawerTrigger>
-        <Button>
+    <Drawer direction="right">
+      <DrawerTrigger asChild>
+        <Button size="icon" className="rounded-full">
           <PanelRight />
         </Button>
       </DrawerTrigger>
-      <DrawerClose>
-        <PanelLeft />
-      </DrawerClose>
-      <DrawerContent></DrawerContent>
+
+      <DrawerContent
+        suppressHydrationWarning
+        className={`${theme === "dark" ? "dark" : ""} p-5 flex flex-col gap-2`}
+      >
+        <div className="flex gap-2">
+          <DrawerClose asChild>
+            <Button size={"icon"} className="rounded-full">
+              <PanelLeft />
+            </Button>
+          </DrawerClose>
+          <h3>History</h3>
+        </div>
+      </DrawerContent>
     </Drawer>
   );
 };

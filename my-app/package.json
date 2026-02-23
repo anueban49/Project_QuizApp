@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.37.5",
+    "@google/genai": "^1.42.0",
     "add": "^2.0.6",
     "button": "^1.1.1",
     "class-variance-authority": "^0.7.1",
@@ -27,7 +28,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^4.1.1",
+    "eslint": "^4.0.0",
     "eslint-config-next": "^0.2.4",
     "shadcn": "^3.8.5",
     "tailwindcss": "^4",

@@ -1,27 +1,16 @@
 "use client";
 import { ReactNode } from "react";
-import { useTheme } from "@/providers/ThemeProvider";
-import { ContentSideBar } from "./ContentSideBar";
-
-const Header = () => {
-  return (
-    <>
-      <div className="w-full h-10 bg-gray-200">
-        <ContentSideBar />
-      </div>
-    </>
-  );
-};
-
+import { Header } from "./Header";
 export const Base = ({ children }: { children: ReactNode }) => {
-  const { theme, toggleTheme } = useTheme();
   return (
     <>
       <div
-        className={`w-screen h-screen flex flex-col gap-2 justify-center`}
+        className={`Base w-screen h-screen flex flex-col gap-2 items-center`}
       >
-        <div className={`w-full h-full `}>
-          <Header/>
+        <div
+          className={`w-full h-full flex flex-col items-center max-w-400 gap-10`}
+        >
+          {children}
         </div>
       </div>
     </>
