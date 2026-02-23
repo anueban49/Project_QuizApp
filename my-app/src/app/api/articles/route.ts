@@ -10,24 +10,16 @@ export const POST = async (request: NextRequest) => {
       return NextResponse.json({ error: "API key issue" }, { status: 500 });
     }
 
-    const { text } = await request.json();
-    const prompt: string = text.trim();
-    if (prompt) {
-      console.log(prompt);
-    }
-
-    const response = await ai.models.generateContentStream({
+    const { input } = await request.json();
+    const prompt: string = input.trim();
+    const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
       contents: prompt,
       config: {
         systemInstruction: "Summarize the article under 50 words",
       },
     });
-
-    let fullText = "";
-    for await (const chunk of response) {
-      fullText += chunk.text || "";
-    }
+    const fullText = response.text;
     return NextResponse.json({ res: fullText });
   } catch (error) {
     return NextResponse.json(
