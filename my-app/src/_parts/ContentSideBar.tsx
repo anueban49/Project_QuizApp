@@ -4,6 +4,7 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
+  DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { PanelLeft, PanelRight } from "lucide-react";
@@ -23,8 +24,11 @@ export const ContentSideBar = () => {
   return (
     <Drawer direction="right">
       <DrawerTrigger asChild>
-        <Button size="icon" className="rounded-full">
-          <PanelRight />
+        <Button
+          size="icon"
+          className={`rounded-full shadow-md ${theme === "dark" ? "bg-zinc-800" : "bg-gray-100 color-black"}`}
+        >
+          <PanelRight className={`${theme === "dark" ? "" : "text-black"}`} />
         </Button>
       </DrawerTrigger>
 
@@ -38,8 +42,9 @@ export const ContentSideBar = () => {
               <PanelLeft />
             </Button>
           </DrawerClose>
-          <h3>History</h3>
+          <DrawerTitle>History</DrawerTitle>
         </div>
+        {history}
         {history.map((h, index) => (
           <div className="p-2 overflow-hidden">{h}</div>
         ))}

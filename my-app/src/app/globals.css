@@ -119,6 +119,7 @@
   :root {
     --background: #000000;
     --foreground: #ededed;
+    transition: ease-in-out 0.2s;
   }
   body {
     background: rgb(36, 35, 35);
