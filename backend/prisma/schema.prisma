@@ -1,49 +1,36 @@
 generator client {
   provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  output   = "./generated"
 }
 
 datasource db {
   provider = "postgresql"
+  url = env("DATABASE_URL")
 }
 
 model User {
-  id            Int            @id @default(autoincrement())
-  email         String         @unique
-  name          String?
-  messages      Message[]
-  conversations Conversation[]
+  id          String    @id @unique
+  email       String    @unique
+  name        String?
+  sessionData Article[]
 }
 
-model Agent {
-  id       Int       @id @default(autoincrement())
-  name     String    @default("AI assistant")
-  messages Message[]
+model Article {
+  id         String   @id
+  createdAt  DateTime @default(now())
+  title      String
+  orgArticle String
+  sumArticle String
+
+  userId  String
+  user    User   @relation(fields: [userId], references: [id])
+  quizzes Quiz[]
 }
 
-model Conversation {
-  id        Int       @id @default(autoincrement())
-  user      User      @relation(fields: [userId], references: [id])
-  userId    Int
-  messages  Message[]
-  createdAt DateTime  @default(now())
-}
-
-model Message {
-  conversation   Conversation @relation(fields: [conversationId], references: [id])
-  conversationId Int
-  id             Int          @id @default(autoincrement())
-  AuthorType     AuthorType
-  content        String?
-  published      Boolean      @default(false)
-  user           User?        @relation(fields: [userId], references: [id])
-  userId         Int?
-  agent          Agent?       @relation(fields: [agentId], references: [id])
-  agentId        Int?
-  createdAt      DateTime     @default(now())
-}
-
-enum AuthorType {
-  USER
-  AGENT
+model Quiz {
+  id           String  @id
+  question     String
+  answer       String
+  refArticleId String
+  refArticle   Article @relation(fields: [refArticleId], references: [id])
 }

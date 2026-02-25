@@ -7,6 +7,7 @@ import { getAuth } from "@clerk/nextjs/server";
 import { ReactEventHandler, useState } from "react";
 import { useTheme } from "@/providers/ThemeProvider";
 import { Button } from "@/components/ui/button";
+
 import {
   ArrowUp,
   BookIcon,
@@ -17,19 +18,15 @@ import {
 } from "lucide-react";
 import { useEffect } from "react";
 
-interface Conversation {
+interface History { //for a one session topic?
   id: string;
   timeStamp: Date;
-  content: { orgArticle: string; sumArticle: string };
+  orgArticle: String;
+  sumarticle: String;
   title: string;
 }
 //user sends article -> orgArticletype, agents sends response -> sumarticle.
 
-type Messages = {
-  role: "user" | "agent";
-  title: string;
-  content: string;
-};
 
 export default function ArticleSummary() {
   const [firstchat, setFirstchat] = useState(false);
@@ -37,16 +34,19 @@ export default function ArticleSummary() {
   const [title, setTitle] = useState<String>("");
   const { theme } = useTheme();
 
-  const [chat, setChat] = useState<Messages[]>([]);
+  const [conversation, setConversation] = useState<History[]>([]); //for history sidebar
   const [loading, setLoading] = useState(false);
   const [showGenbtn, setShowgenbtn] = useState(false);
 
+//user sends a message -> database assigns id, -> which is autoincrement() -> returns the id, saves the title & content, returns back to db and saved there.
+//in order to obtain the id, frontend will have to send request to server which will ... req -> res -> id -> then ai generate, then after generate, backend saves the convo
+
   useEffect(() => {
-    if (!chat) {
+    if (!conversation) {
       return;
     }
-    localStorage.setItem("ConversationHistory", JSON.stringify(chat));
-  }, [chat]);
+    localStorage.setItem("ConversationHistory", JSON.stringify(conversation));
+  }, [conversation]);
 
   const BtnAppr = () => {
     return (
@@ -86,13 +86,11 @@ export default function ArticleSummary() {
   //user sends article, article is sent to database;
   //article has title, timestamp, content={orgArticle, summarized article.} and id.
 
-  const handleGenerate = async () => {
+  const handleGenerate = async () => {//for ai content extraction
+    //but id generation request must also go within.
+    
     const input = inputValue.trim();
-    const Title = title.trim();
-    setChat((prev) => [
-      ...prev,
-      { role: "user", title: Title, content: input },
-    ]);
+
     try {
       setLoading(true);
       const res = await fetch("/api/articles", {
@@ -104,10 +102,6 @@ export default function ArticleSummary() {
       });
       console.log(res);
       const data = await res.json();
-      setChat((prev) => [
-        ...prev,
-        { role: "agent", title: Title, content: data.res },
-      ]);
       setLoading(false);
     } catch (e) {
       console.log(e);
