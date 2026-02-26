@@ -24,6 +24,7 @@ export const POST = async (request: NextRequest) => {
               { "label": "C", "text": "option 3" },
               { "label": "D", "text": "option 4" }
             ],
+        "answer": "..."
         } `,
       },
     });

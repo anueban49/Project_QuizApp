@@ -21,6 +21,16 @@ export const ContentSideBar = () => {
     }
     setHistory(JSON.parse(history));
   }, []);
+  const getData = async () => {
+    try {
+      const res = await fetch("/mock-data");
+      if (res) {console.log("mockdata success")}
+
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  getData();
   return (
     <Drawer direction="right">
       <DrawerTrigger asChild>

@@ -3,23 +3,18 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
 type Quiz = {
-    sourceArticle: string,
-    options: string[]
+  question: string;
+  option: string[]
+  answer: string[]
 }
 
 export const QuizSection = () => {
   const [article, setArticle] = useState<String>("");
+  const [quiz, setQuiz] = useState<Quiz[]>([])
 
   const param = useParams();//articleId need to be passed.
 
-  useEffect(() => {}, []);
-  const generateQuiz = async () => {
-    try {
-        const quizOptions = await fetch("/", )
-    } catch (e) {
-      console.error(e);
-    }
-  };
+
   return (<></>)
 };
 

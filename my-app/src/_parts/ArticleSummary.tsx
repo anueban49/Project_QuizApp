@@ -1,15 +1,13 @@
 "use client";
 
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription } from "@/components/ui/card";
-import { useClerk } from "@clerk/nextjs";
-import { getAuth } from "@clerk/nextjs/server";
+import { useQuizgeek } from "@/providers/QuizgeekProvider";
 import { ReactEventHandler, useState } from "react";
 import { useTheme } from "@/providers/ThemeProvider";
 import { Button } from "@/components/ui/button";
 
 import {
   ArrowUp,
+  BookAlertIcon,
   BookIcon,
   File,
   FileTextIcon,
@@ -18,15 +16,7 @@ import {
 } from "lucide-react";
 import { useEffect } from "react";
 
-interface History { //for a one session topic?
-  id: string;
-  timeStamp: Date;
-  orgArticle: String;
-  sumarticle: String;
-  title: string;
-}
 //user sends article -> orgArticletype, agents sends response -> sumarticle.
-
 
 export default function ArticleSummary() {
   const [firstchat, setFirstchat] = useState(false);
@@ -38,15 +28,10 @@ export default function ArticleSummary() {
   const [loading, setLoading] = useState(false);
   const [showGenbtn, setShowgenbtn] = useState(false);
 
-//user sends a message -> database assigns id, -> which is autoincrement() -> returns the id, saves the title & content, returns back to db and saved there.
-//in order to obtain the id, frontend will have to send request to server which will ... req -> res -> id -> then ai generate, then after generate, backend saves the convo
+  const { summarizeArticle, sumArticle } = useQuizgeek();
 
-  useEffect(() => {
-    if (!conversation) {
-      return;
-    }
-    localStorage.setItem("ConversationHistory", JSON.stringify(conversation));
-  }, [conversation]);
+  //user sends a message -> database assigns id, -> which is autoincrement() -> returns the id, saves the title & content, returns back to db and saved there.
+  //in order to obtain the id, frontend will have to send request to server which will ... req -> res -> id -> then ai generate, then after generate, backend saves the convo
 
   const BtnAppr = () => {
     return (
@@ -86,28 +71,14 @@ export default function ArticleSummary() {
   //user sends article, article is sent to database;
   //article has title, timestamp, content={orgArticle, summarized article.} and id.
 
-  const handleGenerate = async () => {//for ai content extraction
+  const handleGenerate = async () => {
+    //for ai content extraction
     //but id generation request must also go within.
-    
+    setLoading(true);
     const input = inputValue.trim();
-
-    try {
-      setLoading(true);
-      const res = await fetch("/api/articles", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ input: input }),
-      });
-      console.log(res);
-      const data = await res.json();
-      setLoading(false);
-    } catch (e) {
-      console.log(e);
-    }
+    summarizeArticle(input);
   };
-
+  useEffect(() => {}, []);
   return (
     <div className="w-full h-full flex flex-col items-center  transition-colors px-10 py-20">
       <div className="flex flex-col gap-4 p-10 justify-center">
@@ -119,22 +90,15 @@ export default function ArticleSummary() {
             <div className="w-full flex gap-4 text-gray-500 font-semibold">
               <BookIcon />
               Summarized Content
-              {title}
             </div>
-            {chat.map((c, index) => (
-              <>
-                <div className="w-full text-sm" key={index}>
-                  {c.role === "agent" && (
-                    <>
-                      <p>{c.content}</p>
-                    </>
-                  )}
-                </div>
-                <div className="" key={index + 10}>
-                  {c.role === "user" && <>{c.content}</>}
-                </div>
-              </>
-            ))}
+            <p>{sumArticle}</p>
+            <div className="w-full flex gap-4 text-gray-500 font-semibold">
+              <BookAlertIcon /> Summarized Content
+            </div>
+
+            <p className={`text-sm overflow-y-scroll aspect-9/1`}>
+              {inputValue}
+            </p>
           </>
         ) : (
           <>

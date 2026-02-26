@@ -1,73 +1,161 @@
-import { createContext, useContext, useState, useEffect } from "react";
+"use client";
+
+import { useContext, useState, useEffect } from "react";
 import { ReactNode } from "react";
-import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenAI } from "@google/genai";
-//main functionality of this:
-//creating the summary -> communicating with the backend.
-//creating the quiz
-//points system
-type Quiz = {
+import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
+import { QuizgeekContext } from "./QuizgeekContext";
+// main functionality of this provider:
+//  • summary creation
+//  • quiz generation (calls server API)
+//  • points system
+
+// quiz shape returned by the API
+export type Quiz = {
   question: string;
   options: string[];
+  answer: string;
 };
-interface QuizApptypes {
-  summarizeArticle: (orgArticle: string) => Promise<void>;
-  generateQuiz: (request: NextRequest) => Promise<void>;
+type Article = {
+  id: string;
+  title: string;
+  orgArticle: string;
   sumArticle: string;
-  quiz: Quiz;
-}
-const QuizgeekContext = createContext({} as QuizApptypes);
+  createdAt: Date;
+  conversationId?: string;
+};
 
-const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
+interface Conversation {
+  createdAt: Date;
+  title: string;
+  id: string;
+  articles: Article[];
+  userId: string;
+} //for sidebar componet voila
+
+export interface QuizApptypes {
+  summarizeArticle: (orgArticle: string) => Promise<void>;
+  generateQuiz: (articleId: string) => Promise<void>;
+  sumArticle: string;
+  quiz: Quiz | null;
+  history: Conversation[];
+  article: Article | null;
+  getConversationHistory: (userid: string) => Promise<void>;
+  getArticleData: (articleId: string) => Promise<Article | undefined>;
+}
+
+export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
+  const [history, setHistory] = useState<Conversation[]>([]);
+  const [article, setArticle] = useState<Article | null>(null);
   const [sumArticle, setSumArticle] = useState<string>("");
   const [quiz, setQuiz] = useState<Quiz | null>(null);
-  const apiKey = process.env.GENAI_API_KEY;
-  if (!apiKey) {
-    console.error("APIkey issue [contextProvider]");
-  }
+  const [userId, setUserId] = useState<string>("");
+  const router = useRouter();
+  const { user, isLoaded } = useUser();
 
-  const generateQuiz = async (request: NextRequest) => {
-    const ai = new GoogleGenAI({ apiKey });
+  useEffect(() => {
+    if (isLoaded && !user) {
+      router.push("/auth/signin");
+    }
+    if (user) {
+      setUserId(user?.id as string);
+    }
+  }, [isLoaded, user, router]);
+
+  // client‑side helper that talks to the server route instead of
+  // dealing with NextRequest/NextResponse directly.  the type issue you saw
+  // was caused by trying to use `NextRequest` in a browser context and by
+  // sometimes returning a `NextResponse` while the interface promised `void`.
+  const getConversationHistory = async () => {
     try {
-      const { input } = await request.json();
-      const prompt: string = input.trim();
-      const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        contents: prompt,
-        config: {
-          systemInstruction: `Generate a quiz with 4 options, each option answer consisting of single word, given input.  Respond in EXACT JSON format, nothing else, no extra text:
-        {"question": "your question here",
-        "options": [
-              { "label": "A", "text": "option 1" },
-              { "label": "B", "text": "option 2" },
-              { "label": "C", "text": "option 3" },
-              { "label": "D", "text": "option 4" }
-            ],
-        } `,
-        },
-      });
-      const fullText: any = response.text;
-      const match = fullText.match(/\{[\s\S]*\}/);
-      if (!match) {
-        console.log("error [json format - provider_]");
-      }
-
-      const quiz = JSON.parse(match[0]);
-      console.log(quiz)
+      const res = await fetch(`/api/conversations/${userId}`);
+      if (!res.ok) throw new Error("failed to fetch history");
+      const data: Conversation[] = await res.json();
+      setHistory(data);
     } catch (e) {
       console.error(e);
-      return NextResponse.json(
-        { error: "Something went wrong" },
-        { status: 500 },
-      );
     }
+  };
+  const getArticleData = async (articleId: string) => {
+    try {
+      const res = await fetch(`/api/articles/${articleId}`);
+      if (!res.ok) {
+        setArticle(null);
+        return;
+      }
+      const data: Article = await res.json();
+      setArticle(data);
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const generateQuiz = async (articleId: string) => {
+    const fetched = await getArticleData(articleId);
+    if (!fetched) {
+      console.error("generateQuiz: article not found");
+      return;
+    }
+
+    const input = `${fetched.orgArticle}\n\nSummary:\n${fetched.sumArticle}`;
+    try {
+      const res = await fetch(`/api/articles/quizzes`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ input }),
+      });
+
+      if (!res.ok) {
+        throw new Error("failed to generate quiz");
+      }
+
+      const data = await res.json();
+      // the API returns { res: Quiz }
+      setQuiz(data.res);
+    } catch (e) {
+      console.error("generateQuiz error", e);
+    }
+  };
+
+  const summarizeArticle = async (orgArticle: string) => {
+    try {
+      const res = await fetch("/api/articles", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ input: orgArticle }),
+      });
+      const data = await res.json();
+      setSumArticle(data.res);
+    } catch (e) {
+      console.error(e);
+    }
+    setSumArticle(orgArticle);
   };
 
   return (
     <QuizgeekContext.Provider
-      value={{ generateQuiz, sumArticle, summarizeArticle, quiz }}
+      value={{
+        generateQuiz,
+        sumArticle,
+        summarizeArticle,
+        quiz,
+        history,
+        article,
+        getConversationHistory,
+        getArticleData,
+      }}
     >
       {children}
     </QuizgeekContext.Provider>
   );
+};
+export const useQuizgeek = () => {
+  const context = useContext(QuizgeekContext);
+  if (!context) {
+    throw new Error("Quizgeek provider issue blah blah");
+  }
+  return context;
 };

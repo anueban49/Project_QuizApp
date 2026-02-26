@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What does automation mainly do to human intervention in processes?",
+    "options": [
+      "A. Increases it",
+      "B. Reduces it",
+      "C. Eliminates it completely",
+      "D. Has no effect on it"
+    ],
+    "answer": "B"
+  },
+  {
+    "question": "Which of the following is NOT mentioned as a means of achieving automation?",
+    "options": [
+      "A. Hydraulic devices",
+      "B. Electronic devices",
+      "C. Solar energy systems",
+      "D. Pneumatic devices"
+    ],
+    "answer": "C"
+  },
+  {
+    "question": "Which of the following is a benefit of automation?",
+    "options": [
+      "A. Increased labor costs",
+      "B. Higher material waste",
+      "C. Reduced quality control",
+      "D. Savings in electricity costs"
+    ],
+    "answer": "D"
+  },
+  {
+    "question": "What is an example of a simple automation system mentioned in the article?",
+    "options": [
+      "A. A large industrial control system",
+      "B. A household thermostat controlling a boiler",
+      "C. An airplane autopilot system",
+      "D. A factory assembly line"
+    ],
+    "answer": "B"
+  },
+  {
+    "question": "What do complicated systems like modern factories typically use for automation?",
+    "options": [
+      "A. Only mechanical techniques",
+      "B. Only electrical devices",
+      "C. Combinations of all automation techniques",
+      "D. Only computer-based systems"
+    ],
+    "answer": "C"
+  }
+]

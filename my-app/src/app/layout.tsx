@@ -1,21 +1,10 @@
 import type { Metadata } from "next";
-import {
-  ClerkProvider,
-  SignIn,
-  SignInButton,
-  SignOutButton,
-  SignUp,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Base } from "@/_parts/Base";
+
 import { ThemeProvider } from "@/providers/ThemeProvider";
-import { Header } from "@/_parts/Header";
-import { ContentSideBar } from "@/_parts/ContentSideBar";
+import { QuizgeekProvider } from "@/providers/QuizgeekProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,11 +33,11 @@ export default function RootLayout({
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >
-            <div
-              className={`w-screen h-screen flex flex-col items-center`}
-            >
-              {children}
-            </div>
+            <QuizgeekProvider>
+              <div className={`w-screen h-screen flex flex-col items-center`}>
+                {children}
+              </div>
+            </QuizgeekProvider>
           </body>
         </html>
       </ClerkProvider>
