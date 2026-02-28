@@ -23,12 +23,12 @@ export default function ArticleSummary() {
   const [inputValue, setInputValue] = useState<String | "">("");
   const [title, setTitle] = useState<String>("");
   const { theme } = useTheme();
-
+  const [sumArticle, setSumarticle] = useState("")
   const [conversation, setConversation] = useState<History[]>([]); //for history sidebar
   const [loading, setLoading] = useState(false);
   const [showGenbtn, setShowgenbtn] = useState(false);
 
-  const { summarizeArticle, sumArticle } = useQuizgeek();
+  const { summarizeArticle} = useQuizgeek();
 
   //user sends a message -> database assigns id, -> which is autoincrement() -> returns the id, saves the title & content, returns back to db and saved there.
   //in order to obtain the id, frontend will have to send request to server which will ... req -> res -> id -> then ai generate, then after generate, backend saves the convo
@@ -76,7 +76,9 @@ export default function ArticleSummary() {
     //but id generation request must also go within.
     setLoading(true);
     const input = inputValue.trim();
-    summarizeArticle(input);
+    const Title = title.trim();
+    const res = await summarizeArticle(input, Title);
+    setSumarticle(res.res)
   };
   useEffect(() => {}, []);
   return (
@@ -93,7 +95,7 @@ export default function ArticleSummary() {
             </div>
             <p>{sumArticle}</p>
             <div className="w-full flex gap-4 text-gray-500 font-semibold">
-              <BookAlertIcon /> Summarized Content
+              <BookAlertIcon /> Original Article
             </div>
 
             <p className={`text-sm overflow-y-scroll aspect-9/1`}>

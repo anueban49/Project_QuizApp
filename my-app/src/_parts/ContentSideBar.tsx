@@ -9,28 +9,40 @@ import {
 } from "@/components/ui/drawer";
 import { PanelLeft, PanelRight } from "lucide-react";
 import { useTheme } from "@/providers/ThemeProvider";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import { useQuizgeek } from "@/providers/QuizgeekProvider";
+import { Article } from "@/prisma/generated/client";
 
+const DisplayHistory = ({ props }: { props: Article[] }) => {
+  const { theme } = useTheme();
+  const { active, setActive, getArticleData } = useQuizgeek();
+  return (
+    <>
+      <div className={`gap-4 flex flex-col-reverse`}>
+        {props.map((prop) => (
+          <div
+            key={prop.id}
+            onClick={() => {
+              setActive("ArticlesArchive");
+              getArticleData(prop.id);
+            }}
+            className={`p-4 rounded-2xl shadow-sm ${theme === "dark" ? "dark shadow-black" : "light shadow-gray-300"}`}
+          >
+            <h4 className="font-bold">{prop.title}</h4>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
 export const ContentSideBar = () => {
   const { theme } = useTheme();
-  const [history, setHistory] = useState([]);
-  useEffect(() => {
-    const history = localStorage.getItem("ConversationHistory");
-    if (!history) {
-      return;
-    }
-    setHistory(JSON.parse(history));
-  }, []);
-  const getData = async () => {
-    try {
-      const res = await fetch("/mock-data");
-      if (res) {console.log("mockdata success")}
+  const { history, getArticlesHistory } = useQuizgeek();
 
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  getData();
+  useEffect(() => {
+    getArticlesHistory();
+  }, []);
+
   return (
     <Drawer direction="right">
       <DrawerTrigger asChild>
@@ -54,10 +66,11 @@ export const ContentSideBar = () => {
           </DrawerClose>
           <DrawerTitle>History</DrawerTitle>
         </div>
-        {history}
-        {history.map((h, index) => (
-          <div className="p-2 overflow-hidden">{h}</div>
-        ))}
+        {history.length !== 0 ? (
+          <DisplayHistory props={history} />
+        ) : (
+          <>No conversation has been found yet</>
+        )}
       </DrawerContent>
     </Drawer>
   );

@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { useParams } from "next/navigation";
 import { GoogleGenAI } from "@google/genai";
 
 export const POST = async (request: NextRequest) => {
@@ -29,7 +28,7 @@ export const POST = async (request: NextRequest) => {
       },
     });
     const fullText: any = response.text;
-
+    console.log(fullText);
     const match = fullText.match(/\{[\s\S]*\}/);
     if (!match) {
       return NextResponse.json(
@@ -39,8 +38,8 @@ export const POST = async (request: NextRequest) => {
     }
 
     const quiz = JSON.parse(match[0]);
-
-    return NextResponse.json({ res: quiz });
+    console.log(quiz);
+    return NextResponse.json(quiz);
   } catch (error) {
     return NextResponse.json(
       {

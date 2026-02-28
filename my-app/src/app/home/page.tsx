@@ -2,7 +2,6 @@
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription } from "@/components/ui/card";
 import { useClerk } from "@clerk/nextjs";
-import { getAuth } from "@clerk/nextjs/server";
 import { useState } from "react";
 import { useTheme } from "@/providers/ThemeProvider";
 import { Button } from "@/components/ui/button";

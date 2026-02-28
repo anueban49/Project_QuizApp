@@ -2,8 +2,6 @@
 
 import { useContext, useState, useEffect } from "react";
 import { ReactNode } from "react";
-import { useRouter } from "next/navigation";
-import { useUser } from "@clerk/nextjs";
 import { QuizgeekContext } from "./QuizgeekContext";
 // main functionality of this provider:
 //  • summary creation
@@ -13,7 +11,8 @@ import { QuizgeekContext } from "./QuizgeekContext";
 // quiz shape returned by the API
 export type Quiz = {
   question: string;
-  options: string[];
+  // API may return options as strings or objects like { label, text }
+  options: Array<{ label: string; text: string }>;
   answer: string;
 };
 type Article = {
@@ -22,55 +21,75 @@ type Article = {
   orgArticle: string;
   sumArticle: string;
   createdAt: Date;
-  conversationId?: string;
+  userId: string;
+};
+export type UserType = {
+  id: string | null;
+  data: Article[];
+  points: number;
 };
 
-interface Conversation {
-  createdAt: Date;
-  title: string;
-  id: string;
-  articles: Article[];
-  userId: string;
-} //for sidebar componet voila
+export type OperationType =
+  | "ArticleSummary"
+  | "ArticlesArchive"
+  | "QuizSection";
 
 export interface QuizApptypes {
-  summarizeArticle: (orgArticle: string) => Promise<void>;
-  generateQuiz: (articleId: string) => Promise<void>;
-  sumArticle: string;
-  quiz: Quiz | null;
-  history: Conversation[];
-  article: Article | null;
-  getConversationHistory: (userid: string) => Promise<void>;
+  active: OperationType;
+  setActive: (active: OperationType) => void;
+  summarizeArticle: (orgArticle: string, title: string) => Promise<string>;
+  getArticlesHistory: () => Promise<void>;
+  history: Article[];
   getArticleData: (articleId: string) => Promise<Article | undefined>;
+  generateQuiz: (articleId: string) => Promise<void>;
+  quiz: Quiz | null;
+  article: Article | null;
 }
 
 export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
-  const [history, setHistory] = useState<Conversation[]>([]);
-  const [article, setArticle] = useState<Article | null>(null);
-  const [sumArticle, setSumArticle] = useState<string>("");
+  const [history, setHistory] = useState<Article[]>([]); //for getting articles for the user
+  const [article, setArticle] = useState<Article | null>(null); //for getting individual article data
+  const [sumArticle, setSumArticle] = useState<string | null>(null); //for processing article/making one
   const [quiz, setQuiz] = useState<Quiz | null>(null);
-  const [userId, setUserId] = useState<string>("");
-  const router = useRouter();
-  const { user, isLoaded } = useUser();
+  const [active, setActive] = useState<OperationType>("ArticleSummary");
 
-  useEffect(() => {
-    if (isLoaded && !user) {
-      router.push("/auth/signin");
-    }
-    if (user) {
-      setUserId(user?.id as string);
-    }
-  }, [isLoaded, user, router]);
+  //on first landing, articleSum will be active. by allowing function to change in between of these, setActive has to change accordingly.
+  //export the change statement function.
+  //what does the function does is: if active is "..." the viewPage has to change to component.
+  //the control thingy has to be in drawer comp.
 
-  // client‑side helper that talks to the server route instead of
-  // dealing with NextRequest/NextResponse directly.  the type issue you saw
-  // was caused by trying to use `NextRequest` in a browser context and by
-  // sometimes returning a `NextResponse` while the interface promised `void`.
-  const getConversationHistory = async () => {
+  const summarizeArticle = async (orgArticle: string, title: string) => {
     try {
-      const res = await fetch(`/api/conversations/${userId}`);
-      if (!res.ok) throw new Error("failed to fetch history");
-      const data: Conversation[] = await res.json();
+      const res = await fetch("/api/articles", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ input: orgArticle, title: title }),
+      });
+      const data = await res.json();
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+    setSumArticle(orgArticle);
+
+    useEffect(() => {}, [sumArticle]);
+  };
+  const getArticlesHistory = async () => {
+    try {
+      // endpoint is plural 'articles' and returns array directly
+      const res = await fetch("/api/articles", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      if (!res.ok) {
+        console.log("history-data res failure [quizgeekprovider]");
+        return;
+      }
+      const data: Article[] = await res.json();
       setHistory(data);
     } catch (e) {
       console.error(e);
@@ -85,6 +104,7 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
       }
       const data: Article = await res.json();
       setArticle(data);
+     
       return data;
     } catch (e) {
       console.error(e);
@@ -92,59 +112,45 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const generateQuiz = async (articleId: string) => {
-    const fetched = await getArticleData(articleId);
-    if (!fetched) {
-      console.error("generateQuiz: article not found");
-      return;
-    }
-
-    const input = `${fetched.orgArticle}\n\nSummary:\n${fetched.sumArticle}`;
-    try {
-      const res = await fetch(`/api/articles/quizzes`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ input }),
-      });
-
-      if (!res.ok) {
-        throw new Error("failed to generate quiz");
+    if (active === "QuizSection") {
+      const fetched = await getArticleData(articleId);
+      if (!fetched) {
+        console.error("generateQuiz: article not found");
+        return;
       }
 
-      const data = await res.json();
-      // the API returns { res: Quiz }
-      setQuiz(data.res);
-    } catch (e) {
-      console.error("generateQuiz error", e);
-    }
-  };
+      const input = `${fetched.orgArticle}\n\nSummary:\n${fetched.sumArticle}`;
+      try {
+        const res = await fetch(`/api/articles/${articleId}/quizzes`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ input }),
+        });
 
-  const summarizeArticle = async (orgArticle: string) => {
-    try {
-      const res = await fetch("/api/articles", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ input: orgArticle }),
-      });
-      const data = await res.json();
-      setSumArticle(data.res);
-    } catch (e) {
-      console.error(e);
+        if (!res.ok) {
+          throw new Error("failed to generate quiz");
+        }
+
+        const data = await res.json();
+        // accept either { res: Quiz } or Quiz directly
+        setQuiz((data as any).res ?? (data as any));
+      } catch (e) {
+        console.error("generateQuiz error", e);
+      }
     }
-    setSumArticle(orgArticle);
   };
 
   return (
     <QuizgeekContext.Provider
       value={{
+        setActive,
+        active,
+        history,
         generateQuiz,
-        sumArticle,
+        getArticlesHistory,
         summarizeArticle,
         quiz,
-        history,
         article,
-        getConversationHistory,
         getArticleData,
       }}
     >
