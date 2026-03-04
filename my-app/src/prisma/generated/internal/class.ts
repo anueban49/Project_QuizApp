@@ -23,7 +23,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "/Users/25LP2555/Projects/QuizApp/Project_QuizApp/my-app/src/prisma/generated",
+      "value": "/Users/25LP2555/Projects/Project_QuizApp/Project_QuizApp/my-app/src/prisma/generated",
       "fromEnvVar": null
     },
     "config": {
@@ -37,7 +37,7 @@ const config: runtime.GetPrismaClientConfig = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/25LP2555/Projects/QuizApp/Project_QuizApp/my-app/src/prisma/schema.prisma",
+    "sourceFilePath": "/Users/25LP2555/Projects/Project_QuizApp/Project_QuizApp/my-app/src/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "..",
@@ -47,6 +47,7 @@ const config: runtime.GetPrismaClientConfig = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

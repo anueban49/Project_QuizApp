@@ -1,4 +1,4 @@
-"use client";
+  "use client";
 import {
   createContext,
   useContext,
@@ -17,8 +17,6 @@ export type ScoreType = {
 const ScoreContext = createContext({} as ScoreType);
 
 export const ScoreProvider = ({ children }: { children: ReactNode }) => {
-
-    
   const [balance, setBalance] = useState(0);
 
   const loadScore = async(userId: string ) => {
@@ -29,8 +27,8 @@ export const ScoreProvider = ({ children }: { children: ReactNode }) => {
 
   }
 
-  const loseScore = async() => {
+  const loseScore = async(userId: string) => {
 
   }
-  return <ScoreContext.Provider value={{}}>{children}</ScoreContext.Provider>;
+  return <ScoreContext.Provider value={{balance, loadScore, earnScore, loseScore}}>{children}</ScoreContext.Provider>;
 };

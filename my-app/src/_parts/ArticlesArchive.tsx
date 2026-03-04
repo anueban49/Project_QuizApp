@@ -11,7 +11,7 @@ export const ArticlesArchivePage = () => {
     <>
       <div className={`flex flex-col gap-4 max-w-7xl p-10`}>
         <h3>{article?.title}</h3>
-        <p>{article?.createdAt as string}</p>
+        <p>{article?.createdAt as any}</p>
         <div className={``}>
           <h4>Summarized Content</h4>
           <p> {article?.sumArticle}</p>

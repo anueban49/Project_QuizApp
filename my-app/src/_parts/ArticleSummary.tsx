@@ -78,6 +78,7 @@ export default function ArticleSummary() {
     const input = inputValue.trim();
     const Title = title.trim();
     const res = await summarizeArticle(input, Title);
+    console.log("fulltext", res)
     setSumarticle(res.res)
   };
   useEffect(() => {}, []);
