@@ -5,6 +5,7 @@ import { useUser } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 export const ArticlesArchivePage = () => {
   const { article, active, setActive, getArticleData } = useQuizgeek();
+  const [loading, setLaoding] = useState(false);
   //is it neceassary to get the userId from the context. -> because most functions are already operating using the userId within the context.
 
   return (

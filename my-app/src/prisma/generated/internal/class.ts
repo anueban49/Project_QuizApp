@@ -23,7 +23,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "/Users/25LP2555/Projects/Project_QuizApp/Project_QuizApp/my-app/src/prisma/generated",
+      "value": "C:\\Users\\loned\\OneDrive\\Desktop\\QuizApp\\Project_QuizApp\\my-app\\src\\prisma\\generated",
       "fromEnvVar": null
     },
     "config": {
@@ -32,12 +32,12 @@ const config: runtime.GetPrismaClientConfig = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/25LP2555/Projects/Project_QuizApp/Project_QuizApp/my-app/src/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\loned\\OneDrive\\Desktop\\QuizApp\\Project_QuizApp\\my-app\\src\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "..",

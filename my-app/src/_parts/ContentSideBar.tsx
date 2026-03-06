@@ -12,10 +12,15 @@ import { useTheme } from "@/providers/ThemeProvider";
 import { ReactNode, useEffect, useState } from "react";
 import { useQuizgeek } from "@/providers/QuizgeekProvider";
 import { Article } from "@/prisma/generated/client";
+import { useUser } from "@clerk/nextjs";
 
 const DisplayHistory = ({ props }: { props: Article[] }) => {
   const { theme } = useTheme();
   const { active, setActive, getArticleData } = useQuizgeek();
+  const { user } = useUser();
+  useEffect(() => {
+    getArticleData(user?.id as string);
+  }, []);
   return (
     <>
       <div className={`gap-4 flex flex-col-reverse`}>
