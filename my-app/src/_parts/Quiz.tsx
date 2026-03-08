@@ -17,7 +17,10 @@ export function Quiz() {
     if (quiz) {
       setloading(false);
     }
+
+    setloading(false);
   }, []);
+  console.log(quiz)
   function check(label: string, option: string) {
     if (label === option) {
       alert("Correct Answer!");
@@ -36,13 +39,13 @@ export function Quiz() {
         {loading ? (
           <>
             <div className="flex flex-col w-full h-full justify-center items-center">
-              {" "}
+         
               <LoaderIcon className={`animate-spin duration-300`} />
             </div>
           </>
         ) : (
           <>
-            {" "}
+
             <h2 className="py-10">Question: {quiz?.question}</h2>
             <div className={`grid grid-cols-2 grid-rows-2 gap-5 `}>
               {quiz?.options.map((q, index) => (
@@ -62,7 +65,7 @@ export function Quiz() {
                     {q.text}
                   </div>
                 </div>
-              ))}{" "}
+              ))}
             </div>
           </>
         )}
