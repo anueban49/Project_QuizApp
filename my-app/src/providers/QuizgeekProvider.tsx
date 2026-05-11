@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { ReactNode } from "react";
 import { QuizgeekContext } from "./QuizgeekContext";
 // main functionality of this provider:
@@ -15,13 +15,14 @@ export type Quiz = {
   options: Array<{ label: string; text: string }>;
   answer: string;
 };
-type Article = {
+export type Article = {
   id: string;
   title: string;
   orgArticle: string;
   sumArticle: string;
   createdAt: Date;
   userId: string;
+  updatedAt: Date;
 };
 export type UserType = {
   id: string | null;
@@ -35,23 +36,30 @@ export type OperationType =
   | "QuizSection";
 
 export interface QuizApptypes {
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
   active: OperationType;
   setActive: (active: OperationType) => void;
-  summarizeArticle: (orgArticle: string, title: string) => Promise<string>;
+  summarizeArticle: (orgArticle: string, title: string) => Promise<any>;
   getArticlesHistory: () => Promise<void>;
   history: Article[];
   getArticleData: (articleId: string) => Promise<Article | undefined>;
   generateQuiz: (articleId: string) => Promise<void>;
   quiz: Quiz | null;
   article: Article | null;
+  deleteArticle: (articleId: string) => Promise<void>;
+  updateArticle: (
+    articleId: string,
+    updatedData: Partial<Article>,
+  ) => Promise<void>;
 }
 
 export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
   const [history, setHistory] = useState<Article[]>([]); //for getting articles for the user
   const [article, setArticle] = useState<Article | null>(null); //for getting individual article data
-  const [sumArticle, setSumArticle] = useState<string | null>(null); //for processing article/making one
   const [quiz, setQuiz] = useState<Quiz | null>(null);
   const [active, setActive] = useState<OperationType>("ArticleSummary");
+  const [loading, setLoading] = useState(false);
 
   //on first landing, articleSum will be active. by allowing function to change in between of these, setActive has to change accordingly.
   //export the change statement function.
@@ -60,6 +68,7 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
 
   const summarizeArticle = async (orgArticle: string, title: string) => {
     try {
+      setLoading(true);
       const res = await fetch("/api/articles", {
         method: "POST",
         headers: {
@@ -68,17 +77,16 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
         body: JSON.stringify({ input: orgArticle, title: title }),
       });
       const data = await res.json();
+      setLoading(false);
       return data;
     } catch (e) {
       console.error(e);
+      setLoading(false);
     }
-    setSumArticle(orgArticle);
-
-    useEffect(() => {}, [sumArticle]);
   };
   const getArticlesHistory = async () => {
     try {
-      // endpoint is plural 'articles' and returns array directly
+      setLoading(true);
       const res = await fetch("/api/articles", {
         method: "GET",
         headers: {
@@ -87,27 +95,33 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
       });
       if (!res.ok) {
         console.log("history-data res failure [quizgeekprovider]");
+        setLoading(false);
         return;
       }
       const data: Article[] = await res.json();
       setHistory(data);
+      setLoading(false);
     } catch (e) {
       console.error(e);
+      setLoading(false);
     }
   };
   const getArticleData = async (articleId: string) => {
     try {
+      setLoading(true);
       const res = await fetch(`/api/articles/${articleId}`);
       if (!res.ok) {
         setArticle(null);
+        setLoading(false);
         return;
       }
       const data: Article = await res.json();
       setArticle(data);
-     
+      setLoading(false);
       return data;
     } catch (e) {
       console.error(e);
+      setLoading(false);
     }
   };
 
@@ -121,6 +135,7 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
 
       const input = `${fetched.orgArticle}\n\nSummary:\n${fetched.sumArticle}`;
       try {
+        setLoading(true);
         const res = await fetch(`/api/articles/${articleId}/quizzes`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -132,17 +147,65 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
         }
 
         const data = await res.json();
-        // accept either { res: Quiz } or Quiz directly
-        setQuiz((data as any).res ?? (data as any));
+        // Assume API returns { res: Quiz }
+        setQuiz(data.res);
+        setLoading(false);
       } catch (e) {
         console.error("generateQuiz error", e);
+        setLoading(false);
       }
     }
   };
 
+  const deleteArticle = async (articleId: string) => {
+    try {
+      setLoading(true);
+      const res = await fetch(`/api/articles/${articleId}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) {
+        throw new Error("failed to delete article");
+      }
+      await getArticlesHistory();
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
+    }
+  };
+
+  const updateArticle = async (
+    articleId: string,
+    updatedData: Partial<Article>,
+  ) => {
+    try {
+      setLoading(true);
+      const res = await fetch(`/api/articles/${articleId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      });
+      if (!res.ok) {
+        throw new Error("failed to update article");
+      }
+      const updatedArticle = await res.json();
+      if (article && article.id === articleId) {
+        setArticle(updatedArticle);
+      }
+      await getArticlesHistory();
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
+    }
+  };
   return (
     <QuizgeekContext.Provider
       value={{
+        loading,
+        setLoading,
         setActive,
         active,
         history,
@@ -152,6 +215,8 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
         quiz,
         article,
         getArticleData,
+        deleteArticle,
+        updateArticle,
       }}
     >
       {children}

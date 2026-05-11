@@ -1,6 +1,5 @@
 "use client";
 import { ReactNode } from "react";
-import { Header } from "./Header";
 export const Base = ({ children }: { children: ReactNode }) => {
   return (
     <>

@@ -14,7 +14,7 @@ import { useQuizgeek } from "@/providers/QuizgeekProvider";
 import { Article } from "@/prisma/generated/client";
 import { useUser } from "@clerk/nextjs";
 
-const DisplayHistory = ({ props }: { props: Article[] }) => {
+export const DisplayHistory = ({ props }: { props: Article[] }) => {
   const { theme } = useTheme();
   const { active, setActive, getArticleData } = useQuizgeek();
   const { user } = useUser();
@@ -28,8 +28,8 @@ const DisplayHistory = ({ props }: { props: Article[] }) => {
           <div
             key={prop.id}
             onClick={() => {
-              setActive("ArticlesArchive");
               getArticleData(prop.id);
+              setActive("ArticlesArchive");
             }}
             className={`p-4 rounded-2xl shadow-sm ${theme === "dark" ? "dark shadow-black" : "light shadow-gray-300"}`}
           >
@@ -53,7 +53,7 @@ export const ContentSideBar = () => {
       <DrawerTrigger asChild>
         <Button
           size="icon"
-          className={`rounded-full shadow-md ${theme === "dark" ? "bg-zinc-800" : "bg-gray-100 color-black"}`}
+          className={`rounded-full shadow-md ${theme === "dark" ? "bg-slate-800" : "bg-slate-100 color-black"}`}
         >
           <PanelRight className={`${theme === "dark" ? "" : "text-black"}`} />
         </Button>
@@ -61,7 +61,7 @@ export const ContentSideBar = () => {
 
       <DrawerContent
         suppressHydrationWarning
-        className={`${theme === "dark" ? "dark" : ""} p-5 flex flex-col gap-2`}
+        className={`${theme === "dark" ? "dark" : ""} p-5 flex flex-col gap-2  rounded-l-2xl  my-5`}
       >
         <div className="flex gap-2">
           <DrawerClose asChild>
@@ -72,7 +72,7 @@ export const ContentSideBar = () => {
           <DrawerTitle>History</DrawerTitle>
         </div>
         {history.length !== 0 ? (
-          <DisplayHistory props={history} />
+          <DisplayHistory props={history as Article[]} />
         ) : (
           <>No conversation has been found yet</>
         )}

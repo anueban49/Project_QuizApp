@@ -88,11 +88,11 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 6.19.2
+ * Prisma Client JS version: 6.19.3
  * Query Engine version: c2990dca591cba766e3b7ef5d9e8a84796e47ab7
  */
 export const prismaVersion: PrismaVersion = {
-  client: "6.19.2",
+  client: "6.19.3",
   engine: "c2990dca591cba766e3b7ef5d9e8a84796e47ab7"
 }
 
@@ -390,7 +390,6 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Points: 'Points',
   Article: 'Article',
   Quiz: 'Quiz'
 } as const
@@ -408,84 +407,10 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "points" | "article" | "quiz"
+    modelProps: "article" | "quiz"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
-    Points: {
-      payload: Prisma.$PointsPayload<ExtArgs>
-      fields: Prisma.PointsFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.PointsFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PointsPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.PointsFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PointsPayload>
-        }
-        findFirst: {
-          args: Prisma.PointsFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PointsPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.PointsFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PointsPayload>
-        }
-        findMany: {
-          args: Prisma.PointsFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PointsPayload>[]
-        }
-        create: {
-          args: Prisma.PointsCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PointsPayload>
-        }
-        createMany: {
-          args: Prisma.PointsCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.PointsCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PointsPayload>[]
-        }
-        delete: {
-          args: Prisma.PointsDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PointsPayload>
-        }
-        update: {
-          args: Prisma.PointsUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PointsPayload>
-        }
-        deleteMany: {
-          args: Prisma.PointsDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.PointsUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.PointsUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PointsPayload>[]
-        }
-        upsert: {
-          args: Prisma.PointsUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PointsPayload>
-        }
-        aggregate: {
-          args: Prisma.PointsAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregatePoints>
-        }
-        groupBy: {
-          args: Prisma.PointsGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.PointsGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.PointsCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.PointsCountAggregateOutputType> | number
-        }
-      }
-    }
     Article: {
       payload: Prisma.$ArticlePayload<ExtArgs>
       fields: Prisma.ArticleFieldRefs
@@ -673,21 +598,14 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const PointsScalarFieldEnum = {
-  userId: 'userId',
-  balance: 'balance'
-} as const
-
-export type PointsScalarFieldEnum = (typeof PointsScalarFieldEnum)[keyof typeof PointsScalarFieldEnum]
-
-
 export const ArticleScalarFieldEnum = {
   id: 'id',
   title: 'title',
   orgArticle: 'orgArticle',
   sumArticle: 'sumArticle',
   createdAt: 'createdAt',
-  userId: 'userId'
+  userId: 'userId',
+  updatedAt: 'updatedAt'
 } as const
 
 export type ArticleScalarFieldEnum = (typeof ArticleScalarFieldEnum)[keyof typeof ArticleScalarFieldEnum]
@@ -741,20 +659,6 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -769,16 +673,16 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'Float'
+ * Reference to a field of type 'Int'
  */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
 /**
- * Reference to a field of type 'Float[]'
+ * Reference to a field of type 'Int[]'
  */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 /**
@@ -868,7 +772,6 @@ export interface PrismaClientOptions {
   omit?: GlobalOmitConfig
 }
 export type GlobalOmitConfig = {
-  points?: Prisma.PointsOmit
   article?: Prisma.ArticleOmit
   quiz?: Prisma.QuizOmit
 }

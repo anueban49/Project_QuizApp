@@ -49,7 +49,6 @@ export const AnyNull = runtime.objectEnumValues.instances.AnyNull
 
 
 export const ModelName = {
-  Points: 'Points',
   Article: 'Article',
   Quiz: 'Quiz'
 } as const
@@ -70,21 +69,14 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const PointsScalarFieldEnum = {
-  userId: 'userId',
-  balance: 'balance'
-} as const
-
-export type PointsScalarFieldEnum = (typeof PointsScalarFieldEnum)[keyof typeof PointsScalarFieldEnum]
-
-
 export const ArticleScalarFieldEnum = {
   id: 'id',
   title: 'title',
   orgArticle: 'orgArticle',
   sumArticle: 'sumArticle',
   createdAt: 'createdAt',
-  userId: 'userId'
+  userId: 'userId',
+  updatedAt: 'updatedAt'
 } as const
 
 export type ArticleScalarFieldEnum = (typeof ArticleScalarFieldEnum)[keyof typeof ArticleScalarFieldEnum]

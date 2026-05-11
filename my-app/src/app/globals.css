@@ -49,7 +49,7 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(86.469% 0.0317 285.682);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
@@ -83,7 +83,7 @@
 }
 
 .dark {
-  --background: oklch(23.436% 0.00247 248.181 / 0.975);
+  --background: oklch(20.462% 0.02575 290.985 / 0.975);
   --foreground: oklch(0.984 0.003 247.858);
   --card: oklch(0.208 0.042 265.755);
   --card-foreground: oklch(0.984 0.003 247.858);
@@ -117,33 +117,66 @@
 }
 [data-theme="dark"] {
   :root {
-    --background: #000000;
+    --background: #0000007c;
     --foreground: #ededed;
     transition: ease-in-out 0.2s;
   }
   body {
-    background: rgb(36, 35, 35);
-    color: rgb(216, 216, 216);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: linear-gradient(
+      var(--angle),
+      rgb(19, 23, 43) 10%,
+      rgb(18, 11, 23) 52%,
+      rgb(16, 30, 33) 93%
+    );
+    background-size: 300% 300%;
+    animation:
+      bgAnimation 20s ease infinite,
+      rotate 20s linear infinite;
   }
   h1,
   h2,
   h3,
   h4,
   h5 {
-    color: white;
+    color: rgb(255, 255, 255);
   }
   p {
-    color: rgb(173, 173, 173);
+    color: rgb(255, 255, 255);
   }
 }
 [data-theme="light"] {
   :root {
-    --background: #eaeaea;
+    --background: #eaeaea88;
     --foreground: #070707;
   }
   body {
-    background-color: rgb(241, 241, 241);
-    color: #131111;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: linear-gradient(
+      var(--angle),
+      rgb(133, 162, 255) 0%,
+      rgb(153, 240, 255) 34%,
+      rgba(210, 126, 255, 0.487) 91%
+    );
+    background-size: 300% 300%;
+    animation:
+      bgAnimation 20s ease infinite,
+      rotate 20s linear infinite;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: rgb(0, 0, 0);
   }
 }
 @layer base {
@@ -220,3 +253,32 @@ body {
 .no-scrollbar {
   scrollbar-width: none;
 }
+
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes bgAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
+
+

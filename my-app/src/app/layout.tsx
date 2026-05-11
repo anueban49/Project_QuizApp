@@ -5,6 +5,7 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { QuizgeekProvider } from "@/providers/QuizgeekProvider";
+import { BG } from "@/_parts/BG";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,20 +28,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ThemeProvider>
-      <ClerkProvider>
-        <html lang="en">
-          <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-          >
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <ThemeProvider>
+          <ClerkProvider>
+            <BG />
             <QuizgeekProvider>
               <div className={`w-screen h-screen flex flex-col items-center`}>
                 {children}
               </div>
             </QuizgeekProvider>
-          </body>
-        </html>
-      </ClerkProvider>
-    </ThemeProvider>
+          </ClerkProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

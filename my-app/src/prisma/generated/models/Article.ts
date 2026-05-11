@@ -31,6 +31,7 @@ export type ArticleMinAggregateOutputType = {
   sumArticle: string | null
   createdAt: Date | null
   userId: string | null
+  updatedAt: Date | null
 }
 
 export type ArticleMaxAggregateOutputType = {
@@ -40,6 +41,7 @@ export type ArticleMaxAggregateOutputType = {
   sumArticle: string | null
   createdAt: Date | null
   userId: string | null
+  updatedAt: Date | null
 }
 
 export type ArticleCountAggregateOutputType = {
@@ -49,6 +51,7 @@ export type ArticleCountAggregateOutputType = {
   sumArticle: number
   createdAt: number
   userId: number
+  updatedAt: number
   _all: number
 }
 
@@ -60,6 +63,7 @@ export type ArticleMinAggregateInputType = {
   sumArticle?: true
   createdAt?: true
   userId?: true
+  updatedAt?: true
 }
 
 export type ArticleMaxAggregateInputType = {
@@ -69,6 +73,7 @@ export type ArticleMaxAggregateInputType = {
   sumArticle?: true
   createdAt?: true
   userId?: true
+  updatedAt?: true
 }
 
 export type ArticleCountAggregateInputType = {
@@ -78,6 +83,7 @@ export type ArticleCountAggregateInputType = {
   sumArticle?: true
   createdAt?: true
   userId?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -160,6 +166,7 @@ export type ArticleGroupByOutputType = {
   sumArticle: string
   createdAt: Date
   userId: string
+  updatedAt: Date
   _count: ArticleCountAggregateOutputType | null
   _min: ArticleMinAggregateOutputType | null
   _max: ArticleMaxAggregateOutputType | null
@@ -190,6 +197,7 @@ export type ArticleWhereInput = {
   sumArticle?: Prisma.StringFilter<"Article"> | string
   createdAt?: Prisma.DateTimeFilter<"Article"> | Date | string
   userId?: Prisma.StringFilter<"Article"> | string
+  updatedAt?: Prisma.DateTimeFilter<"Article"> | Date | string
   quizzes?: Prisma.QuizListRelationFilter
 }
 
@@ -200,6 +208,7 @@ export type ArticleOrderByWithRelationInput = {
   sumArticle?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   quizzes?: Prisma.QuizOrderByRelationAggregateInput
 }
 
@@ -213,6 +222,7 @@ export type ArticleWhereUniqueInput = Prisma.AtLeast<{
   sumArticle?: Prisma.StringFilter<"Article"> | string
   createdAt?: Prisma.DateTimeFilter<"Article"> | Date | string
   userId?: Prisma.StringFilter<"Article"> | string
+  updatedAt?: Prisma.DateTimeFilter<"Article"> | Date | string
   quizzes?: Prisma.QuizListRelationFilter
 }, "id" | "id">
 
@@ -223,6 +233,7 @@ export type ArticleOrderByWithAggregationInput = {
   sumArticle?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.ArticleCountOrderByAggregateInput
   _max?: Prisma.ArticleMaxOrderByAggregateInput
   _min?: Prisma.ArticleMinOrderByAggregateInput
@@ -238,6 +249,7 @@ export type ArticleScalarWhereWithAggregatesInput = {
   sumArticle?: Prisma.StringWithAggregatesFilter<"Article"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Article"> | Date | string
   userId?: Prisma.StringWithAggregatesFilter<"Article"> | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Article"> | Date | string
 }
 
 export type ArticleCreateInput = {
@@ -247,6 +259,7 @@ export type ArticleCreateInput = {
   sumArticle: string
   createdAt?: Date | string
   userId: string
+  updatedAt?: Date | string
   quizzes?: Prisma.QuizCreateNestedManyWithoutRefArticleInput
 }
 
@@ -257,6 +270,7 @@ export type ArticleUncheckedCreateInput = {
   sumArticle: string
   createdAt?: Date | string
   userId: string
+  updatedAt?: Date | string
   quizzes?: Prisma.QuizUncheckedCreateNestedManyWithoutRefArticleInput
 }
 
@@ -267,6 +281,7 @@ export type ArticleUpdateInput = {
   sumArticle?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quizzes?: Prisma.QuizUpdateManyWithoutRefArticleNestedInput
 }
 
@@ -277,6 +292,7 @@ export type ArticleUncheckedUpdateInput = {
   sumArticle?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quizzes?: Prisma.QuizUncheckedUpdateManyWithoutRefArticleNestedInput
 }
 
@@ -287,6 +303,7 @@ export type ArticleCreateManyInput = {
   sumArticle: string
   createdAt?: Date | string
   userId: string
+  updatedAt?: Date | string
 }
 
 export type ArticleUpdateManyMutationInput = {
@@ -296,6 +313,7 @@ export type ArticleUpdateManyMutationInput = {
   sumArticle?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ArticleUncheckedUpdateManyInput = {
@@ -305,6 +323,7 @@ export type ArticleUncheckedUpdateManyInput = {
   sumArticle?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ArticleCountOrderByAggregateInput = {
@@ -314,6 +333,7 @@ export type ArticleCountOrderByAggregateInput = {
   sumArticle?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type ArticleMaxOrderByAggregateInput = {
@@ -323,6 +343,7 @@ export type ArticleMaxOrderByAggregateInput = {
   sumArticle?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type ArticleMinOrderByAggregateInput = {
@@ -332,11 +353,16 @@ export type ArticleMinOrderByAggregateInput = {
   sumArticle?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type ArticleScalarRelationFilter = {
   is?: Prisma.ArticleWhereInput
   isNot?: Prisma.ArticleWhereInput
+}
+
+export type StringFieldUpdateOperationsInput = {
+  set?: string
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -364,6 +390,7 @@ export type ArticleCreateWithoutQuizzesInput = {
   sumArticle: string
   createdAt?: Date | string
   userId: string
+  updatedAt?: Date | string
 }
 
 export type ArticleUncheckedCreateWithoutQuizzesInput = {
@@ -373,6 +400,7 @@ export type ArticleUncheckedCreateWithoutQuizzesInput = {
   sumArticle: string
   createdAt?: Date | string
   userId: string
+  updatedAt?: Date | string
 }
 
 export type ArticleCreateOrConnectWithoutQuizzesInput = {
@@ -398,6 +426,7 @@ export type ArticleUpdateWithoutQuizzesInput = {
   sumArticle?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ArticleUncheckedUpdateWithoutQuizzesInput = {
@@ -407,6 +436,7 @@ export type ArticleUncheckedUpdateWithoutQuizzesInput = {
   sumArticle?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -447,6 +477,7 @@ export type ArticleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   sumArticle?: boolean
   createdAt?: boolean
   userId?: boolean
+  updatedAt?: boolean
   quizzes?: boolean | Prisma.Article$quizzesArgs<ExtArgs>
   _count?: boolean | Prisma.ArticleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["article"]>
@@ -458,6 +489,7 @@ export type ArticleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   sumArticle?: boolean
   createdAt?: boolean
   userId?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["article"]>
 
 export type ArticleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -467,6 +499,7 @@ export type ArticleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   sumArticle?: boolean
   createdAt?: boolean
   userId?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["article"]>
 
 export type ArticleSelectScalar = {
@@ -476,9 +509,10 @@ export type ArticleSelectScalar = {
   sumArticle?: boolean
   createdAt?: boolean
   userId?: boolean
+  updatedAt?: boolean
 }
 
-export type ArticleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "orgArticle" | "sumArticle" | "createdAt" | "userId", ExtArgs["result"]["article"]>
+export type ArticleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "orgArticle" | "sumArticle" | "createdAt" | "userId" | "updatedAt", ExtArgs["result"]["article"]>
 export type ArticleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quizzes?: boolean | Prisma.Article$quizzesArgs<ExtArgs>
   _count?: boolean | Prisma.ArticleCountOutputTypeDefaultArgs<ExtArgs>
@@ -498,6 +532,7 @@ export type $ArticlePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     sumArticle: string
     createdAt: Date
     userId: string
+    updatedAt: Date
   }, ExtArgs["result"]["article"]>
   composites: {}
 }
@@ -928,6 +963,7 @@ export interface ArticleFieldRefs {
   readonly sumArticle: Prisma.FieldRef<"Article", 'String'>
   readonly createdAt: Prisma.FieldRef<"Article", 'DateTime'>
   readonly userId: Prisma.FieldRef<"Article", 'String'>
+  readonly updatedAt: Prisma.FieldRef<"Article", 'DateTime'>
 }
     
 

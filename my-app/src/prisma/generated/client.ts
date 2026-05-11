@@ -29,8 +29,8 @@ export * from "./enums"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Points
- * const points = await prisma.points.findMany()
+ * // Fetch zero or more Articles
+ * const articles = await prisma.article.findMany()
  * ```
  * 
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
@@ -44,11 +44,6 @@ export { Prisma }
 path.join(__dirname, "query_engine-windows.dll.node")
 path.join(process.cwd(), "src/prisma/generated/query_engine-windows.dll.node")
 
-/**
- * Model Points
- * 
- */
-export type Points = Prisma.PointsModel
 /**
  * Model Article
  * 

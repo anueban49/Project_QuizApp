@@ -23,53 +23,13 @@ export default function ArticleSummary() {
   const [inputValue, setInputValue] = useState<String | "">("");
   const [title, setTitle] = useState<String>("");
   const { theme } = useTheme();
-  const [sumArticle, setSumarticle] = useState("")
-  const [conversation, setConversation] = useState<History[]>([]); //for history sidebar
+  const [sumArticle, setSumarticle] = useState("");
   const [loading, setLoading] = useState(false);
-  const [showGenbtn, setShowgenbtn] = useState(false);
 
-  const { summarizeArticle} = useQuizgeek();
+  const { summarizeArticle } = useQuizgeek();
 
   //user sends a message -> database assigns id, -> which is autoincrement() -> returns the id, saves the title & content, returns back to db and saved there.
   //in order to obtain the id, frontend will have to send request to server which will ... req -> res -> id -> then ai generate, then after generate, backend saves the convo
-
-  const BtnAppr = () => {
-    return (
-      <div
-        className={`
-        absolute bottom-5 right-5
-        flex items-center overflow-hidden
-        rounded-full transition-all duration-300 ease-in-out
-        ${showGenbtn ? "w-32" : "w-10"}  
-      `}
-        onMouseEnter={() => setShowgenbtn(true)}
-        onMouseLeave={() => setShowgenbtn(false)}
-      >
-        <Button
-          className="w-full h-10 rounded-full flex items-center justify-center gap-2"
-          disabled={inputValue === ""}
-          onClick={() => {
-            setFirstchat(true);
-            handleGenerate();
-          }}
-        >
-          <ArrowUp className="shrink-0" />
-
-          {/* Text fades in and out */}
-          <span
-            className={`
-            whitespace-nowrap transition-all duration-300
-            ${showGenbtn ? "opacity-100 w-auto" : "opacity-0 w-0"}
-          `}
-          >
-            Generate
-          </span>
-        </Button>
-      </div>
-    );
-  };
-  //user sends article, article is sent to database;
-  //article has title, timestamp, content={orgArticle, summarized article.} and id.
 
   const handleGenerate = async () => {
     //for ai content extraction
@@ -78,24 +38,30 @@ export default function ArticleSummary() {
     const input = inputValue.trim();
     const Title = title.trim();
     const res = await summarizeArticle(input, Title);
-    console.log("fulltext", res)
-    setSumarticle(res.res)
+    console.log("fulltext", res);
+    setSumarticle(res.res);
   };
   useEffect(() => {}, []);
   return (
     <div className="w-full h-full flex flex-col items-center  transition-colors px-10 py-20">
       <div className="flex flex-col gap-4 p-10 justify-center">
-        <div className={`flex gap-2 items-center text-2xl font-bold `}>
+        <div
+          className={`flex gap-2 items-center text-2xl font-bold ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
+        >
           <Sparkles /> Article Quiz Generator
         </div>
         {firstchat ? (
           <>
-            <div className="w-full flex gap-4 text-gray-500 font-semibold">
+            <div
+              className={`w-full flex gap-4 ${theme === "dark" ? "text-slate-400" : "text-slate-700"} font-semibold`}
+            >
               <BookIcon />
               Summarized Content
             </div>
             <p>{sumArticle}</p>
-            <div className="w-full flex gap-4 text-gray-500 font-semibold">
+            <div
+              className={`w-full flex gap-4 ${theme === "dark" ? "text-slate-400" : "text-slate-700"} font-semibold`}
+            >
               <BookAlertIcon /> Original Article
             </div>
 
@@ -118,7 +84,7 @@ export default function ArticleSummary() {
               onChange={(e) => {
                 setTitle(e.target.value);
               }}
-              className={`w-full border-none inset-shadow-sm ${theme == "dark" ? "inset-shadow-black dark" : "inset-shadow-gray-300"}`}
+              className={`w-full border-none inset-shadow-sm ${theme == "dark" ? "inset-shadow-black dark" : "inset-shadow-gray-300 bg-white"}`}
               placeholder="Write your article title"
             />
             <div className="flex gap-2 font-semibold text-zinc-600">
@@ -126,7 +92,7 @@ export default function ArticleSummary() {
               Article Content
             </div>
             <div className={`flex gap-2 w-full`}>
-              <div className="realtiveContainer w-full h-full relative">
+              <div className=" Container w-full h-full relative">
                 <textarea
                   placeholder="Paste your article here or describe your idea"
                   onKeyDown={(e) => {
@@ -138,9 +104,24 @@ export default function ArticleSummary() {
                   onChange={(e) => {
                     setInputValue(e.target.value);
                   }}
-                  className={`w-full aspect-5/1 no-scrollbar resize-none border-none inset-shadow-sm ${theme === "dark" ? "dark inset-shadow-black" : "light inset-shadow-gray-300"}`}
+                  className={`w-full aspect-5/1 no-scrollbar resize-none border-none inset-shadow-sm ${theme === "dark" ? "dark inset-shadow-black" : "bg-white inset-shadow-gray-300"}`}
                 ></textarea>
-                <BtnAppr />
+                <Button
+                  variant={"ghost"}
+                  size={"icon-lg"}
+                  className={`absolute bottom-10 right-2 rounded-full ${theme === "dark" ? "bg-slate-800" : "bg-slate-100 color-black text-black"} absolute right-2 bottom-2`}
+                  onClick={() => {
+                    setFirstchat(true);
+                    handleGenerate();
+                  }}
+                  disabled={
+                    loading || inputValue.length === 0 || title.length === 0
+                  }
+                >
+                  <ArrowUp
+                    className={`${theme === "dark" ? "text-black" : "color-black"}}`}
+                  />
+                </Button>
               </div>
             </div>
           </>

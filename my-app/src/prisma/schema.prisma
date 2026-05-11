@@ -14,11 +14,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Points {
-  userId  String @id
-  balance Int
-}
-
 model Article {
   id         String   @id @unique
   title      String
@@ -27,6 +22,7 @@ model Article {
   createdAt  DateTime @default(now())
   quizzes    Quiz[]
   userId     String
+  updatedAt  DateTime @default(now()) 
 }
 
 model Quiz {

@@ -1,20 +1,20 @@
 "use client";
-import { ArticlesArchivePage } from "./ArticlesArchive";
+import { ArticlesWorks } from "./ArticleWorks";
 import ArticleSummary from "./ArticleSummary";
-import { Quiz } from "./Quiz";
 import { useQuizgeek } from "@/providers/QuizgeekProvider";
+import { QuizSection } from "./QuizSection";
 
 //the content switch page has to take the following arguemtns:
 //user id.
 
-export const ContentSwitchPage = ({ id }: { id: string }) => {
+export const ContentSwitchPage = () => {
   const { active } = useQuizgeek();
 
   return (
     <>
+      {active === "ArticlesArchive" && <ArticlesWorks />}
       {active === "ArticleSummary" && <ArticleSummary />}
-      {active === "ArticlesArchive" && <ArticlesArchivePage/>}
-      {active === "QuizSection" && <Quiz />}
+      {active === "QuizSection" && <QuizSection />}
     </>
   );
 };
