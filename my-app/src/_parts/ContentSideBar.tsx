@@ -11,7 +11,7 @@ import { PanelLeft, PanelRight } from "lucide-react";
 import { useTheme } from "@/providers/ThemeProvider";
 import { ReactNode, useEffect, useState } from "react";
 import { useQuizgeek } from "@/providers/QuizgeekProvider";
-import { Article } from "@/prisma/generated/client";
+import { Article } from "../../prisma/generated/client";
 import { useUser } from "@clerk/nextjs";
 
 export const DisplayHistory = ({ props }: { props: Article[] }) => {
