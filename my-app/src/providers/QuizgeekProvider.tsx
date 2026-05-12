@@ -15,6 +15,13 @@ export type Quiz = {
   options: Array<{ label: string; text: string }>;
   answer: string;
 };
+export interface QuizType {
+  articleId: string;
+  difficulty?: string;
+  size?: number | string;
+  userApiKey?: string;
+  language?: string;
+}
 export type Article = {
   id: string;
   title: string;
@@ -44,8 +51,8 @@ export interface QuizApptypes {
   getArticlesHistory: () => Promise<void>;
   history: Article[];
   getArticleData: (articleId: string) => Promise<Article | undefined>;
-  generateQuiz: (articleId: string) => Promise<void>;
-  quiz: Quiz | null;
+  generateQuiz: (params: { articleId: string; size?: string; difficulty?: string; userApiKey?: string; language?: string }) => Promise<void>;
+  quiz: Quiz[] | null;
   article: Article | null;
   deleteArticle: (articleId: string) => Promise<void>;
   updateArticle: (
@@ -57,7 +64,7 @@ export interface QuizApptypes {
 export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
   const [history, setHistory] = useState<Article[]>([]); //for getting articles for the user
   const [article, setArticle] = useState<Article | null>(null); //for getting individual article data
-  const [quiz, setQuiz] = useState<Quiz | null>(null);
+  const [quiz, setQuiz] = useState<Quiz[] | null>(null);
   const [active, setActive] = useState<OperationType>("ArticleSummary");
   const [loading, setLoading] = useState(false);
 
@@ -125,9 +132,13 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const generateQuiz = async (articleId: string) => {
+  const generateQuiz = async (params: { articleId: string; size?: string; difficulty?: string; userApiKey?: string; language?: string }) => {
+    if (!params.articleId) {
+      console.error("no articleId provided");
+      return;
+    }
     if (active === "QuizSection") {
-      const fetched = await getArticleData(articleId);
+      const fetched = await getArticleData(params.articleId);
       if (!fetched) {
         console.error("generateQuiz: article not found");
         return;
@@ -136,10 +147,10 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
       const input = `${fetched.orgArticle}\n\nSummary:\n${fetched.sumArticle}`;
       try {
         setLoading(true);
-        const res = await fetch(`/api/articles/${articleId}/quizzes`, {
+        const res = await fetch(`/api/articles/${params.articleId}/quizzes`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ input }),
+          body: JSON.stringify({ input, userApiKey: params.userApiKey, size: params.size, difficulty: params.difficulty, language: params.language }),
         });
 
         if (!res.ok) {
@@ -147,8 +158,8 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
         }
 
         const data = await res.json();
-        // Assume API returns { res: Quiz }
-        setQuiz(data.res);
+        // API returns the quiz object directly
+        setQuiz(data);
         setLoading(false);
       } catch (e) {
         console.error("generateQuiz error", e);

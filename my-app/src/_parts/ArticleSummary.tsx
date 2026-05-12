@@ -43,7 +43,7 @@ export default function ArticleSummary() {
   };
   useEffect(() => {}, []);
   return (
-    <div className="w-full h-full flex flex-col items-center  transition-colors px-10 py-20">
+    <div className="w-full h-full flex flex-col items-center  transition-colors ">
       <div className="flex flex-col gap-4 p-10 justify-center">
         <div
           className={`flex gap-2 items-center text-2xl font-bold ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}

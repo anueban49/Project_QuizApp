@@ -120,14 +120,24 @@ export const NoteBook = ({ prop, operationable }: NotebookProp) => {
           </Button>
         </div>
       )}
-      <h1>{prop?.title}</h1>
-      <div>
-        <h3>Original:</h3> <p>{prop?.orgArticle}</p>
-      </div>
-      <div className="flex flex-col gap-2">
-        <h3>Summarized:</h3>
-        <p>{prop?.sumArticle}</p>
-      </div>
+      {prop ? (
+        <>
+          <h1>{prop?.title}</h1>
+          <div>
+            <h3>Original:</h3> <p>{prop?.orgArticle}</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <h3>Summarized:</h3>
+            <p>{prop?.sumArticle}</p>
+          </div>
+        </>
+      ) : (
+        <>
+          <p className="text-slate-500">
+            Select or chooose and article to view
+          </p>
+        </>
+      )}
     </div>
   );
 };

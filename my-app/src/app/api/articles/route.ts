@@ -27,8 +27,8 @@ export const POST = async (request: NextRequest) => {
         systemInstruction: "Summarize the article under 50 words",
       },
     });
-    const fullText = await response.text;
-    console.log(response.text);
+    const fullText = response.text;
+    console.log(fullText);
 
     await prisma.article.create({
       data: {

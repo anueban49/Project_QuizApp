@@ -28,12 +28,12 @@ export const ArticlesWorks = () => {
               {history.map((h) => (
                 <div
                   key={h.id}
-                  className={`p-2 rounded cursor-pointer transition-colors ${view?.id === h.id && "inset-shadow-sm inset-shadow-slate-500/50"}`}
+                  className={`p-2 rounded cursor-pointer transition-colors ${view?.id === h.id && "inset-shadow-sm inset-shadow-slate-500/50"} `}
                   onClick={() => {
                     setView(h);
                   }}
                 >
-                  {h.title}
+                  <p>{h.title}</p>
                 </div>
               ))}
             </div>
