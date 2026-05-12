@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { useQuizgeek } from "@/providers/QuizgeekProvider";
 import { useTheme } from "@/providers/ThemeProvider";
-import { LoaderIcon } from "lucide-react";
 import type { Quiz } from "@/providers/QuizgeekProvider";
 import { LoadingScreen } from "./LoadingScreen";
 type QuizzingProps = Quiz & {
@@ -11,10 +10,9 @@ type QuizzingProps = Quiz & {
   selected?: string;
 };
 export function Quiz({ articleId }: { articleId: string }) {
-  const { quiz, getArticleData } = useQuizgeek();
+  const { quiz, loading } = useQuizgeek();
   const [quizzing, setQuizzing] = useState<QuizzingProps[]>([]);
   const { theme } = useTheme();
-  const [loading, setloading] = useState(false);
   const [length, setLength] = useState<number>(0);
   const [steps, setSteps] = useState<number>(0);
   const [correct, setCorrect] = useState<number>(0);
@@ -24,16 +22,10 @@ export function Quiz({ articleId }: { articleId: string }) {
   }, [steps]);
 
   useEffect(() => {
-    setloading(true);
-    getArticleData(articleId);
-  }, [articleId]);
-
-  useEffect(() => {
     if (quiz && quiz.length > 0) {
       const quizData = quiz.map((q) => ({ ...q, answered: false, correct: false }));
       setQuizzing(quizData);
       setLength(quizData.length);
-      setloading(false);
     }
   }, [quiz]);
 
@@ -63,9 +55,11 @@ export function Quiz({ articleId }: { articleId: string }) {
   //   );
   // }
 
+  const isLoading = loading && (!quizzing || quizzing.length === 0);
+
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <LoadingScreen />
       ) : (
         <div

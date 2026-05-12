@@ -60,7 +60,14 @@ export const POST = async (request: NextRequest) => {
     }
 
     const quiz = JSON.parse(match[0]);
-    console.log(quiz);
+    if (!Array.isArray(quiz) || quiz.length === 0) {
+      return NextResponse.json(
+        { error: "AI returned invalid quiz format" },
+        { status: 500 },
+      );
+    }
+
+    console.log("Parsed quiz payload:", quiz);
     return NextResponse.json(quiz);
   } catch (error) {
     return NextResponse.json(

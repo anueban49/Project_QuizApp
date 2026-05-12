@@ -169,8 +169,8 @@ export const QuizSection = () => {
                   <NoteBook prop={view as Article} operationable={false} />
                   <Button
                     disabled={!view}
-                    onClick={() => {
-                      generateQuiz({
+                    onClick={async () => {
+                      await generateQuiz({
                         articleId: view?.id as string,
                         size: options.size,
                         difficulty: options.difficulty,

@@ -37,6 +37,71 @@ export type UserType = {
   points: number;
 };
 
+type NormalizedQuizOption = { label: string; text: string };
+
+type NormalizedQuiz = {
+  question: string;
+  options: NormalizedQuizOption[];
+  answer: string;
+};
+
+const normalizeQuizOptions = (
+  options: any,
+): NormalizedQuizOption[] | null => {
+  if (!Array.isArray(options)) return null;
+  return options
+    .map((option: any, index: number) => {
+      if (typeof option === "string") {
+        return { label: String.fromCharCode(65 + index), text: option.trim() };
+      }
+      if (typeof option === "object" && option !== null) {
+        const label = typeof option.label === "string" ? option.label.trim().toUpperCase() : String.fromCharCode(65 + index);
+        const text = typeof option.text === "string" ? option.text.trim() : "";
+        if (!text) return null;
+        return { label, text };
+      }
+      return null;
+    })
+    .filter((item): item is NormalizedQuizOption => Boolean(item));
+};
+
+const normalizeQuizData = (raw: any): NormalizedQuiz[] | null => {
+  if (!Array.isArray(raw)) return null;
+
+  const normalized = raw
+    .map((item: any) => {
+      if (typeof item !== "object" || item === null) return null;
+
+      const question = typeof item.question === "string" ? item.question.trim() : "";
+      const options = normalizeQuizOptions(item.options);
+      if (!question || !options || options.length === 0) return null;
+
+      let answer = typeof item.answer === "string" ? item.answer.trim() : "";
+      if (!answer) return null;
+
+      const matched = options.find(
+        (opt) =>
+          opt.label.toUpperCase() === answer.toUpperCase() ||
+          opt.text.toLowerCase() === answer.toLowerCase() ||
+          opt.text.toLowerCase() === answer.replace(/^"|"$/g, "").toLowerCase(),
+      );
+      if (matched) {
+        answer = matched.label;
+      }
+
+      if (!options.some((opt) => opt.label.toUpperCase() === answer.toUpperCase())) return null;
+
+      return {
+        question,
+        options,
+        answer: answer.toUpperCase(),
+      };
+    })
+    .filter((item): item is NormalizedQuiz => Boolean(item));
+
+  return normalized.length > 0 ? normalized : null;
+};
+
 export type OperationType =
   | "ArticleSummary"
   | "ArticlesArchive"
@@ -91,6 +156,7 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
       });
       const data = await res.json();
       setLoading(false);
+      console.log(data);
       return data;
     } catch (e) {
       console.error(e);
@@ -172,12 +238,18 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
       });
 
       if (!res.ok) {
-        throw new Error("failed to generate quiz");
+        const errorBody = await res.json().catch(() => null);
+        throw new Error(
+          errorBody?.error ? String(errorBody.error) : "failed to generate quiz",
+        );
       }
 
-      const data = await res.json();
-      // API returns the quiz object directly
-      setQuiz(data);
+      const rawData = await res.json();
+      const normalizedData = normalizeQuizData(rawData);
+      if (!normalizedData) {
+        throw new Error("Invalid quiz format returned from API");
+      }
+      setQuiz(normalizedData);
       setLoading(false);
     } catch (e) {
       console.error("generateQuiz error", e);

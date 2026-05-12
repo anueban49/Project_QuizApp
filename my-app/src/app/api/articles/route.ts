@@ -27,6 +27,7 @@ export const POST = async (request: NextRequest) => {
         systemInstruction: "Summarize the article under 50 words",
       },
     });
+    console.log(response)
     const fullText = response.text;
     console.log(fullText);
 
