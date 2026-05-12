@@ -34,7 +34,7 @@ export default function ArticleSummary() {
     const Title = title.trim();
     const res = await summarizeArticle(input, Title);
     console.log("fulltext", res);
-    setSumarticle(res.res);
+    setSumarticle(res);
     setLoading(false);
   };
   return (
