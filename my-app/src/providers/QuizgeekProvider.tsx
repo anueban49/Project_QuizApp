@@ -51,7 +51,13 @@ export interface QuizApptypes {
   getArticlesHistory: () => Promise<void>;
   history: Article[];
   getArticleData: (articleId: string) => Promise<Article | undefined>;
-  generateQuiz: (params: { articleId: string; size?: string; difficulty?: string; userApiKey?: string; language?: string }) => Promise<void>;
+  generateQuiz: (params: {
+    articleId: string;
+    size?: string;
+    difficulty?: string;
+    userApiKey?: string;
+    language?: string;
+  }) => Promise<void>;
   quiz: Quiz[] | null;
   article: Article | null;
   deleteArticle: (articleId: string) => Promise<void>;
@@ -132,39 +138,50 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const generateQuiz = async (params: { articleId: string; size?: string; difficulty?: string; userApiKey?: string; language?: string }) => {
+  const generateQuiz = async (params: {
+    articleId: string;
+    size?: string;
+    difficulty?: string;
+    userApiKey?: string;
+    language?: string;
+  }) => {
     if (!params.articleId) {
       console.error("no articleId provided");
       return;
     }
-    if (active === "QuizSection") {
-      const fetched = await getArticleData(params.articleId);
-      if (!fetched) {
-        console.error("generateQuiz: article not found");
-        return;
+    const fetched = await getArticleData(params.articleId);
+    if (!fetched) {
+      console.error("generateQuiz: article not found");
+      return;
+    }
+
+    const input = `${fetched.orgArticle}\n\nSummary:\n${fetched.sumArticle}`;
+    
+    try {
+      setLoading(true);
+      const res = await fetch(`/api/articles/${params.articleId}/quizzes`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          input,
+          userApiKey: params.userApiKey,
+          size: params.size,
+          difficulty: params.difficulty,
+          language: params.language,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("failed to generate quiz");
       }
 
-      const input = `${fetched.orgArticle}\n\nSummary:\n${fetched.sumArticle}`;
-      try {
-        setLoading(true);
-        const res = await fetch(`/api/articles/${params.articleId}/quizzes`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ input, userApiKey: params.userApiKey, size: params.size, difficulty: params.difficulty, language: params.language }),
-        });
-
-        if (!res.ok) {
-          throw new Error("failed to generate quiz");
-        }
-
-        const data = await res.json();
-        // API returns the quiz object directly
-        setQuiz(data);
-        setLoading(false);
-      } catch (e) {
-        console.error("generateQuiz error", e);
-        setLoading(false);
-      }
+      const data = await res.json();
+      // API returns the quiz object directly
+      setQuiz(data);
+      setLoading(false);
+    } catch (e) {
+      console.error("generateQuiz error", e);
+      setLoading(false);
     }
   };
 

@@ -8,24 +8,30 @@ interface QuizOptionalType {
   language?: string;
 }
 export const POST = async (request: NextRequest) => {
-  const { input, ...options } = await request.json();
-  let apiKey = options.userApiKey || process.env.GENAI_API_KEY;
-  let difficulty = options.difficulty || "medium";
-  let size = options.size || 3;
-  let language = options.language || "english";
   try {
+    const props: QuizOptionalType = await request.json();
+    let apiKey = "";
+    if (props.userApiKey) {
+      apiKey = props.userApiKey;
+    } else {
+      apiKey = process.env.GENAI_API_KEY as string;
+    }
+
     if (!apiKey) {
       return NextResponse.json({ error: "API key issue" }, { status: 500 });
+    }
+    if (props) {
+      console.log("input submitted 18 route.ts quizzes");
     }
 
     const ai = new GoogleGenAI({ apiKey });
 
-    const prompt: string = options.input.trim();
+    const prompt: string = props.input.trim();
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
       contents: prompt,
       config: {
-        systemInstruction: `Generate ${size} quiz questions with given article. Respond in EXACT JSON format, nothing else, no extra text:
+        systemInstruction: `Generate ${props?.size ?? "3"} quiz questions with difficulty of ${props?.difficulty ?? "medium"} in ${props?.language ?? "english"} with given article. Respond in EXACT JSON format, nothing else, no extra text:
         [{"question": "your question here",
         "options": [
               { "label": "A", "text": "option 1" },
@@ -39,7 +45,13 @@ export const POST = async (request: NextRequest) => {
     });
     const fullText: any = response.text;
     console.log(fullText);
-    const match = fullText.match(/\{[\s\S]*\}/);
+
+    const cleaned = fullText
+      .replace(/```json/g, "")
+      .replace(/```/g, "")
+      .trim();
+
+    const match = cleaned.match(/\[[\s\S]*\]/);
     if (!match) {
       return NextResponse.json(
         { error: "AI returned invalid format" },

@@ -15,6 +15,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useEffect } from "react";
+import { LoadingScreen } from "./LoadingScreen";
 
 //user sends article -> orgArticletype, agents sends response -> sumarticle.
 
@@ -27,21 +28,15 @@ export default function ArticleSummary() {
   const [loading, setLoading] = useState(false);
 
   const { summarizeArticle } = useQuizgeek();
-
-  //user sends a message -> database assigns id, -> which is autoincrement() -> returns the id, saves the title & content, returns back to db and saved there.
-  //in order to obtain the id, frontend will have to send request to server which will ... req -> res -> id -> then ai generate, then after generate, backend saves the convo
-
   const handleGenerate = async () => {
-    //for ai content extraction
-    //but id generation request must also go within.
     setLoading(true);
     const input = inputValue.trim();
     const Title = title.trim();
     const res = await summarizeArticle(input, Title);
     console.log("fulltext", res);
     setSumarticle(res.res);
+    setLoading(false);
   };
-  useEffect(() => {}, []);
   return (
     <div className="w-full h-full flex flex-col items-center  transition-colors ">
       <div className="flex flex-col gap-4 p-10 justify-center">
@@ -58,7 +53,8 @@ export default function ArticleSummary() {
               <BookIcon />
               Summarized Content
             </div>
-            <p>{sumArticle}</p>
+            {loading ? <LoadingScreen /> : <p>{sumArticle}</p>}
+
             <div
               className={`w-full flex gap-4 ${theme === "dark" ? "text-slate-400" : "text-slate-700"} font-semibold`}
             >
