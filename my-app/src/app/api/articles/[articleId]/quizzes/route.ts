@@ -8,6 +8,7 @@ interface QuizOptionalType {
   language?: string;
 }
 export const POST = async (request: NextRequest) => {
+  console.log("hello articles/id/quizzes post")
   try {
     const props: QuizOptionalType = await request.json();
     let apiKey = "";

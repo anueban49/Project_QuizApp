@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { GoogleGenAI } from "@google/genai";
 import { customAlphabet } from "nanoid";
 import { auth } from "@clerk/nextjs/server";
 
 export const POST = async (request: NextRequest) => {
+  console.log("hello aricles POST")
   const apiKey = process.env.GENAI_API_KEY;
   const ai = new GoogleGenAI({ apiKey });
   const { input, title } = await request.json();
@@ -53,6 +54,7 @@ export const POST = async (request: NextRequest) => {
 };
 
 export const GET = async (req: NextRequest) => {
+  console.log("hello aricles get")
   const { userId } = await auth();
   if (!userId) {
     return NextResponse.json({ error: "validation fail" }, { status: 403 });
