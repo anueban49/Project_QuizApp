@@ -9,7 +9,6 @@
     "start": "next start",
     "lint": "eslint"
   },
-  "type": "module",
   "dependencies": {
     "@clerk/nextjs": "^6.37.5",
     "@google/genai": "^1.44.0",
