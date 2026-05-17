@@ -1,36 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { GoogleGenAI } from "@google/genai";
 import { customAlphabet } from "nanoid";
 import { auth } from "@clerk/nextjs/server";
+import OpenAI from "openai";
 
 export const POST = async (request: NextRequest) => {
-  console.log("hello aricles POST")
-  const apiKey = process.env.GENAI_API_KEY;
-  const ai = new GoogleGenAI({ apiKey });
+  const client = new OpenAI();
   const { input, title } = await request.json();
 
   const prompt: string = input.trim();
-  const newConvoId = customAlphabet("QXZY1234567890", 6);
   const newArticleId = customAlphabet("1234567890", 10);
   const { userId } = await auth();
   const clerkId = userId;
-  console.log("aapi/articles in work");
+  console.log("api/articles in work");
   try {
-    if (!apiKey) {
-      return NextResponse.json({ error: "API key issue" }, { status: 500 });
-    }
 
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: prompt,
-      config: {
-        systemInstruction: "Summarize the article under 50 words",
-      },
-    });
+    const response = await client.responses.create({
+      model: "gpt-4o-mini",
+      input: prompt,
+      instructions: "Summarize article given by user."
+    })
     console.log(response)
-    const fullText = response.text;
-    console.log(fullText);
+    const fullText = response.output_text;
 
     await prisma.article.create({
       data: {

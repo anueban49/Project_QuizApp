@@ -1,6 +1,6 @@
 generator client {
-  provider        = "prisma-client-js"
-  output          = "./generated/prisma" 
+  provider = "prisma-client-js"
+  output   = "./generated/prisma"
 }
 
 datasource db {
@@ -16,14 +16,39 @@ model Article {
   createdAt  DateTime @default(now())
   userId     String
   updatedAt  DateTime @default(now())
+  category   String
+  subject    String[]
+  User       User     @relation(fields: [userId], references: [id])
   quizzes    Quiz[]
 }
 
 model Quiz {
   id            String   @id
   articleId     String
-  options       String[]
   correctOption String
   createdAt     DateTime @default(now())
+  userId        String
+  options       Json[]
   refArticle    Article  @relation(fields: [articleId], references: [id])
+  User          User     @relation(fields: [userId], references: [id])
+}
+
+model Category {
+  id   String @id @unique
+  name String
+}
+
+model Subject {
+  id   String @id @unique
+  name String
+}
+
+model User {
+  id       String    @id @unique
+  name     String
+  joinedAt DateTime  @default(now())
+  lastSeen DateTime  @default(now())
+  apiKey   String?
+  Article  Article[]
+  Quiz     Quiz[]
 }

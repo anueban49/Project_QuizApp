@@ -130,6 +130,8 @@ export interface QuizApptypes {
     articleId: string,
     updatedData: Partial<Article>,
   ) => Promise<void>;
+  getSavedQuiz: (articleId: string) => Promise<boolean>;
+  saveQuiz: (articleId: string, quizData?: Quiz[]) => Promise<void>;
 }
 
 export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
@@ -257,6 +259,68 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const getSavedQuiz = async (articleId: string) => {
+    if (!articleId) {
+      console.error("getSavedQuiz: articleId is required");
+      return false;
+    }
+    try {
+      setLoading(true);
+      const res = await fetch(`/api/articles/${articleId}/quizzes`);
+      if (!res.ok) {
+        console.error("getSavedQuiz failed", res.statusText);
+        setQuiz(null);
+        setLoading(false);
+        return false;
+      }
+      const data = await res.json();
+      const normalizedData = normalizeQuizData(data);
+      setQuiz(normalizedData);
+      setLoading(false);
+      return Boolean(normalizedData && normalizedData.length > 0);
+    } catch (e) {
+      console.error("getSavedQuiz error", e);
+      setQuiz(null);
+      setLoading(false);
+      return false;
+    }
+  };
+
+  const saveQuiz = async (articleId: string, quizData?: Quiz[]) => {
+    if (!articleId) {
+      console.error("saveQuiz: articleId is required");
+      return;
+    }
+    const payload = quizData ?? quiz;
+    if (!payload || payload.length === 0) {
+      console.error("saveQuiz: no quiz data available to save");
+      return;
+    }
+    try {
+      setLoading(true);
+      const res = await fetch(`/api/articles/${articleId}/quizzes`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ quiz: payload }),
+      });
+      if (!res.ok) {
+        const errorBody = await res.json().catch(() => null);
+        throw new Error(
+          errorBody?.error ? String(errorBody.error) : "failed to save quiz",
+        );
+      }
+      const savedQuiz = await res.json();
+      const normalizedData = normalizeQuizData(savedQuiz);
+      if (normalizedData) {
+        setQuiz(normalizedData);
+      }
+      setLoading(false);
+    } catch (e) {
+      console.error("saveQuiz error", e);
+      setLoading(false);
+    }
+  };
+
   const deleteArticle = async (articleId: string) => {
     try {
       setLoading(true);
@@ -315,6 +379,8 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
         quiz,
         article,
         getArticleData,
+        getSavedQuiz,
+        saveQuiz,
         deleteArticle,
         updateArticle,
       }}

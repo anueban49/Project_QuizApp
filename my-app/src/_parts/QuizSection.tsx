@@ -28,6 +28,7 @@ export const QuizSection = () => {
     getArticleData,
     history,
     generateQuiz,
+    getSavedQuiz,
     setActive,
   } = useQuizgeek();
   const { theme } = useTheme();
@@ -42,8 +43,13 @@ export const QuizSection = () => {
   useEffect(() => {
     setActive("QuizSection");
     getArticlesHistory();
-    setView(history[0]);
   }, []);
+
+  useEffect(() => {
+    if (!view && history.length > 0) {
+      setView(history[0]);
+    }
+  }, [history, view]);
   const [fromOldArticle, setFromOldArticle] = useState(true);
   if (mode === "intermission") {
     return (
@@ -167,22 +173,38 @@ export const QuizSection = () => {
                 </div>
                 <div className="w-full h-full relative">
                   <NoteBook prop={view as Article} operationable={false} />
-                  <Button
-                    disabled={!view}
-                    onClick={async () => {
-                      await generateQuiz({
-                        articleId: view?.id as string,
-                        size: options.size,
-                        difficulty: options.difficulty,
-                        userApiKey: options.userApiKey,
-                        language: options.language,
-                      });
-                      setMode("quizzing");
-                    }}
-                    className={`top-5 right-5 absolute ${!view && "hidden"}`}
-                  >
-                    Generate
-                  </Button>
+                  <div className="absolute top-5 right-5 flex gap-2">
+                    <Button
+                      disabled={!view}
+                      onClick={async () => {
+                        const loaded = await getSavedQuiz(view?.id as string);
+                        if (loaded) {
+                          setMode("quizzing");
+                        } else {
+                          window.alert("No saved quiz found for this article.");
+                        }
+                      }}
+                      className={`rounded-2xl ${theme === "dark" ? "bg-slate-700 text-slate-50" : "bg-slate-100 text-slate-700"}`}
+                    >
+                      Load saved quiz
+                    </Button>
+                    <Button
+                      disabled={!view}
+                      onClick={async () => {
+                        await generateQuiz({
+                          articleId: view?.id as string,
+                          size: options.size,
+                          difficulty: options.difficulty,
+                          userApiKey: options.userApiKey,
+                          language: options.language,
+                        });
+                        setMode("quizzing");
+                      }}
+                      className={`rounded-2xl ${theme === "dark" ? "bg-slate-700 text-slate-50" : "bg-slate-100 text-slate-700"}`}
+                    >
+                      Generate
+                    </Button>
+                  </div>
                 </div>
               </div>
             ) : (

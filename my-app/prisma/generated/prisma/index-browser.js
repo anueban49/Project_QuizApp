@@ -128,15 +128,36 @@ exports.Prisma.ArticleScalarFieldEnum = {
   sumArticle: 'sumArticle',
   createdAt: 'createdAt',
   userId: 'userId',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  category: 'category',
+  subject: 'subject'
 };
 
 exports.Prisma.QuizScalarFieldEnum = {
   id: 'id',
   articleId: 'articleId',
-  options: 'options',
   correctOption: 'correctOption',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  userId: 'userId',
+  options: 'options'
+};
+
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.SubjectScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  joinedAt: 'joinedAt',
+  lastSeen: 'lastSeen',
+  apiKey: 'apiKey'
 };
 
 exports.Prisma.SortOrder = {
@@ -149,10 +170,18 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
   Article: 'Article',
-  Quiz: 'Quiz'
+  Quiz: 'Quiz',
+  Category: 'Category',
+  Subject: 'Subject',
+  User: 'User'
 };
 
 /**
