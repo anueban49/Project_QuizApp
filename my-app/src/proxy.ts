@@ -6,10 +6,6 @@ const isPublicRoute = createRouteMatcher([
 ]);
 //it runs on every request, and only attaching the userId in the header should take care of the most issues with api calls.
 export default clerkMiddleware(async (auth, req) => {
-  const { isAuthenticated } = await auth();
-  if (!isAuthenticated) {
-    auth.protect();
-  }
   if (!isPublicRoute(req)) {
     await auth.protect();
   }

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { NoteBook } from "./Notebook";
-import { Article, useQuizgeek } from "@/providers/QuizgeekProvider";
+import { Article, Quiz as QuizType, useQuizgeek } from "@/providers/QuizgeekProvider";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/providers/ThemeProvider";
 import { Quiz } from "./Quiz";
@@ -51,6 +51,8 @@ export const QuizSection = () => {
     }
   }, [history, view]);
   const [fromOldArticle, setFromOldArticle] = useState(true);
+  const [tab, setTab] = useState<"new" | "article" | 'saved'>("article");
+  const [savedQuiz, setSavedQuiz] = useState<QuizType[] | null>(null);
   if (mode === "intermission") {
     return (
       <div className="p-10 rounded flex flex-col items-center">
@@ -58,23 +60,31 @@ export const QuizSection = () => {
           className={`w-full flex rounded ${theme === "dark" ? "dark" : "light"}`}
         >
           <Button
-            className={`w-1/2 m-1 rounded-2xl ${theme === "dark" ? "bg-slate-700 text-slate-50" : "bg-slate-100 text-slate-700"} inset-shadow-sm ${fromOldArticle ? "inset-shadow-slate-500/50" : "shadow-sm shadow-slate-500/50"} `}
+            className={`w-1/3 m-1 rounded-2xl ${theme === "dark" ? "bg-slate-700 text-slate-50" : "bg-slate-100 text-slate-700"} inset-shadow-sm ${fromOldArticle ? "inset-shadow-slate-500/50" : "shadow-sm shadow-slate-500/50"} `}
             onClick={() => {
-              setFromOldArticle(true);
+              setTab("article")
             }}
           >
             From history
           </Button>
           <Button
-            className={`w-1/2 m-1 rounded-2xl ${theme === "dark" ? "bg-slate-700 text-slate-50" : "bg-slate-100 text-slate-700"} inset-shadow-sm ${!fromOldArticle ? "inset-shadow-slate-500/50" : "shadow-sm shadow-slate-500/50"} `}
+            className={`w-1/3 m-1 rounded-2xl ${theme === "dark" ? "bg-slate-700 text-slate-50" : "bg-slate-100 text-slate-700"} inset-shadow-sm ${!fromOldArticle ? "inset-shadow-slate-500/50" : "shadow-sm shadow-slate-500/50"} `}
             onClick={() => {
-              setFromOldArticle(false);
+              setTab("new")
             }}
           >
             New Article
           </Button>
+          <Button
+            className={`w-1/3 m-1 rounded-2xl ${theme === "dark" ? "bg-slate-700 text-slate-50" : "bg-slate-100 text-slate-700"} inset-shadow-sm ${!fromOldArticle ? "inset-shadow-slate-500/50" : "shadow-sm shadow-slate-500/50"} `}
+            onClick={() => {
+              setTab("saved")
+            }}
+          >
+            Saved Quizzes
+          </Button>
         </div>
-        <div className="w-full p-5">
+        <div className={`w-full p-5 ${tab === "saved" && "hidden"}`}>
           <h3>Options</h3>
           <div className="flex gap-3 mx-2">
             <Select
@@ -153,76 +163,97 @@ export const QuizSection = () => {
             </Select>
           </div>
         </div>
-        {history ? (
-          <>
-            {fromOldArticle ? (
-              <div className="w-full h-full flex gap-2 p-5">
-                <div className="w-100 aspect-1/2 flex flex-col gap-2  overflow-scroll no-scrollbar shadow-sm shadow-slate-500/50 p-5 rounded">
-                  {history.map((h) => (
-                    <div
-                      key={h.id}
-                      className={`p-2 rounded  ${h.id === view?.id && "inset-shadow-sm inset-shadow-slate-500/50"} `}
-                      onClick={() => {
-                        getArticleData(h.id);
-                        setView(h);
-                      }}
-                    >
-                      <h4>{h.title}</h4>
-                    </div>
-                  ))}
-                </div>
-                <div className="w-full h-full relative">
-                  <NoteBook prop={view as Article} operationable={false} />
-                  <div className="absolute top-5 right-5 flex gap-2">
-                    <Button
-                      disabled={!view}
-                      onClick={async () => {
-                        const loaded = await getSavedQuiz(view?.id as string);
-                        if (loaded) {
-                          setMode("quizzing");
-                        } else {
-                          window.alert("No saved quiz found for this article.");
-                        }
-                      }}
-                      className={`rounded-2xl ${theme === "dark" ? "bg-slate-700 text-slate-50" : "bg-slate-100 text-slate-700"}`}
-                    >
-                      Load saved quiz
-                    </Button>
-                    <Button
-                      disabled={!view}
-                      onClick={async () => {
-                        await generateQuiz({
-                          articleId: view?.id as string,
-                          size: options.size,
-                          difficulty: options.difficulty,
-                          userApiKey: options.userApiKey,
-                          language: options.language,
-                        });
-                        setMode("quizzing");
-                      }}
-                      className={`rounded-2xl ${theme === "dark" ? "bg-slate-700 text-slate-50" : "bg-slate-100 text-slate-700"}`}
-                    >
-                      Generate
-                    </Button>
-                  </div>
-                </div>
+        {tab === "new" && <ArticleSummary />}
+        {tab === "article" && <div className="w-full h-full flex gap-2 p-5">
+          <div className="w-100 aspect-1/2 flex flex-col gap-2  overflow-scroll no-scrollbar shadow-sm shadow-slate-500/50 p-5 rounded">
+            {history ? <>            {history.map((h) => (
+              <div
+                key={h.id}
+                className={`p-2 rounded  ${h.id === view?.id && "inset-shadow-sm inset-shadow-slate-500/50"} `}
+                onClick={() => {
+                  getArticleData(h.id);
+                  setView(h);
+                }}
+              >
+                <h4>{h.title}</h4>
               </div>
-            ) : (
-              <ArticleSummary />
-            )}
-          </>
-        ) : (
-          <div className="w-full h-full flex justify-center items-center text-slate-300">
-            No history found
+            ))}</> : <div className="w-full h-full text-slate-500">No article history found</div>}
+
+          </div>
+          <div className="w-full h-full relative">
+            <NoteBook prop={view as Article} operationable={false} />
+            <div className="absolute top-5 right-5 flex gap-2">
+              <Button
+                disabled={!view}
+                onClick={async () => {
+                  const loaded = await getSavedQuiz(view?.id as string);
+                  if (loaded) {
+                    setMode("quizzing");
+                  } else {
+                    window.alert("No saved quiz found for this article.");
+                  }
+                }}
+                className={`rounded-2xl ${theme === "dark" ? "bg-slate-700 text-slate-50" : "bg-slate-100 text-slate-700"}`}
+              >
+                Load saved quiz
+              </Button>
+              <Button
+                disabled={!view}
+                onClick={async () => {
+                  await generateQuiz({
+                    articleId: view?.id as string,
+                    size: options.size,
+                    difficulty: options.difficulty,
+                    userApiKey: options.userApiKey,
+                    language: options.language,
+                  });
+                  setMode("quizzing");
+                }}
+                className={`rounded-2xl ${theme === "dark" ? "bg-slate-700 text-slate-50" : "bg-slate-100 text-slate-700"}`}
+              >
+                Generate
+              </Button>
+            </div>
+          </div>
+        </div>}
+        {tab === "saved" && (
+          <div className="w-full h-full flex flex-col gap-2 p-5">
+            <h3 className="text-lg font-semibold mb-4">Saved quizzes</h3>
+            <div className="w-full aspect-1/2 flex flex-col gap-2 overflow-scroll no-scrollbar shadow-sm shadow-slate-500/50 p-5 rounded">
+              {history.length > 0 ? (
+                history.map((h) => (
+                  <div
+                    key={h.id}
+                    className={`p-2 rounded cursor-pointer ${h.id === view?.id && "inset-shadow-sm inset-shadow-slate-500/50"}`}
+                    onClick={async () => {
+                      setSavedQuiz(null);
+                      const loadedQuiz = await getSavedQuiz(h.id);
+                      if (loadedQuiz && loadedQuiz.length > 0) {
+                        setView(h);
+                        setSavedQuiz(loadedQuiz);
+                        setMode("quizzing");
+                      } else {
+                        window.alert("No saved quiz found for this article.");
+                      }
+                    }}
+                  >
+                    <h4>{h.title}</h4>
+                  </div>
+                ))
+              ) : (
+                <div className="w-full h-full text-slate-500">No saved articles found</div>
+              )}
+            </div>
           </div>
         )}
+
       </div>
     );
   }
   if (mode === "quizzing") {
     return (
       <>
-        <Quiz articleId={view?.id as string} />
+        <Quiz articleId={view?.id as string} savedQuiz={savedQuiz} />
       </>
     );
   }

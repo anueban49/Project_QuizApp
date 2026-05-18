@@ -130,7 +130,7 @@ export interface QuizApptypes {
     articleId: string,
     updatedData: Partial<Article>,
   ) => Promise<void>;
-  getSavedQuiz: (articleId: string) => Promise<boolean>;
+  getSavedQuiz: (articleId: string) => Promise<Quiz[] | null>;
   saveQuiz: (articleId: string, quizData?: Quiz[]) => Promise<void>;
 }
 
@@ -141,10 +141,6 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
   const [active, setActive] = useState<OperationType>("ArticleSummary");
   const [loading, setLoading] = useState(false);
 
-  //on first landing, articleSum will be active. by allowing function to change in between of these, setActive has to change accordingly.
-  //export the change statement function.
-  //what does the function does is: if active is "..." the viewPage has to change to component.
-  //the control thingy has to be in drawer comp.
 
   const summarizeArticle = async (orgArticle: string, title: string) => {
     try {
@@ -262,7 +258,7 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
   const getSavedQuiz = async (articleId: string) => {
     if (!articleId) {
       console.error("getSavedQuiz: articleId is required");
-      return false;
+      return null;
     }
     try {
       setLoading(true);
@@ -271,18 +267,18 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
         console.error("getSavedQuiz failed", res.statusText);
         setQuiz(null);
         setLoading(false);
-        return false;
+        return null;
       }
       const data = await res.json();
       const normalizedData = normalizeQuizData(data);
       setQuiz(normalizedData);
       setLoading(false);
-      return Boolean(normalizedData && normalizedData.length > 0);
+      return normalizedData;
     } catch (e) {
       console.error("getSavedQuiz error", e);
       setQuiz(null);
       setLoading(false);
-      return false;
+      return null;
     }
   };
 

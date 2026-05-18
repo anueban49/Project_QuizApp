@@ -9,7 +9,11 @@ type QuizzingProps = Quiz & {
   correct: boolean;
   selected?: string;
 };
-export function Quiz({ articleId }: { articleId: string }) {
+type QuizResourceProps = {
+  articleId?: string;
+  savedQuiz?: Quiz[];
+}
+export function Quiz({ articleId, savedQuiz }: { articleId: string; savedQuiz?: Quiz[] | null }) {
   const { quiz, loading } = useQuizgeek();
   const [quizzing, setQuizzing] = useState<QuizzingProps[]>([]);
   const { theme } = useTheme();
@@ -17,17 +21,26 @@ export function Quiz({ articleId }: { articleId: string }) {
   const [steps, setSteps] = useState<number>(0);
   const [correct, setCorrect] = useState<number>(0);
   const [selected, setSelected] = useState<string | null>(null);
+  const sourceQuiz = savedQuiz ?? quiz;
+
   useEffect(() => {
     setSelected(null);
   }, [steps]);
 
   useEffect(() => {
-    if (quiz && quiz.length > 0) {
-      const quizData = quiz.map((q) => ({ ...q, answered: false, correct: false }));
+    if (sourceQuiz && sourceQuiz.length > 0) {
+      const quizData = sourceQuiz.map((q) => ({ ...q, answered: false, correct: false }));
       setQuizzing(quizData);
       setLength(quizData.length);
+      setSteps(0);
+      setSelected(null);
+      return;
     }
-  }, [quiz]);
+    setQuizzing([]);
+    setLength(0);
+    setSteps(0);
+    setSelected(null);
+  }, [sourceQuiz]);
 
   const currentQuestion = quizzing[steps] ?? null;
   const quizComplete = quizzing.length > 0 && steps >= quizzing.length;
@@ -44,16 +57,7 @@ export function Quiz({ articleId }: { articleId: string }) {
     console.log(correct);
     console.log(steps);
   }
-  // if (steps === length) {
-  //   return (
-  //     <div className="w-full h-8/12 flex flex-col gap-5 items-center justify-center">
-  //       <h3>Finished!</h3>
-  //       <h2>
-  //         {correct}/{length} answered correctly
-  //       </h2>
-  //     </div>
-  //   );
-  // }
+
 
   const isLoading = loading && (!quizzing || quizzing.length === 0);
 

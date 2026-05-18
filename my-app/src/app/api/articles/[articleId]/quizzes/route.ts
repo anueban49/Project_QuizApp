@@ -140,9 +140,9 @@ const parseSavedQuizRecord = (record: any): QuizItem | null => {
 
 export const GET = async (
   request: NextRequest,
-  { params }: { params: { articleId: string } },
+  { params }: { params: Promise<{ articleId: string }> },
 ) => {
-  const { articleId } = params;
+  const { articleId } = await params;
   if (!articleId) {
     return NextResponse.json({ error: "Missing article id" }, { status: 400 });
   }
@@ -171,9 +171,9 @@ export const GET = async (
 
 export const POST = async (
   request: NextRequest,
-  { params }: { params: { articleId: string } },
+  { params }: { params: Promise<{ articleId: string }> },
 ) => {
-  const { articleId } = params;
+  const { articleId } = await params;
   if (!articleId) {
     return NextResponse.json({ error: "Missing article id" }, { status: 400 });
   }

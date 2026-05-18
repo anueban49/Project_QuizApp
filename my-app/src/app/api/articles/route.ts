@@ -6,7 +6,7 @@ import OpenAI from "openai";
 
 export const POST = async (request: NextRequest) => {
   const client = new OpenAI();
-  const { input, title } = await request.json();
+  const { input, title, subject, category } = await request.json();
 
   const prompt: string = input.trim();
   const newArticleId = customAlphabet("1234567890", 10);
@@ -18,7 +18,7 @@ export const POST = async (request: NextRequest) => {
     const response = await client.responses.create({
       model: "gpt-4o-mini",
       input: prompt,
-      instructions: "Summarize article given by user."
+      instructions: "Summarize article given by user.  "
     })
     console.log(response)
     const fullText = response.output_text;
@@ -30,6 +30,8 @@ export const POST = async (request: NextRequest) => {
         sumArticle: fullText as string,
         title: title,
         userId: clerkId as string,
+        subject: subject ?? ["no subject"],
+        category: category ?? "no category"
       },
     });
 
