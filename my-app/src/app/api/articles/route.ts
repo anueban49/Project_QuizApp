@@ -18,10 +18,23 @@ export const POST = async (request: NextRequest) => {
     const response = await client.responses.create({
       model: "gpt-4o-mini",
       input: prompt,
-      instructions: "Summarize article given by user.  "
-    })
-    console.log(response)
-    const fullText = response.output_text;
+      instructions: "The user is a student who wishes to deeply understand and study their major. Summarize article given by user in most short and sweet way possible to ensure their academic advance  ",
+    });
+
+    const fullText =
+      response.output_text ??
+      response.output
+        ?.map((item: any) =>
+          item?.content
+            ?.map((contentItem: any) =>
+              typeof contentItem?.text === "string" ? contentItem.text : "",
+            )
+            .filter(Boolean)
+            .join("")
+        )
+        .filter(Boolean)
+        .join("\n") ??
+      "";
 
     await prisma.article.create({
       data: {
@@ -29,13 +42,13 @@ export const POST = async (request: NextRequest) => {
         orgArticle: prompt,
         sumArticle: fullText as string,
         title: title,
-        userId: clerkId as string,
+        userId: userId!,
         subject: subject ?? ["no subject"],
         category: category ?? "no category"
       },
     });
 
-    return NextResponse.json({ res: fullText });
+    return NextResponse.json({ fulltext: fullText });
   } catch (error) {
     return NextResponse.json(
       {

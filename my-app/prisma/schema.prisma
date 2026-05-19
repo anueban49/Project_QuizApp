@@ -25,7 +25,9 @@ model Article {
 model Quiz {
   id            String   @id
   articleId     String
+  question      String?
   correctOption String
+  category      String?
   createdAt     DateTime @default(now())
   userId        String
   options       Json[]

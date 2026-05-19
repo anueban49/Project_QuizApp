@@ -6,6 +6,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { QuizgeekProvider } from "@/providers/QuizgeekProvider";
 import { BG } from "@/_parts/BG";
+import { EnsureDbUserRegistered } from "@/components/EnsureDbUserRegistered";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <ClerkProvider>
+            <EnsureDbUserRegistered />
             <BG />
             <QuizgeekProvider>
               <div className={`w-screen h-screen flex flex-col items-center`}>

@@ -53,6 +53,7 @@ export const QuizSection = () => {
   const [fromOldArticle, setFromOldArticle] = useState(true);
   const [tab, setTab] = useState<"new" | "article" | 'saved'>("article");
   const [savedQuiz, setSavedQuiz] = useState<QuizType[] | null>(null);
+  const [savedStatus, setSavedStatus] = useState<string>("");
   if (mode === "intermission") {
     return (
       <div className="p-10 rounded flex flex-col items-center">
@@ -227,13 +228,17 @@ export const QuizSection = () => {
                     className={`p-2 rounded cursor-pointer ${h.id === view?.id && "inset-shadow-sm inset-shadow-slate-500/50"}`}
                     onClick={async () => {
                       setSavedQuiz(null);
+                      setSavedStatus("Checking saved quiz...");
+                      setView(h);
+
                       const loadedQuiz = await getSavedQuiz(h.id);
                       if (loadedQuiz && loadedQuiz.length > 0) {
-                        setView(h);
                         setSavedQuiz(loadedQuiz);
+                        setSavedStatus("Saved quiz found");
                         setMode("quizzing");
                       } else {
-                        window.alert("No saved quiz found for this article.");
+                        setSavedQuiz([]);
+                        setSavedStatus("No quiz saved");
                       }
                     }}
                   >
@@ -243,6 +248,9 @@ export const QuizSection = () => {
               ) : (
                 <div className="w-full h-full text-slate-500">No saved articles found</div>
               )}
+            </div>
+            <div className="mt-4 p-4 rounded-lg bg-slate-900 text-slate-100">
+              {view ? savedStatus || "Select an article to check saved quiz." : "Select an article to verify saved quiz status."}
             </div>
           </div>
         )}

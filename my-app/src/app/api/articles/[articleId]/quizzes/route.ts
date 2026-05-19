@@ -208,7 +208,9 @@ export const POST = async (
         model: "gemini-2.5-flash",
         contents: prompt,
         config: {
-          systemInstruction: `Generate ${props?.size ?? "3"} quiz questions with difficulty of ${props?.difficulty ?? "medium"} in ${props?.language ?? "english"} with given article. Respond in EXACT JSON format, nothing else, no extra text:
+          systemInstruction: `Generate ${props?.size ?? "3"} quiz questions with difficulty of ${props?.difficulty ?? "medium"} in ${props?.language ?? "english"} with given article. 
+          Quiz contents must be academic, ensure client's academic advancement, and be sure to hand out creative, rich question
+          Respond in EXACT JSON format, nothing else, no extra text:
           [{"question": "your question here",
           "options": [
                 { "label": "A", "text": "option 1" },

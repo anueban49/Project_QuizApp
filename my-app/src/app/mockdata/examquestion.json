@@ -1,0 +1,1202 @@
+[
+  {
+    "question": "What is the file extension for PowerPoint?",
+    "options": [
+      {
+        "key": "A",
+        "text": ".PPT"
+      },
+      {
+        "key": "B",
+        "text": ".DOC"
+      },
+      {
+        "key": "C",
+        "text": ".XLS"
+      },
+      {
+        "key": "D",
+        "text": ".PDF"
+      }
+    ],
+    "correctOption": "A",
+    "points": 1,
+    "section": "I"
+  },
+  {
+    "question": "An icon is a graphical image representing a program. True or False?",
+    "options": [
+      {
+        "key": "A",
+        "text": "True"
+      },
+      {
+        "key": "B",
+        "text": "False"
+      },
+      {
+        "key": "C",
+        "text": "Neither"
+      },
+      {
+        "key": "D",
+        "text": "Don't know"
+      }
+    ],
+    "correctOption": "A",
+    "points": 1,
+    "section": "I"
+  },
+  {
+    "question": "Which program is designed for making presentations?",
+    "options": [
+      {
+        "key": "A",
+        "text": "MS Word"
+      },
+      {
+        "key": "B",
+        "text": "MS Excel"
+      },
+      {
+        "key": "C",
+        "text": "MS PowerPoint"
+      },
+      {
+        "key": "D",
+        "text": "MS Access"
+      }
+    ],
+    "correctOption": "C",
+    "points": 1,
+    "section": "I"
+  },
+  {
+    "question": "What does <body bgcolor=\"yellow\"> do?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Sets the page background color to yellow"
+      },
+      {
+        "key": "B",
+        "text": "Sets the text background color"
+      },
+      {
+        "key": "C",
+        "text": "Inserts a background image"
+      },
+      {
+        "key": "D",
+        "text": "None of the above"
+      }
+    ],
+    "correctOption": "A",
+    "points": 1,
+    "section": "I"
+  },
+  {
+    "question": "Which command shuts down and restarts the computer?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Shutdown"
+      },
+      {
+        "key": "B",
+        "text": "Restart"
+      },
+      {
+        "key": "C",
+        "text": "Log off"
+      },
+      {
+        "key": "D",
+        "text": "Sleep"
+      }
+    ],
+    "correctOption": "B",
+    "points": 1,
+    "section": "I"
+  },
+  {
+    "question": "How do you insert a Table of Contents with page numbers in a Word document?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Insert → Table of Contents"
+      },
+      {
+        "key": "B",
+        "text": "References → Table of Contents"
+      },
+      {
+        "key": "C",
+        "text": "Home → Table of Contents"
+      },
+      {
+        "key": "D",
+        "text": "Page Layout → Table of Contents"
+      }
+    ],
+    "correctOption": "B",
+    "points": 1,
+    "section": "I"
+  },
+  {
+    "question": "Which of the following is an input device?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Scanner"
+      },
+      {
+        "key": "B",
+        "text": "Printer"
+      },
+      {
+        "key": "C",
+        "text": "Speaker"
+      },
+      {
+        "key": "D",
+        "text": "Monitor"
+      }
+    ],
+    "correctOption": "A",
+    "points": 1,
+    "section": "I"
+  },
+  {
+    "question": "What do the numbers 192.168.13.20 represent?",
+    "options": [
+      {
+        "key": "A",
+        "text": "HTTP"
+      },
+      {
+        "key": "B",
+        "text": "DNS"
+      },
+      {
+        "key": "C",
+        "text": "IP Address"
+      },
+      {
+        "key": "D",
+        "text": "DFP"
+      }
+    ],
+    "correctOption": "C",
+    "points": 1,
+    "section": "I"
+  },
+  {
+    "question": "Which device operates at OSI Layer 3 and routes packets between networks?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Hub"
+      },
+      {
+        "key": "B",
+        "text": "Router"
+      },
+      {
+        "key": "C",
+        "text": "Modem"
+      },
+      {
+        "key": "D",
+        "text": "Switch"
+      }
+    ],
+    "correctOption": "B",
+    "points": 1,
+    "section": "I"
+  },
+  {
+    "question": "Which of the following is an output device?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Scanner"
+      },
+      {
+        "key": "B",
+        "text": "Printer"
+      },
+      {
+        "key": "C",
+        "text": "Keyboard"
+      },
+      {
+        "key": "D",
+        "text": "Monitor"
+      }
+    ],
+    "correctOption": "B",
+    "points": 1,
+    "section": "I"
+  },
+  {
+    "question": "Which command changes line spacing in MS Word?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Font color"
+      },
+      {
+        "key": "B",
+        "text": "Underline"
+      },
+      {
+        "key": "C",
+        "text": "Line spacing"
+      },
+      {
+        "key": "D",
+        "text": "Italic"
+      }
+    ],
+    "correctOption": "C",
+    "points": 1,
+    "section": "II"
+  },
+  {
+    "question": "Match the file types correctly. 1.System files 2.Documents 3.Images 4.Audio/Video — a.JPG,PNG  b.MP3,WAV  c.SYS,DLL  d.DOC,TXT",
+    "options": [
+      {
+        "key": "A",
+        "text": "1c, 2d, 3a, 4b"
+      },
+      {
+        "key": "B",
+        "text": "1a, 2c, 3d, 4b"
+      },
+      {
+        "key": "C",
+        "text": "1d, 2c, 3b, 4a"
+      },
+      {
+        "key": "D",
+        "text": "1b, 2d, 3a, 4c"
+      }
+    ],
+    "correctOption": "A",
+    "points": 1,
+    "section": "II"
+  },
+  {
+    "question": "Processed data in a computer is saved on a __________ disk.",
+    "options": [
+      {
+        "key": "A",
+        "text": "Hard disk"
+      },
+      {
+        "key": "B",
+        "text": "Floppy disk"
+      },
+      {
+        "key": "C",
+        "text": "Portable disk"
+      },
+      {
+        "key": "D",
+        "text": "All of the above"
+      }
+    ],
+    "correctOption": "D",
+    "points": 1,
+    "section": "II"
+  },
+  {
+    "question": "The device that prints information from a computer screen or storage onto paper is called a __________.",
+    "options": [
+      {
+        "key": "A",
+        "text": "Printer"
+      },
+      {
+        "key": "B",
+        "text": "Scanner"
+      },
+      {
+        "key": "C",
+        "text": "Modem"
+      },
+      {
+        "key": "D",
+        "text": "Router"
+      }
+    ],
+    "correctOption": "A",
+    "points": 1,
+    "section": "II"
+  },
+  {
+    "question": "What does HTML stand for?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Hyper Text Market Language"
+      },
+      {
+        "key": "B",
+        "text": "Hyper Text Markup Language"
+      },
+      {
+        "key": "C",
+        "text": "Head Text Market Language"
+      },
+      {
+        "key": "D",
+        "text": "Hyperlink Text Market Language"
+      }
+    ],
+    "correctOption": "B",
+    "points": 1,
+    "section": "II"
+  },
+  {
+    "question": "How do you align text to the right in CSS?",
+    "options": [
+      {
+        "key": "A",
+        "text": "<style type=\"text/css\"> H1 { text-align: right }"
+      },
+      {
+        "key": "B",
+        "text": "<style type=\"text/css\"> H1 { text-align: center }"
+      },
+      {
+        "key": "C",
+        "text": "<style type=\"text/css\"> H1 { text-align: left }"
+      },
+      {
+        "key": "D",
+        "text": "<type stile=\"text/css\"> H1 { text-align: right }"
+      }
+    ],
+    "correctOption": "A",
+    "points": 1,
+    "section": "II"
+  },
+  {
+    "question": "What cable type is used to connect two routers together?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Straight-through"
+      },
+      {
+        "key": "B",
+        "text": "Auto connection"
+      },
+      {
+        "key": "C",
+        "text": "Crossover"
+      },
+      {
+        "key": "D",
+        "text": "Coaxial"
+      }
+    ],
+    "correctOption": "C",
+    "points": 1,
+    "section": "II"
+  },
+  {
+    "question": "Match the network types with their Mongolian names. WAN, LAN, MAN",
+    "options": [
+      {
+        "key": "A",
+        "text": "WAN=City network, LAN=Wide area, MAN=Local network"
+      },
+      {
+        "key": "B",
+        "text": "WAN=Wide area, LAN=Local network, MAN=City network"
+      },
+      {
+        "key": "C",
+        "text": "WAN=City network, LAN=Local network, MAN=Wide area"
+      },
+      {
+        "key": "D",
+        "text": "WAN=Local network, MAN=Wide area, LAN=City network"
+      }
+    ],
+    "correctOption": "B",
+    "points": 1,
+    "section": "II"
+  },
+  {
+    "question": "How do you set a page to landscape orientation in MS Word?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Layout → Page Setup → Orientation → Landscape"
+      },
+      {
+        "key": "B",
+        "text": "Layout → Page Setup → Orientation → Portrait"
+      },
+      {
+        "key": "C",
+        "text": "Layout → Page Setup → Orientation → Landscape → Apply to → This point forward"
+      },
+      {
+        "key": "D",
+        "text": "Layout → Page Setup → Orientation → Format"
+      }
+    ],
+    "correctOption": "A",
+    "points": 1,
+    "section": "II"
+  },
+  {
+    "question": "Where can you view detailed computer hardware diagnostics in Windows?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Start → Search → Files and Folders"
+      },
+      {
+        "key": "B",
+        "text": "Start → Settings → Control Panel → User Accounts"
+      },
+      {
+        "key": "C",
+        "text": "Start → Search → dxdiag"
+      },
+      {
+        "key": "D",
+        "text": "Start → Search → prefetch"
+      }
+    ],
+    "correctOption": "C",
+    "points": 1,
+    "section": "II"
+  },
+  {
+    "question": "What cable type is used to connect a server to a router?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Straight-through"
+      },
+      {
+        "key": "B",
+        "text": "Auto connection"
+      },
+      {
+        "key": "C",
+        "text": "Crossover"
+      },
+      {
+        "key": "D",
+        "text": "Coaxial"
+      }
+    ],
+    "correctOption": "A",
+    "points": 1,
+    "section": "II"
+  },
+  {
+    "question": "No display output with beeping sounds on startup indicates a fault in which component?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Hard Drive"
+      },
+      {
+        "key": "B",
+        "text": "CPU"
+      },
+      {
+        "key": "C",
+        "text": "RAM"
+      },
+      {
+        "key": "D",
+        "text": "PSU"
+      }
+    ],
+    "correctOption": "C",
+    "points": 1,
+    "section": "II"
+  },
+  {
+    "question": "What is the purpose of an IP address?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Computer name"
+      },
+      {
+        "key": "B",
+        "text": "To identify network devices"
+      },
+      {
+        "key": "C",
+        "text": "Internet speed"
+      },
+      {
+        "key": "D",
+        "text": "All of the above"
+      }
+    ],
+    "correctOption": "B",
+    "points": 1,
+    "section": "II"
+  },
+  {
+    "question": "What is the role of a Switch in a network?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Create a Wi-Fi network"
+      },
+      {
+        "key": "B",
+        "text": "Manage network data traffic between devices"
+      },
+      {
+        "key": "C",
+        "text": "Increase internet speed"
+      },
+      {
+        "key": "D",
+        "text": "Connect external devices"
+      }
+    ],
+    "correctOption": "B",
+    "points": 2,
+    "section": "III"
+  },
+  {
+    "question": "In Excel, given D5=12, D7=36, D12=30, D15=26, what is the average?",
+    "options": [
+      {
+        "key": "A",
+        "text": "50"
+      },
+      {
+        "key": "B",
+        "text": "26"
+      },
+      {
+        "key": "C",
+        "text": "24"
+      },
+      {
+        "key": "D",
+        "text": "27"
+      }
+    ],
+    "correctOption": "B",
+    "points": 2,
+    "section": "III"
+  },
+  {
+    "question": "Which of the following is used to prepare a network cable?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Connector, cable, crimping tool"
+      },
+      {
+        "key": "B",
+        "text": "Router, hub, switch"
+      },
+      {
+        "key": "C",
+        "text": "Modem, hub, switch"
+      },
+      {
+        "key": "D",
+        "text": "Modem, hub, cable"
+      }
+    ],
+    "correctOption": "A",
+    "points": 2,
+    "section": "III"
+  },
+  {
+    "question": "Which key is commonly pressed to enter the boot/setup menu when formatting a computer?",
+    "options": [
+      {
+        "key": "A",
+        "text": "F10, F12"
+      },
+      {
+        "key": "B",
+        "text": "F5, F8"
+      },
+      {
+        "key": "C",
+        "text": "F6, F9"
+      },
+      {
+        "key": "D",
+        "text": "F1, F3"
+      }
+    ],
+    "correctOption": "A",
+    "points": 2,
+    "section": "III"
+  },
+  {
+    "question": "What does BIOS stand for?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Basic Input Output System"
+      },
+      {
+        "key": "B",
+        "text": "Basic Internet Output System"
+      },
+      {
+        "key": "C",
+        "text": "Basic Install Operator System"
+      },
+      {
+        "key": "D",
+        "text": "Basic Input Operator System"
+      }
+    ],
+    "correctOption": "A",
+    "points": 2,
+    "section": "III"
+  },
+  {
+    "question": "How do you add a new partition to a hard disk in Windows?",
+    "options": [
+      {
+        "key": "A",
+        "text": "My Computer → Right click → Properties"
+      },
+      {
+        "key": "B",
+        "text": "My Computer → Right click → Manage → Device Manager"
+      },
+      {
+        "key": "C",
+        "text": "My Computer → Right click → Manage → Device"
+      },
+      {
+        "key": "D",
+        "text": "My Computer → Right click → Manage → Disk Management"
+      }
+    ],
+    "correctOption": "D",
+    "points": 2,
+    "section": "III"
+  },
+  {
+    "question": "Match the keyboard shortcuts with their functions. 1.New page 2.Print 3.Bold text 4.Italic text 5.Undo — a.CTRL+P  b.CTRL+B  c.CTRL+I  d.CTRL+Z  e.CTRL+N",
+    "options": [
+      {
+        "key": "A",
+        "text": "1e, 2a, 3b, 4c, 5d"
+      },
+      {
+        "key": "B",
+        "text": "1d, 2a, 3b, 4c, 5e"
+      },
+      {
+        "key": "C",
+        "text": "1a, 2b, 3d, 4c, 5e"
+      },
+      {
+        "key": "D",
+        "text": "1e, 2a, 3c, 4d, 5b"
+      }
+    ],
+    "correctOption": "A",
+    "points": 2,
+    "section": "III"
+  },
+  {
+    "question": "Match HTML/CSS concepts. 1.Change font style 2.Load image in HTML 3.Set image size — a.<img src=\"img.jpg\">  b.<img src=\"img.jpg\" width=\"400\" height=\"500\"/>  c.font-family",
+    "options": [
+      {
+        "key": "A",
+        "text": "1c, 2b, 3a"
+      },
+      {
+        "key": "B",
+        "text": "1c, 2a, 3b"
+      },
+      {
+        "key": "C",
+        "text": "1b, 2a, 3c"
+      },
+      {
+        "key": "D",
+        "text": "1a, 2c, 3b"
+      }
+    ],
+    "correctOption": "B",
+    "points": 2,
+    "section": "III"
+  },
+  {
+    "question": "Match computer storage units. 1.1024 bytes 2.1024 KB 3.1024 MB 4.1024 GB — a.1 MB  b.1 KB  c.1 GB  d.1 TB",
+    "options": [
+      {
+        "key": "A",
+        "text": "1b, 2a, 3c, 4d"
+      },
+      {
+        "key": "B",
+        "text": "1c, 2b, 3a, 4d"
+      },
+      {
+        "key": "C",
+        "text": "1d, 2a, 3c, 4b"
+      },
+      {
+        "key": "D",
+        "text": "1d, 2a, 3b, 4c"
+      }
+    ],
+    "correctOption": "A",
+    "points": 2,
+    "section": "III"
+  },
+  {
+    "question": "Match network types by coverage. a.Personal network b.Local network c.Campus network d.City network e.Wide area network — 1.WAN 2.CAN 3.LAN 4.PAN 5.MAN",
+    "options": [
+      {
+        "key": "A",
+        "text": "a4, b3, c2, d5, e1"
+      },
+      {
+        "key": "B",
+        "text": "a1, b3, c2, d4, e5"
+      },
+      {
+        "key": "C",
+        "text": "a3, b4, c1, d5, e2"
+      },
+      {
+        "key": "D",
+        "text": "a2, b1, c3, d4, e5"
+      }
+    ],
+    "correctOption": "A",
+    "points": 2,
+    "section": "III"
+  },
+  {
+    "question": "How do you set page size measurements in MS Word?",
+    "options": [
+      {
+        "key": "A",
+        "text": "File → Options → General → Display → Centimeters"
+      },
+      {
+        "key": "B",
+        "text": "File → Options → Save → Display → Centimeters"
+      },
+      {
+        "key": "C",
+        "text": "File → Options → Proofing → Display → Centimeters"
+      },
+      {
+        "key": "D",
+        "text": "File → Options → Advanced → Display → Centimeters"
+      }
+    ],
+    "correctOption": "D",
+    "points": 2,
+    "section": "III"
+  },
+  {
+    "question": "Where do you find the Device Manager in Windows?",
+    "options": [
+      {
+        "key": "A",
+        "text": "My Computer → Right click → Properties"
+      },
+      {
+        "key": "B",
+        "text": "My Computer → Right click → Manage → Device Manager"
+      },
+      {
+        "key": "C",
+        "text": "My Computer → Right click → Manage → Device"
+      },
+      {
+        "key": "D",
+        "text": "My Computer → Right click → Manage → Disk Manager"
+      }
+    ],
+    "correctOption": "B",
+    "points": 2,
+    "section": "III"
+  },
+  {
+    "question": "The device that supplies power to a computer is called a __________.",
+    "options": [
+      {
+        "key": "A",
+        "text": "GPU (Graphics Processing Unit)"
+      },
+      {
+        "key": "B",
+        "text": "PSU (Power Supply Unit)"
+      },
+      {
+        "key": "C",
+        "text": "CPU (Central Processing Unit)"
+      },
+      {
+        "key": "D",
+        "text": "RAM (Random Access Memory)"
+      }
+    ],
+    "correctOption": "B",
+    "points": 2,
+    "section": "III"
+  },
+  {
+    "question": "What is the role of BIOS?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Run websites"
+      },
+      {
+        "key": "B",
+        "text": "Configure network settings"
+      },
+      {
+        "key": "C",
+        "text": "Control and initialize hardware when the computer starts"
+      },
+      {
+        "key": "D",
+        "text": "Read USB devices"
+      }
+    ],
+    "correctOption": "C",
+    "points": 3,
+    "section": "IV"
+  },
+  {
+    "question": "Classify computer hardware into 5 categories. a.Scanner b.RAM c.Hard drive d.Mouse e.Speaker — 1.Connection device 2.Output device 3.Storage device 4.Processing device 5.Input device",
+    "options": [
+      {
+        "key": "A",
+        "text": "a5, b4, c3, d5, e2"
+      },
+      {
+        "key": "B",
+        "text": "a5, b4, c3, d1, e2"
+      },
+      {
+        "key": "C",
+        "text": "a3, b4, c1, d5, e2"
+      },
+      {
+        "key": "D",
+        "text": "a5, b1, c3, d4, e2"
+      }
+    ],
+    "correctOption": "B",
+    "points": 3,
+    "section": "IV"
+  },
+  {
+    "question": "Match hardware to their categories. 1.Input device 2.Processing device 3.Storage device 4.Connection device 5.Output device — a.Printer b.Modem c.HDD d.CPU e.Keyboard",
+    "options": [
+      {
+        "key": "A",
+        "text": "1e, 2d, 3c, 4b, 5a"
+      },
+      {
+        "key": "B",
+        "text": "1a, 2e, 3c, 4b, 5e"
+      },
+      {
+        "key": "C",
+        "text": "1e, 2d, 3b, 4a, 5c"
+      },
+      {
+        "key": "D",
+        "text": "1a, 2e, 3c, 4b, 5d"
+      }
+    ],
+    "correctOption": "A",
+    "points": 3,
+    "section": "IV"
+  },
+  {
+    "question": "Match the operating system logos with their names. (Windows, Mac, Ubuntu, Linux)",
+    "options": [
+      {
+        "key": "A",
+        "text": "1=Linux, 2=Windows, 3=Ubuntu, 4=Mac"
+      },
+      {
+        "key": "B",
+        "text": "1=Windows, 2=Linux, 3=Ubuntu, 4=Mac"
+      },
+      {
+        "key": "C",
+        "text": "1=Mac, 2=Windows, 3=Linux, 4=Ubuntu"
+      },
+      {
+        "key": "D",
+        "text": "1=Ubuntu, 2=Windows, 3=Linux, 4=Mac"
+      }
+    ],
+    "correctOption": "B",
+    "points": 3,
+    "section": "IV"
+  },
+  {
+    "question": "Which Excel function syntax is INCORRECT?",
+    "options": [
+      {
+        "key": "A",
+        "text": "SUM(D5:D15)"
+      },
+      {
+        "key": "B",
+        "text": "AVERAGE(D5:D15)"
+      },
+      {
+        "key": "C",
+        "text": "COUNTIF(D5:D15,\"A\")"
+      },
+      {
+        "key": "D",
+        "text": "COUNTIF(D5:D15,\"B\")"
+      }
+    ],
+    "correctOption": "A",
+    "points": 3,
+    "section": "IV"
+  },
+  {
+    "question": "A1=4, B1=5, C1=formula(=A1+B1)=9, D1=9. You copy cell B1 and paste to F1. What is the value of F1?",
+    "options": [
+      {
+        "key": "A",
+        "text": "18"
+      },
+      {
+        "key": "B",
+        "text": "5"
+      },
+      {
+        "key": "C",
+        "text": "9"
+      },
+      {
+        "key": "D",
+        "text": "4"
+      }
+    ],
+    "correctOption": "B",
+    "points": 3,
+    "section": "IV"
+  },
+  {
+    "question": "What type of memory is RAM?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Fast memory"
+      },
+      {
+        "key": "B",
+        "text": "Permanent memory"
+      },
+      {
+        "key": "C",
+        "text": "Temporary/Volatile memory"
+      },
+      {
+        "key": "D",
+        "text": "Other"
+      }
+    ],
+    "correctOption": "C",
+    "points": 3,
+    "section": "IV"
+  },
+  {
+    "question": "How many bytes is 20 GB?",
+    "options": [
+      {
+        "key": "A",
+        "text": "20 × 1024"
+      },
+      {
+        "key": "B",
+        "text": "20 × 1024 × 1024"
+      },
+      {
+        "key": "C",
+        "text": "20 × 1024 × 1024 × 1024"
+      },
+      {
+        "key": "D",
+        "text": "None of the above"
+      }
+    ],
+    "correctOption": "C",
+    "points": 3,
+    "section": "IV"
+  },
+  {
+    "question": "Which is the correct HTML code to create a hyperlink to another page?",
+    "options": [
+      {
+        "key": "A",
+        "text": "<a href=\"pagename.html\">link text</a>"
+      },
+      {
+        "key": "B",
+        "text": "<a href=pagename>link text</a>"
+      },
+      {
+        "key": "C",
+        "text": "<a href= pagename>link text</a>"
+      },
+      {
+        "key": "D",
+        "text": "None of the above"
+      }
+    ],
+    "correctOption": "A",
+    "points": 5,
+    "section": "V"
+  },
+  {
+    "question": "What port types does a router use to connect?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Crossover, Ethernet"
+      },
+      {
+        "key": "B",
+        "text": "Serial, Ethernet"
+      },
+      {
+        "key": "C",
+        "text": "Copper straight, Straight-through"
+      },
+      {
+        "key": "D",
+        "text": "Crossover, Straight-through"
+      }
+    ],
+    "correctOption": "B",
+    "points": 4,
+    "section": "V"
+  },
+  {
+    "question": "What does CPU stand for?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Central Processor Unit"
+      },
+      {
+        "key": "B",
+        "text": "Center Process Unit"
+      },
+      {
+        "key": "C",
+        "text": "Central Processing Unit"
+      },
+      {
+        "key": "D",
+        "text": "Center Processing Unit"
+      }
+    ],
+    "correctOption": "C",
+    "points": 4,
+    "section": "V"
+  },
+  {
+    "question": "Match keyboard shortcuts with their actions. a.ALT+F4 b.ALT+SHIFT c.CTRL+ALT+DELETE d.SHIFT+DELETE — 1.Delete permanently 2.Switch user 3.Shut down/Task Manager 4.Switch language",
+    "options": [
+      {
+        "key": "A",
+        "text": "a3, b4, c2, d1"
+      },
+      {
+        "key": "B",
+        "text": "a3, b2, c1, d4"
+      },
+      {
+        "key": "C",
+        "text": "a2, b3, c1, d2"
+      },
+      {
+        "key": "D",
+        "text": "a1, b3, c2, d4"
+      }
+    ],
+    "correctOption": "A",
+    "points": 4,
+    "section": "V"
+  },
+  {
+    "question": "What does this HTML code do? <h1 style=\"color:blue;\">heading</h1> <p style=\"color:red;\">paragraph</p>",
+    "options": [
+      {
+        "key": "A",
+        "text": "Sets the heading and paragraph text colors"
+      },
+      {
+        "key": "B",
+        "text": "Sets image size and text color"
+      },
+      {
+        "key": "C",
+        "text": "Sets image text size and color"
+      },
+      {
+        "key": "D",
+        "text": "Sets text size and color"
+      }
+    ],
+    "correctOption": "A",
+    "points": 5,
+    "section": "V"
+  },
+  {
+    "question": "Which is the correct CSS code to create a 30x40px element?",
+    "options": [
+      {
+        "key": "A",
+        "text": ".aa { height: 30px: width: 40px; background-color: blanchedalmond; }"
+      },
+      {
+        "key": "B",
+        "text": ".aa { height: 30px; width: 40px; background-color: blanchedalmond; }"
+      },
+      {
+        "key": "C",
+        "text": ".aa { height: 30px  width: 40px  background-color: blanchedalmond }"
+      },
+      {
+        "key": "D",
+        "text": ".aa { height: 30px  width: 40p  background-color: blanchedalmond; }"
+      }
+    ],
+    "correctOption": "B",
+    "points": 5,
+    "section": "V"
+  }
+]

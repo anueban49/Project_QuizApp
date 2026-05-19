@@ -91,12 +91,6 @@ export default function ArticleSummary() {
               <div className=" Container w-full h-full relative">
                 <textarea
                   placeholder="Paste your article here or describe your idea"
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      setFirstchat(true);
-                      handleGenerate();
-                    }
-                  }}
                   onChange={(e) => {
                     setInputValue(e.target.value);
                   }}

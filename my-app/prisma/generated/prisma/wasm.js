@@ -108,7 +108,9 @@ exports.Prisma.ArticleScalarFieldEnum = {
 exports.Prisma.QuizScalarFieldEnum = {
   id: 'id',
   articleId: 'articleId',
+  question: 'question',
   correctOption: 'correctOption',
+  category: 'category',
   createdAt: 'createdAt',
   userId: 'userId',
   options: 'options'
@@ -166,7 +168,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\loned\\OneDrive\\Desktop\\Code\\Project_QuizApp\\my-app\\prisma\\generated\\prisma",
+      "value": "C:\\NOONEDRIVE\\Project_QuizApp\\my-app\\prisma\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -180,7 +182,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\loned\\OneDrive\\Desktop\\Code\\Project_QuizApp\\my-app\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\NOONEDRIVE\\Project_QuizApp\\my-app\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -203,13 +205,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Article {\n  id         String   @id @unique\n  title      String\n  orgArticle String\n  sumArticle String\n  createdAt  DateTime @default(now())\n  userId     String\n  updatedAt  DateTime @default(now())\n  category   String\n  subject    String[]\n  User       User     @relation(fields: [userId], references: [id])\n  quizzes    Quiz[]\n}\n\nmodel Quiz {\n  id            String   @id\n  articleId     String\n  correctOption String\n  createdAt     DateTime @default(now())\n  userId        String\n  options       Json[]\n  refArticle    Article  @relation(fields: [articleId], references: [id])\n  User          User     @relation(fields: [userId], references: [id])\n}\n\nmodel Category {\n  id   String @id @unique\n  name String\n}\n\nmodel Subject {\n  id   String @id @unique\n  name String\n}\n\nmodel User {\n  id       String    @id @unique\n  name     String\n  joinedAt DateTime  @default(now())\n  lastSeen DateTime  @default(now())\n  apiKey   String?\n  Article  Article[]\n  Quiz     Quiz[]\n}\n",
-  "inlineSchemaHash": "edcc1d9a965f34c389f38b80302041dbe44d123fe9b663f315a71143ce702e37",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Article {\n  id         String   @id @unique\n  title      String\n  orgArticle String\n  sumArticle String\n  createdAt  DateTime @default(now())\n  userId     String\n  updatedAt  DateTime @default(now())\n  category   String\n  subject    String[]\n  User       User     @relation(fields: [userId], references: [id])\n  quizzes    Quiz[]\n}\n\nmodel Quiz {\n  id            String   @id\n  articleId     String\n  question      String?\n  correctOption String\n  category      String?\n  createdAt     DateTime @default(now())\n  userId        String\n  options       Json[]\n  refArticle    Article  @relation(fields: [articleId], references: [id])\n  User          User     @relation(fields: [userId], references: [id])\n}\n\nmodel Category {\n  id   String @id @unique\n  name String\n}\n\nmodel Subject {\n  id   String @id @unique\n  name String\n}\n\nmodel User {\n  id       String    @id @unique\n  name     String\n  joinedAt DateTime  @default(now())\n  lastSeen DateTime  @default(now())\n  apiKey   String?\n  Article  Article[]\n  Quiz     Quiz[]\n}\n",
+  "inlineSchemaHash": "05643165773f0115a90ddf5a58db49a26dc8e2251024acd3920c6f7934df1712",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Article\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"orgArticle\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sumArticle\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"category\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"subject\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"User\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"ArticleToUser\"},{\"name\":\"quizzes\",\"kind\":\"object\",\"type\":\"Quiz\",\"relationName\":\"ArticleToQuiz\"}],\"dbName\":null},\"Quiz\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"articleId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"correctOption\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"options\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"refArticle\",\"kind\":\"object\",\"type\":\"Article\",\"relationName\":\"ArticleToQuiz\"},{\"name\":\"User\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"QuizToUser\"}],\"dbName\":null},\"Category\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"Subject\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"joinedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"lastSeen\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"apiKey\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"Article\",\"kind\":\"object\",\"type\":\"Article\",\"relationName\":\"ArticleToUser\"},{\"name\":\"Quiz\",\"kind\":\"object\",\"type\":\"Quiz\",\"relationName\":\"QuizToUser\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Article\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"orgArticle\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sumArticle\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"category\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"subject\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"User\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"ArticleToUser\"},{\"name\":\"quizzes\",\"kind\":\"object\",\"type\":\"Quiz\",\"relationName\":\"ArticleToQuiz\"}],\"dbName\":null},\"Quiz\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"articleId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"question\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"correctOption\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"category\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"options\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"refArticle\",\"kind\":\"object\",\"type\":\"Article\",\"relationName\":\"ArticleToQuiz\"},{\"name\":\"User\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"QuizToUser\"}],\"dbName\":null},\"Category\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"Subject\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"joinedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"lastSeen\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"apiKey\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"Article\",\"kind\":\"object\",\"type\":\"Article\",\"relationName\":\"ArticleToUser\"},{\"name\":\"Quiz\",\"kind\":\"object\",\"type\":\"Quiz\",\"relationName\":\"QuizToUser\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

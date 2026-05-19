@@ -154,8 +154,8 @@ export const QuizgeekProvider = ({ children }: { children: ReactNode }) => {
       });
       const data = await res.json();
       setLoading(false);
-      console.log(data);
-      return data;
+      console.log("on frontend:", data.fulltext);
+      return data.fulltext;
     } catch (e) {
       console.error(e);
       setLoading(false);

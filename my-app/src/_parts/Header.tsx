@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Book, BoxesIcon, Eclipse, SparkleIcon } from "lucide-react";
 import { Logo } from "./Logo";
 import { UserButton } from "@clerk/nextjs";
-import { useState } from "react";
 import { OperationType, useQuizgeek } from "@/providers/QuizgeekProvider";
 export const Header = () => {
   const { toggleTheme, theme } = useTheme();
@@ -61,6 +60,7 @@ export const Header = () => {
         <Logo />
         <div className="flex gap-2">
           <div className="flex gap-2">
+
             {Btns.map((btn, index) => (
               <Button
                 key={index}

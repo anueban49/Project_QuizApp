@@ -2444,7 +2444,9 @@ export namespace Prisma {
   export type QuizMinAggregateOutputType = {
     id: string | null
     articleId: string | null
+    question: string | null
     correctOption: string | null
+    category: string | null
     createdAt: Date | null
     userId: string | null
   }
@@ -2452,7 +2454,9 @@ export namespace Prisma {
   export type QuizMaxAggregateOutputType = {
     id: string | null
     articleId: string | null
+    question: string | null
     correctOption: string | null
+    category: string | null
     createdAt: Date | null
     userId: string | null
   }
@@ -2460,7 +2464,9 @@ export namespace Prisma {
   export type QuizCountAggregateOutputType = {
     id: number
     articleId: number
+    question: number
     correctOption: number
+    category: number
     createdAt: number
     userId: number
     options: number
@@ -2471,7 +2477,9 @@ export namespace Prisma {
   export type QuizMinAggregateInputType = {
     id?: true
     articleId?: true
+    question?: true
     correctOption?: true
+    category?: true
     createdAt?: true
     userId?: true
   }
@@ -2479,7 +2487,9 @@ export namespace Prisma {
   export type QuizMaxAggregateInputType = {
     id?: true
     articleId?: true
+    question?: true
     correctOption?: true
+    category?: true
     createdAt?: true
     userId?: true
   }
@@ -2487,7 +2497,9 @@ export namespace Prisma {
   export type QuizCountAggregateInputType = {
     id?: true
     articleId?: true
+    question?: true
     correctOption?: true
+    category?: true
     createdAt?: true
     userId?: true
     options?: true
@@ -2569,7 +2581,9 @@ export namespace Prisma {
   export type QuizGroupByOutputType = {
     id: string
     articleId: string
+    question: string | null
     correctOption: string
+    category: string | null
     createdAt: Date
     userId: string
     options: JsonValue[]
@@ -2595,7 +2609,9 @@ export namespace Prisma {
   export type QuizSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     articleId?: boolean
+    question?: boolean
     correctOption?: boolean
+    category?: boolean
     createdAt?: boolean
     userId?: boolean
     options?: boolean
@@ -2606,7 +2622,9 @@ export namespace Prisma {
   export type QuizSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     articleId?: boolean
+    question?: boolean
     correctOption?: boolean
+    category?: boolean
     createdAt?: boolean
     userId?: boolean
     options?: boolean
@@ -2617,7 +2635,9 @@ export namespace Prisma {
   export type QuizSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     articleId?: boolean
+    question?: boolean
     correctOption?: boolean
+    category?: boolean
     createdAt?: boolean
     userId?: boolean
     options?: boolean
@@ -2628,13 +2648,15 @@ export namespace Prisma {
   export type QuizSelectScalar = {
     id?: boolean
     articleId?: boolean
+    question?: boolean
     correctOption?: boolean
+    category?: boolean
     createdAt?: boolean
     userId?: boolean
     options?: boolean
   }
 
-  export type QuizOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "articleId" | "correctOption" | "createdAt" | "userId" | "options", ExtArgs["result"]["quiz"]>
+  export type QuizOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "articleId" | "question" | "correctOption" | "category" | "createdAt" | "userId" | "options", ExtArgs["result"]["quiz"]>
   export type QuizInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     refArticle?: boolean | ArticleDefaultArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
@@ -2657,7 +2679,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       articleId: string
+      question: string | null
       correctOption: string
+      category: string | null
       createdAt: Date
       userId: string
       options: Prisma.JsonValue[]
@@ -3088,7 +3112,9 @@ export namespace Prisma {
   interface QuizFieldRefs {
     readonly id: FieldRef<"Quiz", 'String'>
     readonly articleId: FieldRef<"Quiz", 'String'>
+    readonly question: FieldRef<"Quiz", 'String'>
     readonly correctOption: FieldRef<"Quiz", 'String'>
+    readonly category: FieldRef<"Quiz", 'String'>
     readonly createdAt: FieldRef<"Quiz", 'DateTime'>
     readonly userId: FieldRef<"Quiz", 'String'>
     readonly options: FieldRef<"Quiz", 'Json[]'>
@@ -6548,7 +6574,9 @@ export namespace Prisma {
   export const QuizScalarFieldEnum: {
     id: 'id',
     articleId: 'articleId',
+    question: 'question',
     correctOption: 'correctOption',
+    category: 'category',
     createdAt: 'createdAt',
     userId: 'userId',
     options: 'options'
@@ -6756,7 +6784,9 @@ export namespace Prisma {
     NOT?: QuizWhereInput | QuizWhereInput[]
     id?: StringFilter<"Quiz"> | string
     articleId?: StringFilter<"Quiz"> | string
+    question?: StringNullableFilter<"Quiz"> | string | null
     correctOption?: StringFilter<"Quiz"> | string
+    category?: StringNullableFilter<"Quiz"> | string | null
     createdAt?: DateTimeFilter<"Quiz"> | Date | string
     userId?: StringFilter<"Quiz"> | string
     options?: JsonNullableListFilter<"Quiz">
@@ -6767,7 +6797,9 @@ export namespace Prisma {
   export type QuizOrderByWithRelationInput = {
     id?: SortOrder
     articleId?: SortOrder
+    question?: SortOrderInput | SortOrder
     correctOption?: SortOrder
+    category?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     userId?: SortOrder
     options?: SortOrder
@@ -6781,7 +6813,9 @@ export namespace Prisma {
     OR?: QuizWhereInput[]
     NOT?: QuizWhereInput | QuizWhereInput[]
     articleId?: StringFilter<"Quiz"> | string
+    question?: StringNullableFilter<"Quiz"> | string | null
     correctOption?: StringFilter<"Quiz"> | string
+    category?: StringNullableFilter<"Quiz"> | string | null
     createdAt?: DateTimeFilter<"Quiz"> | Date | string
     userId?: StringFilter<"Quiz"> | string
     options?: JsonNullableListFilter<"Quiz">
@@ -6792,7 +6826,9 @@ export namespace Prisma {
   export type QuizOrderByWithAggregationInput = {
     id?: SortOrder
     articleId?: SortOrder
+    question?: SortOrderInput | SortOrder
     correctOption?: SortOrder
+    category?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     userId?: SortOrder
     options?: SortOrder
@@ -6807,7 +6843,9 @@ export namespace Prisma {
     NOT?: QuizScalarWhereWithAggregatesInput | QuizScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Quiz"> | string
     articleId?: StringWithAggregatesFilter<"Quiz"> | string
+    question?: StringNullableWithAggregatesFilter<"Quiz"> | string | null
     correctOption?: StringWithAggregatesFilter<"Quiz"> | string
+    category?: StringNullableWithAggregatesFilter<"Quiz"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Quiz"> | Date | string
     userId?: StringWithAggregatesFilter<"Quiz"> | string
     options?: JsonNullableListFilter<"Quiz">
@@ -7034,7 +7072,9 @@ export namespace Prisma {
 
   export type QuizCreateInput = {
     id: string
+    question?: string | null
     correctOption: string
+    category?: string | null
     createdAt?: Date | string
     options?: QuizCreateoptionsInput | InputJsonValue[]
     refArticle: ArticleCreateNestedOneWithoutQuizzesInput
@@ -7044,7 +7084,9 @@ export namespace Prisma {
   export type QuizUncheckedCreateInput = {
     id: string
     articleId: string
+    question?: string | null
     correctOption: string
+    category?: string | null
     createdAt?: Date | string
     userId: string
     options?: QuizCreateoptionsInput | InputJsonValue[]
@@ -7052,7 +7094,9 @@ export namespace Prisma {
 
   export type QuizUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     correctOption?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     options?: QuizUpdateoptionsInput | InputJsonValue[]
     refArticle?: ArticleUpdateOneRequiredWithoutQuizzesNestedInput
@@ -7062,7 +7106,9 @@ export namespace Prisma {
   export type QuizUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     articleId?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     correctOption?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
     options?: QuizUpdateoptionsInput | InputJsonValue[]
@@ -7071,7 +7117,9 @@ export namespace Prisma {
   export type QuizCreateManyInput = {
     id: string
     articleId: string
+    question?: string | null
     correctOption: string
+    category?: string | null
     createdAt?: Date | string
     userId: string
     options?: QuizCreateoptionsInput | InputJsonValue[]
@@ -7079,7 +7127,9 @@ export namespace Prisma {
 
   export type QuizUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     correctOption?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     options?: QuizUpdateoptionsInput | InputJsonValue[]
   }
@@ -7087,7 +7137,9 @@ export namespace Prisma {
   export type QuizUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     articleId?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     correctOption?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
     options?: QuizUpdateoptionsInput | InputJsonValue[]
@@ -7341,6 +7393,21 @@ export namespace Prisma {
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
   export type JsonNullableListFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonNullableListFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableListFilterBase<$PrismaModel>>, 'path'>>,
@@ -7361,10 +7428,17 @@ export namespace Prisma {
     isNot?: ArticleWhereInput
   }
 
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type QuizCountOrderByAggregateInput = {
     id?: SortOrder
     articleId?: SortOrder
+    question?: SortOrder
     correctOption?: SortOrder
+    category?: SortOrder
     createdAt?: SortOrder
     userId?: SortOrder
     options?: SortOrder
@@ -7373,7 +7447,9 @@ export namespace Prisma {
   export type QuizMaxOrderByAggregateInput = {
     id?: SortOrder
     articleId?: SortOrder
+    question?: SortOrder
     correctOption?: SortOrder
+    category?: SortOrder
     createdAt?: SortOrder
     userId?: SortOrder
   }
@@ -7381,9 +7457,29 @@ export namespace Prisma {
   export type QuizMinOrderByAggregateInput = {
     id?: SortOrder
     articleId?: SortOrder
+    question?: SortOrder
     correctOption?: SortOrder
+    category?: SortOrder
     createdAt?: SortOrder
     userId?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type CategoryCountOrderByAggregateInput = {
@@ -7416,30 +7512,10 @@ export namespace Prisma {
     name?: SortOrder
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type ArticleListRelationFilter = {
     every?: ArticleWhereInput
     some?: ArticleWhereInput
     none?: ArticleWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type ArticleOrderByRelationAggregateInput = {
@@ -7468,24 +7544,6 @@ export namespace Prisma {
     joinedAt?: SortOrder
     lastSeen?: SortOrder
     apiKey?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type ArticleCreatesubjectInput = {
@@ -7577,6 +7635,10 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type QuizUpdateoptionsInput = {
     set?: InputJsonValue[]
     push?: InputJsonValue | InputJsonValue[]
@@ -7624,10 +7686,6 @@ export namespace Prisma {
     connectOrCreate?: QuizCreateOrConnectWithoutUserInput | QuizCreateOrConnectWithoutUserInput[]
     createMany?: QuizCreateManyUserInputEnvelope
     connect?: QuizWhereUniqueInput | QuizWhereUniqueInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type ArticleUpdateManyWithoutUserNestedInput = {
@@ -7820,7 +7878,9 @@ export namespace Prisma {
 
   export type QuizCreateWithoutRefArticleInput = {
     id: string
+    question?: string | null
     correctOption: string
+    category?: string | null
     createdAt?: Date | string
     options?: QuizCreateoptionsInput | InputJsonValue[]
     User: UserCreateNestedOneWithoutQuizInput
@@ -7828,7 +7888,9 @@ export namespace Prisma {
 
   export type QuizUncheckedCreateWithoutRefArticleInput = {
     id: string
+    question?: string | null
     correctOption: string
+    category?: string | null
     createdAt?: Date | string
     userId: string
     options?: QuizCreateoptionsInput | InputJsonValue[]
@@ -7895,7 +7957,9 @@ export namespace Prisma {
     NOT?: QuizScalarWhereInput | QuizScalarWhereInput[]
     id?: StringFilter<"Quiz"> | string
     articleId?: StringFilter<"Quiz"> | string
+    question?: StringNullableFilter<"Quiz"> | string | null
     correctOption?: StringFilter<"Quiz"> | string
+    category?: StringNullableFilter<"Quiz"> | string | null
     createdAt?: DateTimeFilter<"Quiz"> | Date | string
     userId?: StringFilter<"Quiz"> | string
     options?: JsonNullableListFilter<"Quiz">
@@ -8053,7 +8117,9 @@ export namespace Prisma {
 
   export type QuizCreateWithoutUserInput = {
     id: string
+    question?: string | null
     correctOption: string
+    category?: string | null
     createdAt?: Date | string
     options?: QuizCreateoptionsInput | InputJsonValue[]
     refArticle: ArticleCreateNestedOneWithoutQuizzesInput
@@ -8062,7 +8128,9 @@ export namespace Prisma {
   export type QuizUncheckedCreateWithoutUserInput = {
     id: string
     articleId: string
+    question?: string | null
     correctOption: string
+    category?: string | null
     createdAt?: Date | string
     options?: QuizCreateoptionsInput | InputJsonValue[]
   }
@@ -8126,7 +8194,9 @@ export namespace Prisma {
 
   export type QuizCreateManyRefArticleInput = {
     id: string
+    question?: string | null
     correctOption: string
+    category?: string | null
     createdAt?: Date | string
     userId: string
     options?: QuizCreateoptionsInput | InputJsonValue[]
@@ -8134,7 +8204,9 @@ export namespace Prisma {
 
   export type QuizUpdateWithoutRefArticleInput = {
     id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     correctOption?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     options?: QuizUpdateoptionsInput | InputJsonValue[]
     User?: UserUpdateOneRequiredWithoutQuizNestedInput
@@ -8142,7 +8214,9 @@ export namespace Prisma {
 
   export type QuizUncheckedUpdateWithoutRefArticleInput = {
     id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     correctOption?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
     options?: QuizUpdateoptionsInput | InputJsonValue[]
@@ -8150,7 +8224,9 @@ export namespace Prisma {
 
   export type QuizUncheckedUpdateManyWithoutRefArticleInput = {
     id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     correctOption?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
     options?: QuizUpdateoptionsInput | InputJsonValue[]
@@ -8170,7 +8246,9 @@ export namespace Prisma {
   export type QuizCreateManyUserInput = {
     id: string
     articleId: string
+    question?: string | null
     correctOption: string
+    category?: string | null
     createdAt?: Date | string
     options?: QuizCreateoptionsInput | InputJsonValue[]
   }
@@ -8212,7 +8290,9 @@ export namespace Prisma {
 
   export type QuizUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     correctOption?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     options?: QuizUpdateoptionsInput | InputJsonValue[]
     refArticle?: ArticleUpdateOneRequiredWithoutQuizzesNestedInput
@@ -8221,7 +8301,9 @@ export namespace Prisma {
   export type QuizUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     articleId?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     correctOption?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     options?: QuizUpdateoptionsInput | InputJsonValue[]
   }
@@ -8229,7 +8311,9 @@ export namespace Prisma {
   export type QuizUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     articleId?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     correctOption?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     options?: QuizUpdateoptionsInput | InputJsonValue[]
   }
