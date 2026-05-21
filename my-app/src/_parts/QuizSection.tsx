@@ -188,6 +188,7 @@ export const QuizSection = () => {
                 disabled={!view}
                 onClick={async () => {
                   const loaded = await getSavedQuiz(view?.id as string);
+                  console.log(loaded)
                   if (loaded) {
                     setMode("quizzing");
                   } else {

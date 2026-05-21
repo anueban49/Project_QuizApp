@@ -4,6 +4,8 @@ import { useQuizgeek } from "@/providers/QuizgeekProvider";
 import { useTheme } from "@/providers/ThemeProvider";
 import type { Quiz } from "@/providers/QuizgeekProvider";
 import { LoadingScreen } from "./LoadingScreen";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft } from "lucide-react";
 type QuizzingProps = Quiz & {
   answered: boolean;
   correct: boolean;
@@ -78,10 +80,12 @@ export function Quiz({ articleId, savedQuiz }: { articleId: string; savedQuiz?: 
             </div>
           ) : currentQuestion ? (
             <>
+              <Button onClick={() => { setSteps(steps - 1) }}><ChevronLeft /></Button>
               <h2 className="py-10">Question: {currentQuestion.question}</h2>
-              <div className={`grid grid-cols-2 grid-rows-2 gap-5 `}>
+              <div className={`grid grid-cols-2 grid-rows-2 gap-5 w-full p-5 `}>
                 {currentQuestion.options.map((q, index) => (
                   <div
+                    className={`hover:cursor-pointer hover:shadow-slate-500 shadow-sm rounded-2xl`}
                     onClick={() => {
                       check(q.label, currentQuestion.answer);
                     }}
