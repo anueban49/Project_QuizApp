@@ -11,7 +11,6 @@ export const POST = async (request: NextRequest) => {
   const prompt: string = input.trim();
   const newArticleId = customAlphabet("1234567890", 10);
   const { userId } = await auth();
-  const clerkId = userId;
   console.log("api/articles in work");
   try {
 

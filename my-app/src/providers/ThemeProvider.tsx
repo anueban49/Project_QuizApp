@@ -1,12 +1,9 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
-import { ThemeContext, Theme} from "./ThemeContext";
+import { ThemeContext, Theme } from "./ThemeContext";
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === "undefined") return "light"; // server: skip localStorage
-    return (localStorage.getItem("theme") as Theme) || "light"; // browser: read it
-  });
+  const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);

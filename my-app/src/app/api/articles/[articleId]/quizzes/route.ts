@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenAI } from "@google/genai";
 import prisma from "@/lib/prisma";
 import { customAlphabet } from "nanoid";
 import { auth } from "@clerk/nextjs/server";
-
+import OpenAI from "openai";
 interface QuizOptionalType {
   input?: string;
   difficulty?: string;
@@ -202,14 +201,13 @@ export const POST = async (
         return NextResponse.json({ error: "Missing input for quiz generation" }, { status: 400 });
       }
 
-      const ai = new GoogleGenAI({ apiKey });
+      const client = new OpenAI;
       const prompt = props.input.trim();
-      const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        contents: prompt,
-        config: {
-          systemInstruction: `Generate ${props?.size ?? "3"} quiz questions with difficulty of ${props?.difficulty ?? "medium"} in ${props?.language ?? "english"} with given article. 
-          Quiz contents must be academic, ensure client's academic advancement, and be sure to hand out creative, rich question
+      const response = await client.responses.create({
+        model: "gpt-4.1-mini",
+        input: prompt,
+        instructions: `Generate ${props?.size ?? "3"} quiz questions with difficulty of ${props?.difficulty ?? "medium"} in ${props?.language ?? "english"} with given article. 
+          Quiz contents must be academic, educational, and be sure to hand out creative, rich question. If given difficulty is hard, make the quiz unversity level
           Respond in EXACT JSON format, nothing else, no extra text:
           [{"question": "your question here",
           "options": [
@@ -219,11 +217,28 @@ export const POST = async (
                 { "label": "D", "text": "option 4" }
               ],
           "answer": "..."
-          }, ... ] `,
-        },
-      });
+          }, ... ] 
+          `,
+      })
+      const fullText =
+        typeof response.output_text === "string"
+          ? response.output_text
+          : Array.isArray(response.output)
+          ? response.output
+              .map((item: any) =>
+                item?.content
+                  ?.map((contentItem: any) =>
+                    typeof contentItem?.text === "string" ? contentItem.text : "",
+                  )
+                  .filter(Boolean)
+                  .join("")
+              )
+              .filter(Boolean)
+              .join("\n")
+          : typeof response.text === "string"
+          ? response.text
+          : "";
 
-      const fullText: any = response.text;
       const cleaned = fullText
         .replace(/```json/g, "")
         .replace(/```/g, "")

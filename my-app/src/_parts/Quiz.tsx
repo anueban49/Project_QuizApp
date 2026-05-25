@@ -15,6 +15,13 @@ type QuizResourceProps = {
   articleId?: string;
   savedQuiz?: Quiz[];
 }
+function shuffle(arr: Quiz[]) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const r = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[r]] = [arr[r], arr[i]]
+  }
+  return arr;
+}
 export function Quiz({ articleId, savedQuiz }: { articleId: string; savedQuiz?: Quiz[] | null }) {
   const { quiz, loading } = useQuizgeek();
   const [quizzing, setQuizzing] = useState<QuizzingProps[]>([]);
@@ -23,26 +30,28 @@ export function Quiz({ articleId, savedQuiz }: { articleId: string; savedQuiz?: 
   const [steps, setSteps] = useState<number>(0);
   const [correct, setCorrect] = useState<number>(0);
   const [selected, setSelected] = useState<string | null>(null);
-  const sourceQuiz = savedQuiz ?? quiz;
 
   useEffect(() => {
     setSelected(null);
   }, [steps]);
 
   useEffect(() => {
-    if (sourceQuiz && sourceQuiz.length > 0) {
-      const quizData = sourceQuiz.map((q) => ({ ...q, answered: false, correct: false }));
-      setQuizzing(quizData);
-      setLength(quizData.length);
+    const source = savedQuiz ?? quiz;
+    if (!source || source.length === 0) {
+      setQuizzing([]);
+      setLength(0);
       setSteps(0);
       setSelected(null);
       return;
     }
-    setQuizzing([]);
-    setLength(0);
+
+    const shuffled = shuffle([...source]); // copy first, shuffle once
+    const quizData = shuffled.map((q) => ({ ...q, answered: false, correct: false }));
+    setQuizzing(quizData);
+    setLength(quizData.length);
     setSteps(0);
     setSelected(null);
-  }, [sourceQuiz]);
+  }, [savedQuiz, quiz]);
 
   const currentQuestion = quizzing[steps] ?? null;
   const quizComplete = quizzing.length > 0 && steps >= quizzing.length;
@@ -54,10 +63,7 @@ export function Quiz({ articleId, savedQuiz }: { articleId: string; savedQuiz?: 
     }
     setTimeout(() => {
       setSteps((prev) => prev + 1);
-    }, 1000);
-
-    console.log(correct);
-    console.log(steps);
+    }, 2000);
   }
 
 
@@ -80,7 +86,12 @@ export function Quiz({ articleId, savedQuiz }: { articleId: string; savedQuiz?: 
             </div>
           ) : currentQuestion ? (
             <>
-              <Button onClick={() => { setSteps(steps - 1) }}><ChevronLeft /></Button>
+              <Button
+                disabled={steps === 0}
+                onClick={() => {
+                  setSteps(steps - 1);
+
+                }}><ChevronLeft /></Button>
               <h2 className="py-10">Question: {currentQuestion.question}</h2>
               <div className={`grid grid-cols-2 grid-rows-2 gap-5 w-full p-5 `}>
                 {currentQuestion.options.map((q, index) => (
