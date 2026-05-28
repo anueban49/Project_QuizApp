@@ -23,7 +23,8 @@ const makeId = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789", 10);
 const normalizeQuizItem = (item: any): QuizItem | null => {
   if (typeof item !== "object" || item === null) return null;
 
-  const question = typeof item.question === "string" ? item.question.trim() : "";
+  const question =
+    typeof item.question === "string" ? item.question.trim() : "";
   const rawOptions: any[] = Array.isArray(item.options) ? item.options : [];
 
   const options: Array<{ label: string; text: string }> = rawOptions
@@ -35,14 +36,21 @@ const normalizeQuizItem = (item: any): QuizItem | null => {
         };
       }
       if (typeof option === "object" && option !== null) {
-        const label = typeof option.label === "string" ? option.label.trim().toUpperCase() : String.fromCharCode(65 + index);
+        const label =
+          typeof option.label === "string"
+            ? option.label.trim().toUpperCase()
+            : String.fromCharCode(65 + index);
         const text = typeof option.text === "string" ? option.text.trim() : "";
         if (!text) return null;
         return { label, text };
       }
       return null;
     })
-    .filter((option: { label: string; text: string } | null): option is { label: string; text: string } => Boolean(option));
+    .filter(
+      (
+        option: { label: string; text: string } | null,
+      ): option is { label: string; text: string } => Boolean(option),
+    );
 
   if (!question || options.length === 0) return null;
 
@@ -56,8 +64,11 @@ const normalizeQuizItem = (item: any): QuizItem | null => {
       opt.text.toLowerCase() === rawAnswer.replace(/^"|"$/g, "").toLowerCase(),
   )?.label;
 
-  const answer = matchedLabel ? matchedLabel : rawAnswer.toUpperCase().slice(0, 1);
-  if (!options.some((opt) => opt.label.toUpperCase() === answer.toUpperCase())) return null;
+  const answer = matchedLabel
+    ? matchedLabel
+    : rawAnswer.toUpperCase().slice(0, 1);
+  if (!options.some((opt) => opt.label.toUpperCase() === answer.toUpperCase()))
+    return null;
 
   return {
     question,
@@ -87,7 +98,12 @@ const buildStoreableQuizRecords = (
 const parseSavedQuizRecord = (record: any): QuizItem | null => {
   if (!record || !record.options || !Array.isArray(record.options)) return null;
   const first = record.options[0];
-  if (first && typeof first === "object" && first !== null && Array.isArray(first.choices)) {
+  if (
+    first &&
+    typeof first === "object" &&
+    first !== null &&
+    Array.isArray(first.choices)
+  ) {
     return {
       question: typeof first.question === "string" ? first.question : "",
       options: first.choices.map((opt: any, index: number) => {
@@ -99,13 +115,19 @@ const parseSavedQuizRecord = (record: any): QuizItem | null => {
         }
         if (typeof opt === "object" && opt !== null) {
           return {
-            label: typeof opt.label === "string" ? opt.label.trim().toUpperCase() : String.fromCharCode(65 + index),
+            label:
+              typeof opt.label === "string"
+                ? opt.label.trim().toUpperCase()
+                : String.fromCharCode(65 + index),
             text: typeof opt.text === "string" ? opt.text.trim() : "",
           };
         }
         return { label: String.fromCharCode(65 + index), text: "" };
       }),
-      answer: typeof record.correctOption === "string" ? record.correctOption.toUpperCase() : "",
+      answer:
+        typeof record.correctOption === "string"
+          ? record.correctOption.toUpperCase()
+          : "",
     };
   }
 
@@ -120,17 +142,25 @@ const parseSavedQuizRecord = (record: any): QuizItem | null => {
         }
         if (typeof opt === "object" && opt !== null) {
           return {
-            label: typeof opt.label === "string" ? opt.label.trim().toUpperCase() : String.fromCharCode(65 + index),
+            label:
+              typeof opt.label === "string"
+                ? opt.label.trim().toUpperCase()
+                : String.fromCharCode(65 + index),
             text: typeof opt.text === "string" ? opt.text.trim() : "",
           };
         }
         return null;
       })
-      .filter((opt: any): opt is { label: string; text: string } => Boolean(opt));
+      .filter((opt: any): opt is { label: string; text: string } =>
+        Boolean(opt),
+      );
     return {
       question: typeof record.question === "string" ? record.question : "",
       options,
-      answer: typeof record.correctOption === "string" ? record.correctOption.toUpperCase() : "",
+      answer:
+        typeof record.correctOption === "string"
+          ? record.correctOption.toUpperCase()
+          : "",
     };
   }
 
@@ -164,7 +194,10 @@ export const GET = async (
     return NextResponse.json(parsedQuiz);
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Failed to fetch saved quiz" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch saved quiz" },
+      { status: 500 },
+    );
   }
 };
 
@@ -193,15 +226,23 @@ export const POST = async (
     }
 
     if (!quizItems) {
-      const apiKey = props.userApiKey ? props.userApiKey : (process.env.GENAI_API_KEY as string);
+      const apiKey = props.userApiKey
+        ? props.userApiKey
+        : (process.env.OPENAI_API_KEY as string);
       if (!apiKey) {
-        return NextResponse.json({ error: "API key issue" }, { status: 500 });
+        return NextResponse.json(
+          { error: "API key issue [attempt: fox]" },
+          { status: 500 },
+        );
       }
       if (!props.input) {
-        return NextResponse.json({ error: "Missing input for quiz generation" }, { status: 400 });
+        return NextResponse.json(
+          { error: "Missing input for quiz generation" },
+          { status: 400 },
+        );
       }
 
-      const client = new OpenAI;
+      const client = new OpenAI();
       const prompt = props.input.trim();
       const response = await client.responses.create({
         model: "gpt-4.1-mini",
@@ -219,25 +260,27 @@ export const POST = async (
           "answer": "..."
           }, ... ] 
           `,
-      })
+      });
       const fullText =
         typeof response.output_text === "string"
           ? response.output_text
           : Array.isArray(response.output)
-          ? response.output
-              .map((item: any) =>
-                item?.content
-                  ?.map((contentItem: any) =>
-                    typeof contentItem?.text === "string" ? contentItem.text : "",
-                  )
-                  .filter(Boolean)
-                  .join("")
-              )
-              .filter(Boolean)
-              .join("\n")
-          : typeof response.text === "string"
-          ? response.text
-          : "";
+            ? response.output
+                .map((item: any) =>
+                  item?.content
+                    ?.map((contentItem: any) =>
+                      typeof contentItem?.text === "string"
+                        ? contentItem.text
+                        : "",
+                    )
+                    .filter(Boolean)
+                    .join(""),
+                )
+                .filter(Boolean)
+                .join("\n")
+            : typeof response.text === "string"
+              ? response.text
+              : "";
 
       const cleaned = fullText
         .replace(/```json/g, "")
@@ -246,12 +289,18 @@ export const POST = async (
 
       const match = cleaned.match(/\[[\s\S]*\]/);
       if (!match) {
-        return NextResponse.json({ error: "AI returned invalid format" }, { status: 500 });
+        return NextResponse.json(
+          { error: "AI returned invalid format" },
+          { status: 500 },
+        );
       }
 
       const rawQuiz = JSON.parse(match[0]);
       if (!Array.isArray(rawQuiz) || rawQuiz.length === 0) {
-        return NextResponse.json({ error: "AI returned invalid quiz format" }, { status: 500 });
+        return NextResponse.json(
+          { error: "AI returned invalid quiz format" },
+          { status: 500 },
+        );
       }
 
       quizItems = rawQuiz
@@ -260,7 +309,10 @@ export const POST = async (
     }
 
     if (!quizItems || quizItems.length === 0) {
-      return NextResponse.json({ error: "No valid quiz items available" }, { status: 500 });
+      return NextResponse.json(
+        { error: "No valid quiz items available" },
+        { status: 500 },
+      );
     }
 
     const storeData = buildStoreableQuizRecords(quizItems, articleId, userId);
