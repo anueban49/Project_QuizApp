@@ -1,1252 +1,602 @@
 [
   {
-    "question": "What does OSI stand for?",
+    "question": "What are the 7 layers of the OSI model in order from bottom to top?",
     "options": [
-      {
-        "key": "A",
-        "text": "Open Systems Interconnection"
-      },
-      {
-        "key": "B",
-        "text": "Open Software Interface"
-      },
-      {
-        "key": "C",
-        "text": "Operational System Integration"
-      },
-      {
-        "key": "D",
-        "text": "Open Standard Internet"
-      }
+      { "label": "A", "text": "Physical, Data Link, Network, Transport, Session, Presentation, Application" },
+      { "label": "B", "text": "Application, Presentation, Session, Transport, Network, Data Link, Physical" },
+      { "label": "C", "text": "Physical, Network, Data Link, Transport, Session, Application, Presentation" },
+      { "label": "D", "text": "Physical, Data Link, Transport, Network, Session, Presentation, Application" }
     ],
     "correctOption": "A",
-    "points": 1,
-    "section": "I",
-    "category": "Networking"
+    "subject": ["OSI Model", "Networking"],
+    "category": "Networking Fundamentals"
   },
   {
-    "question": "How many layers does the OSI model have?",
+    "question": "What is the key difference between TCP and UDP?",
     "options": [
-      {
-        "key": "A",
-        "text": "5"
-      },
-      {
-        "key": "B",
-        "text": "6"
-      },
-      {
-        "key": "C",
-        "text": "7"
-      },
-      {
-        "key": "D",
-        "text": "4"
-      }
+      { "label": "A", "text": "TCP is faster; UDP is slower" },
+      { "label": "B", "text": "TCP is connection-oriented and reliable; UDP is connectionless and faster with no delivery guarantee" },
+      { "label": "C", "text": "TCP is used for video streaming; UDP is used for file transfers" },
+      { "label": "D", "text": "TCP and UDP are identical but operate on different ports" }
+    ],
+    "correctOption": "B",
+    "subject": ["TCP/IP", "Transport Layer"],
+    "category": "Networking Fundamentals"
+  },
+  {
+    "question": "Which sequence correctly describes the TCP 3-way handshake?",
+    "options": [
+      { "label": "A", "text": "SYN → ACK → SYN-ACK" },
+      { "label": "B", "text": "ACK → SYN → SYN-ACK" },
+      { "label": "C", "text": "SYN → SYN-ACK → ACK" },
+      { "label": "D", "text": "SYN-ACK → SYN → ACK" }
     ],
     "correctOption": "C",
-    "points": 1,
-    "section": "I",
-    "category": "Networking"
+    "subject": ["TCP/IP", "Connection Establishment"],
+    "category": "Networking Fundamentals"
   },
   {
-    "question": "Which OSI layer is responsible for end-to-end communication and error recovery?",
+    "question": "What does a 301 HTTP status code indicate?",
     "options": [
-      {
-        "key": "A",
-        "text": "Network layer"
-      },
-      {
-        "key": "B",
-        "text": "Transport layer"
-      },
-      {
-        "key": "C",
-        "text": "Session layer"
-      },
-      {
-        "key": "D",
-        "text": "Data link layer"
-      }
-    ],
-    "correctOption": "B",
-    "points": 1,
-    "section": "I",
-    "category": "Networking"
-  },
-  {
-    "question": "What is the default subnet mask for a Class C IP address?",
-    "options": [
-      {
-        "key": "A",
-        "text": "255.0.0.0"
-      },
-      {
-        "key": "B",
-        "text": "255.255.0.0"
-      },
-      {
-        "key": "C",
-        "text": "255.255.255.0"
-      },
-      {
-        "key": "D",
-        "text": "255.255.255.255"
-      }
+      { "label": "A", "text": "Resource not found" },
+      { "label": "B", "text": "Request succeeded" },
+      { "label": "C", "text": "Permanent redirect" },
+      { "label": "D", "text": "Internal server error" }
     ],
     "correctOption": "C",
-    "points": 1,
-    "section": "I",
-    "category": "Networking"
+    "subject": ["HTTP", "Status Codes"],
+    "category": "Networking Fundamentals"
   },
   {
-    "question": "Which protocol is used to assign IP addresses automatically to devices on a network?",
+    "question": "What is the main improvement HTTP/2 introduced over HTTP/1.1?",
     "options": [
-      {
-        "key": "A",
-        "text": "DNS"
-      },
-      {
-        "key": "B",
-        "text": "DHCP"
-      },
-      {
-        "key": "C",
-        "text": "FTP"
-      },
-      {
-        "key": "D",
-        "text": "SMTP"
-      }
+      { "label": "A", "text": "Switched from TCP to UDP" },
+      { "label": "B", "text": "Multiplexing — multiple requests over a single TCP connection simultaneously" },
+      { "label": "C", "text": "Added support for cookies" },
+      { "label": "D", "text": "Introduced the GET method" }
     ],
     "correctOption": "B",
-    "points": 1,
-    "section": "I",
-    "category": "Networking"
+    "subject": ["HTTP", "Performance"],
+    "category": "Networking Fundamentals"
   },
   {
-    "question": "Which device operates at OSI Layer 2 and uses MAC addresses to forward frames?",
+    "question": "What transport protocol does HTTP/3 use instead of TCP?",
     "options": [
-      {
-        "key": "A",
-        "text": "Router"
-      },
-      {
-        "key": "B",
-        "text": "Hub"
-      },
-      {
-        "key": "C",
-        "text": "Switch"
-      },
-      {
-        "key": "D",
-        "text": "Modem"
-      }
-    ],
-    "correctOption": "C",
-    "points": 2,
-    "section": "II",
-    "category": "Networking"
-  },
-  {
-    "question": "What does DNS stand for and what does it do?",
-    "options": [
-      {
-        "key": "A",
-        "text": "Data Network System — stores network data"
-      },
-      {
-        "key": "B",
-        "text": "Domain Name System — translates domain names to IP addresses"
-      },
-      {
-        "key": "C",
-        "text": "Dynamic Network Service — manages dynamic IPs"
-      },
-      {
-        "key": "D",
-        "text": "Domain Network Standard — sets network standards"
-      }
+      { "label": "A", "text": "UDP directly" },
+      { "label": "B", "text": "QUIC (built on UDP)" },
+      { "label": "C", "text": "SCTP" },
+      { "label": "D", "text": "WebSockets" }
     ],
     "correctOption": "B",
-    "points": 2,
-    "section": "II",
-    "category": "Networking"
+    "subject": ["HTTP", "QUIC"],
+    "category": "Networking Fundamentals"
   },
   {
-    "question": "What is the range of private IP addresses for Class A?",
+    "question": "What is the correct DNS resolution order when a browser looks up a domain?",
     "options": [
-      {
-        "key": "A",
-        "text": "192.168.0.0 – 192.168.255.255"
-      },
-      {
-        "key": "B",
-        "text": "172.16.0.0 – 172.31.255.255"
-      },
-      {
-        "key": "C",
-        "text": "10.0.0.0 – 10.255.255.255"
-      },
-      {
-        "key": "D",
-        "text": "169.254.0.0 – 169.254.255.255"
-      }
-    ],
-    "correctOption": "C",
-    "points": 2,
-    "section": "II",
-    "category": "Networking"
-  },
-  {
-    "question": "Which cable standard uses pins 1,2 for TX and pins 3,6 for RX?",
-    "options": [
-      {
-        "key": "A",
-        "text": "MDI"
-      },
-      {
-        "key": "B",
-        "text": "MDIX"
-      },
-      {
-        "key": "C",
-        "text": "Coaxial"
-      },
-      {
-        "key": "D",
-        "text": "Fiber optic"
-      }
-    ],
-    "correctOption": "A",
-    "points": 2,
-    "section": "II",
-    "category": "Networking"
-  },
-  {
-    "question": "What is the maximum cable length for Cat5e Ethernet (100BASE-TX)?",
-    "options": [
-      {
-        "key": "A",
-        "text": "50 meters"
-      },
-      {
-        "key": "B",
-        "text": "100 meters"
-      },
-      {
-        "key": "C",
-        "text": "200 meters"
-      },
-      {
-        "key": "D",
-        "text": "500 meters"
-      }
+      { "label": "A", "text": "Root nameserver → TLD → ISP resolver → OS cache → browser cache" },
+      { "label": "B", "text": "Browser cache → OS cache → router cache → ISP resolver → root nameserver → TLD → authoritative nameserver" },
+      { "label": "C", "text": "ISP resolver → browser cache → root nameserver → OS cache" },
+      { "label": "D", "text": "Authoritative nameserver → TLD → root nameserver → browser cache" }
     ],
     "correctOption": "B",
-    "points": 2,
-    "section": "II",
-    "category": "Networking"
+    "subject": ["DNS", "Resolution"],
+    "category": "Networking Fundamentals"
   },
   {
-    "question": "Which protocol does a router use to exchange routing information with other routers?",
+    "question": "Which of the following is NOT a private IP address range?",
     "options": [
-      {
-        "key": "A",
-        "text": "HTTP"
-      },
-      {
-        "key": "B",
-        "text": "OSPF"
-      },
-      {
-        "key": "C",
-        "text": "SMTP"
-      },
-      {
-        "key": "D",
-        "text": "FTP"
-      }
-    ],
-    "correctOption": "B",
-    "points": 3,
-    "section": "III",
-    "category": "Networking"
-  },
-  {
-    "question": "A network has IP address 192.168.1.0/24. How many usable host addresses are available?",
-    "options": [
-      {
-        "key": "A",
-        "text": "256"
-      },
-      {
-        "key": "B",
-        "text": "255"
-      },
-      {
-        "key": "C",
-        "text": "254"
-      },
-      {
-        "key": "D",
-        "text": "253"
-      }
-    ],
-    "correctOption": "C",
-    "points": 3,
-    "section": "III",
-    "category": "Networking"
-  },
-  {
-    "question": "What is the difference between a hub and a switch?",
-    "options": [
-      {
-        "key": "A",
-        "text": "A hub sends data to all ports; a switch sends data only to the destination port"
-      },
-      {
-        "key": "B",
-        "text": "A switch sends data to all ports; a hub sends only to destination"
-      },
-      {
-        "key": "C",
-        "text": "They are the same device with different names"
-      },
-      {
-        "key": "D",
-        "text": "A hub operates at Layer 3; a switch operates at Layer 2"
-      }
-    ],
-    "correctOption": "A",
-    "points": 3,
-    "section": "III",
-    "category": "Networking"
-  },
-  {
-    "question": "What does POST stand for in computer startup?",
-    "options": [
-      {
-        "key": "A",
-        "text": "Power On Self Test"
-      },
-      {
-        "key": "B",
-        "text": "Program Operating System Test"
-      },
-      {
-        "key": "C",
-        "text": "Power Output System Transfer"
-      },
-      {
-        "key": "D",
-        "text": "Process On Startup Test"
-      }
-    ],
-    "correctOption": "A",
-    "points": 1,
-    "section": "I",
-    "category": "Computer Maintenance"
-  },
-  {
-    "question": "Which component stores the BIOS settings when the computer is off?",
-    "options": [
-      {
-        "key": "A",
-        "text": "RAM"
-      },
-      {
-        "key": "B",
-        "text": "Hard drive"
-      },
-      {
-        "key": "C",
-        "text": "CMOS battery"
-      },
-      {
-        "key": "D",
-        "text": "CPU cache"
-      }
-    ],
-    "correctOption": "C",
-    "points": 1,
-    "section": "I",
-    "category": "Computer Maintenance"
-  },
-  {
-    "question": "What does GPU stand for?",
-    "options": [
-      {
-        "key": "A",
-        "text": "General Processing Unit"
-      },
-      {
-        "key": "B",
-        "text": "Graphics Processing Unit"
-      },
-      {
-        "key": "C",
-        "text": "Global Power Unit"
-      },
-      {
-        "key": "D",
-        "text": "Graphics Program Utility"
-      }
-    ],
-    "correctOption": "B",
-    "points": 1,
-    "section": "I",
-    "category": "Computer Maintenance"
-  },
-  {
-    "question": "Which type of storage is faster — HDD or SSD?",
-    "options": [
-      {
-        "key": "A",
-        "text": "HDD because it has more storage"
-      },
-      {
-        "key": "B",
-        "text": "They are the same speed"
-      },
-      {
-        "key": "C",
-        "text": "SSD because it has no moving parts"
-      },
-      {
-        "key": "D",
-        "text": "HDD because it uses magnetic platters"
-      }
-    ],
-    "correctOption": "C",
-    "points": 1,
-    "section": "I",
-    "category": "Computer Maintenance"
-  },
-  {
-    "question": "What does the Windows Task Manager shortcut CTRL+SHIFT+ESC do?",
-    "options": [
-      {
-        "key": "A",
-        "text": "Opens File Explorer"
-      },
-      {
-        "key": "B",
-        "text": "Opens Task Manager directly"
-      },
-      {
-        "key": "C",
-        "text": "Restarts the computer"
-      },
-      {
-        "key": "D",
-        "text": "Opens Control Panel"
-      }
-    ],
-    "correctOption": "B",
-    "points": 1,
-    "section": "I",
-    "category": "Computer Maintenance"
-  },
-  {
-    "question": "What is the purpose of a thermal paste on a CPU?",
-    "options": [
-      {
-        "key": "A",
-        "text": "To stick the CPU to the motherboard"
-      },
-      {
-        "key": "B",
-        "text": "To improve electrical conductivity"
-      },
-      {
-        "key": "C",
-        "text": "To improve heat transfer between CPU and cooler"
-      },
-      {
-        "key": "D",
-        "text": "To protect the CPU from dust"
-      }
-    ],
-    "correctOption": "C",
-    "points": 2,
-    "section": "II",
-    "category": "Computer Maintenance"
-  },
-  {
-    "question": "A computer turns on but nothing appears on the monitor. The monitor works fine on another PC. What is the most likely cause?",
-    "options": [
-      {
-        "key": "A",
-        "text": "Faulty keyboard"
-      },
-      {
-        "key": "B",
-        "text": "Faulty GPU or display cable"
-      },
-      {
-        "key": "C",
-        "text": "Faulty power supply"
-      },
-      {
-        "key": "D",
-        "text": "Faulty optical drive"
-      }
-    ],
-    "correctOption": "B",
-    "points": 2,
-    "section": "II",
-    "category": "Computer Maintenance"
-  },
-  {
-    "question": "What is the function of the northbridge chip on a motherboard?",
-    "options": [
-      {
-        "key": "A",
-        "text": "Manages USB and audio connections"
-      },
-      {
-        "key": "B",
-        "text": "Manages communication between CPU, RAM and GPU"
-      },
-      {
-        "key": "C",
-        "text": "Controls the power supply"
-      },
-      {
-        "key": "D",
-        "text": "Manages hard drive connections"
-      }
-    ],
-    "correctOption": "B",
-    "points": 2,
-    "section": "II",
-    "category": "Computer Maintenance"
-  },
-  {
-    "question": "Which file system is used by default on modern Windows installations?",
-    "options": [
-      {
-        "key": "A",
-        "text": "FAT32"
-      },
-      {
-        "key": "B",
-        "text": "exFAT"
-      },
-      {
-        "key": "C",
-        "text": "NTFS"
-      },
-      {
-        "key": "D",
-        "text": "ext4"
-      }
-    ],
-    "correctOption": "C",
-    "points": 2,
-    "section": "II",
-    "category": "Computer Maintenance"
-  },
-  {
-    "question": "What does the blue screen of death (BSOD) in Windows typically indicate?",
-    "options": [
-      {
-        "key": "A",
-        "text": "A software update is available"
-      },
-      {
-        "key": "B",
-        "text": "A critical system error, usually hardware or driver related"
-      },
-      {
-        "key": "C",
-        "text": "The screen brightness needs adjustment"
-      },
-      {
-        "key": "D",
-        "text": "A virus has been detected"
-      }
-    ],
-    "correctOption": "B",
-    "points": 2,
-    "section": "II",
-    "category": "Computer Maintenance"
-  },
-  {
-    "question": "What is the purpose of defragmenting a hard drive?",
-    "options": [
-      {
-        "key": "A",
-        "text": "To delete unnecessary files"
-      },
-      {
-        "key": "B",
-        "text": "To rearrange fragmented data for faster access"
-      },
-      {
-        "key": "C",
-        "text": "To increase the hard drive capacity"
-      },
-      {
-        "key": "D",
-        "text": "To format the hard drive"
-      }
-    ],
-    "correctOption": "B",
-    "points": 3,
-    "section": "III",
-    "category": "Computer Maintenance"
-  },
-  {
-    "question": "A computer randomly shuts down after a few minutes of use. What is the most likely cause?",
-    "options": [
-      {
-        "key": "A",
-        "text": "Corrupted Windows files"
-      },
-      {
-        "key": "B",
-        "text": "CPU overheating due to poor cooling"
-      },
-      {
-        "key": "C",
-        "text": "Outdated drivers"
-      },
-      {
-        "key": "D",
-        "text": "Faulty keyboard"
-      }
-    ],
-    "correctOption": "B",
-    "points": 3,
-    "section": "III",
-    "category": "Computer Maintenance"
-  },
-  {
-    "question": "Which Windows tool allows you to check and repair file system errors on a drive?",
-    "options": [
-      {
-        "key": "A",
-        "text": "Disk Defragmenter"
-      },
-      {
-        "key": "B",
-        "text": "Task Manager"
-      },
-      {
-        "key": "C",
-        "text": "CHKDSK"
-      },
-      {
-        "key": "D",
-        "text": "Device Manager"
-      }
-    ],
-    "correctOption": "C",
-    "points": 3,
-    "section": "III",
-    "category": "Computer Maintenance"
-  },
-  {
-    "question": "What is the keyboard shortcut to save a file in MS Office?",
-    "options": [
-      {
-        "key": "A",
-        "text": "CTRL+P"
-      },
-      {
-        "key": "B",
-        "text": "CTRL+S"
-      },
-      {
-        "key": "C",
-        "text": "CTRL+Z"
-      },
-      {
-        "key": "D",
-        "text": "CTRL+X"
-      }
-    ],
-    "correctOption": "B",
-    "points": 1,
-    "section": "I",
-    "category": "Computer Applications"
-  },
-  {
-    "question": "Which Excel function returns the highest value in a range?",
-    "options": [
-      {
-        "key": "A",
-        "text": "AVERAGE()"
-      },
-      {
-        "key": "B",
-        "text": "COUNT()"
-      },
-      {
-        "key": "C",
-        "text": "MAX()"
-      },
-      {
-        "key": "D",
-        "text": "SUM()"
-      }
-    ],
-    "correctOption": "C",
-    "points": 1,
-    "section": "I",
-    "category": "Computer Applications"
-  },
-  {
-    "question": "In MS Word, what does CTRL+Z do?",
-    "options": [
-      {
-        "key": "A",
-        "text": "Redo the last action"
-      },
-      {
-        "key": "B",
-        "text": "Undo the last action"
-      },
-      {
-        "key": "C",
-        "text": "Cut selected text"
-      },
-      {
-        "key": "D",
-        "text": "Save the document"
-      }
-    ],
-    "correctOption": "B",
-    "points": 1,
-    "section": "I",
-    "category": "Computer Applications"
-  },
-  {
-    "question": "What does the CTRL+Y shortcut do in MS Office?",
-    "options": [
-      {
-        "key": "A",
-        "text": "Undo"
-      },
-      {
-        "key": "B",
-        "text": "Copy"
-      },
-      {
-        "key": "C",
-        "text": "Redo"
-      },
-      {
-        "key": "D",
-        "text": "Paste"
-      }
-    ],
-    "correctOption": "C",
-    "points": 1,
-    "section": "I",
-    "category": "Computer Applications"
-  },
-  {
-    "question": "In Excel, which formula correctly calculates the sum of cells A1 through A10?",
-    "options": [
-      {
-        "key": "A",
-        "text": "=SUM(A1,A10)"
-      },
-      {
-        "key": "B",
-        "text": "=SUM(A1:A10)"
-      },
-      {
-        "key": "C",
-        "text": "=ADD(A1:A10)"
-      },
-      {
-        "key": "D",
-        "text": "=TOTAL(A1-A10)"
-      }
-    ],
-    "correctOption": "B",
-    "points": 2,
-    "section": "II",
-    "category": "Computer Applications"
-  },
-  {
-    "question": "In MS PowerPoint, which shortcut starts the slideshow from the beginning?",
-    "options": [
-      {
-        "key": "A",
-        "text": "F4"
-      },
-      {
-        "key": "B",
-        "text": "F5"
-      },
-      {
-        "key": "C",
-        "text": "F6"
-      },
-      {
-        "key": "D",
-        "text": "F7"
-      }
-    ],
-    "correctOption": "B",
-    "points": 2,
-    "section": "II",
-    "category": "Computer Applications"
-  },
-  {
-    "question": "What is the file extension for an MS Excel workbook?",
-    "options": [
-      {
-        "key": "A",
-        "text": ".docx"
-      },
-      {
-        "key": "B",
-        "text": ".pptx"
-      },
-      {
-        "key": "C",
-        "text": ".xlsx"
-      },
-      {
-        "key": "D",
-        "text": ".accdb"
-      }
-    ],
-    "correctOption": "C",
-    "points": 2,
-    "section": "II",
-    "category": "Computer Applications"
-  },
-  {
-    "question": "In Excel, cell A1 contains =B1*C1. B1=5 and C1=8. What is the value of A1?",
-    "options": [
-      {
-        "key": "A",
-        "text": "13"
-      },
-      {
-        "key": "B",
-        "text": "85"
-      },
-      {
-        "key": "C",
-        "text": "40"
-      },
-      {
-        "key": "D",
-        "text": "3"
-      }
-    ],
-    "correctOption": "C",
-    "points": 2,
-    "section": "II",
-    "category": "Computer Applications"
-  },
-  {
-    "question": "Which MS Word feature checks spelling and grammar automatically?",
-    "options": [
-      {
-        "key": "A",
-        "text": "AutoCorrect"
-      },
-      {
-        "key": "B",
-        "text": "AutoFormat"
-      },
-      {
-        "key": "C",
-        "text": "Track Changes"
-      },
-      {
-        "key": "D",
-        "text": "Mail Merge"
-      }
-    ],
-    "correctOption": "A",
-    "points": 2,
-    "section": "II",
-    "category": "Computer Applications"
-  },
-  {
-    "question": "In Excel, what does the COUNTIF function do?",
-    "options": [
-      {
-        "key": "A",
-        "text": "Counts all cells in a range"
-      },
-      {
-        "key": "B",
-        "text": "Counts cells that meet a specific condition"
-      },
-      {
-        "key": "C",
-        "text": "Sums cells that meet a condition"
-      },
-      {
-        "key": "D",
-        "text": "Returns the average of matching cells"
-      }
-    ],
-    "correctOption": "B",
-    "points": 3,
-    "section": "III",
-    "category": "Computer Applications"
-  },
-  {
-    "question": "In MS Word, what is the purpose of Mail Merge?",
-    "options": [
-      {
-        "key": "A",
-        "text": "To merge two Word documents into one"
-      },
-      {
-        "key": "B",
-        "text": "To send emails directly from Word"
-      },
-      {
-        "key": "C",
-        "text": "To create personalized letters/documents using a data source"
-      },
-      {
-        "key": "D",
-        "text": "To combine multiple email accounts"
-      }
-    ],
-    "correctOption": "C",
-    "points": 3,
-    "section": "III",
-    "category": "Computer Applications"
-  },
-  {
-    "question": "In Excel, what is the difference between absolute and relative cell references?",
-    "options": [
-      {
-        "key": "A",
-        "text": "Absolute references change when copied; relative stay fixed"
-      },
-      {
-        "key": "B",
-        "text": "Relative references change when copied; absolute ($A$1) stay fixed"
-      },
-      {
-        "key": "C",
-        "text": "They are the same thing"
-      },
-      {
-        "key": "D",
-        "text": "Absolute references only work in formulas"
-      }
-    ],
-    "correctOption": "B",
-    "points": 3,
-    "section": "III",
-    "category": "Computer Applications"
-  },
-  {
-    "question": "What HTML tag is used to create the largest heading?",
-    "options": [
-      {
-        "key": "A",
-        "text": "<h6>"
-      },
-      {
-        "key": "B",
-        "text": "<heading>"
-      },
-      {
-        "key": "C",
-        "text": "<h1>"
-      },
-      {
-        "key": "D",
-        "text": "<header>"
-      }
-    ],
-    "correctOption": "C",
-    "points": 1,
-    "section": "I",
-    "category": "Digital Environment"
-  },
-  {
-    "question": "Which HTML tag creates a paragraph?",
-    "options": [
-      {
-        "key": "A",
-        "text": "<br>"
-      },
-      {
-        "key": "B",
-        "text": "<p>"
-      },
-      {
-        "key": "C",
-        "text": "<div>"
-      },
-      {
-        "key": "D",
-        "text": "<span>"
-      }
-    ],
-    "correctOption": "B",
-    "points": 1,
-    "section": "I",
-    "category": "Digital Environment"
-  },
-  {
-    "question": "What does CSS stand for?",
-    "options": [
-      {
-        "key": "A",
-        "text": "Computer Style Sheets"
-      },
-      {
-        "key": "B",
-        "text": "Creative Style System"
-      },
-      {
-        "key": "C",
-        "text": "Cascading Style Sheets"
-      },
-      {
-        "key": "D",
-        "text": "Cascading System Styles"
-      }
-    ],
-    "correctOption": "C",
-    "points": 1,
-    "section": "I",
-    "category": "Digital Environment"
-  },
-  {
-    "question": "Which HTML tag is used to insert an image?",
-    "options": [
-      {
-        "key": "A",
-        "text": "<image src=\"img.jpg\">"
-      },
-      {
-        "key": "B",
-        "text": "<img src=\"img.jpg\">"
-      },
-      {
-        "key": "C",
-        "text": "<picture src=\"img.jpg\">"
-      },
-      {
-        "key": "D",
-        "text": "<photo src=\"img.jpg\">"
-      }
-    ],
-    "correctOption": "B",
-    "points": 1,
-    "section": "I",
-    "category": "Digital Environment"
-  },
-  {
-    "question": "Which Windows shortcut opens File Explorer?",
-    "options": [
-      {
-        "key": "A",
-        "text": "WIN+D"
-      },
-      {
-        "key": "B",
-        "text": "WIN+R"
-      },
-      {
-        "key": "C",
-        "text": "WIN+E"
-      },
-      {
-        "key": "D",
-        "text": "WIN+S"
-      }
-    ],
-    "correctOption": "C",
-    "points": 1,
-    "section": "I",
-    "category": "Digital Environment"
-  },
-  {
-    "question": "What does the HTML <br> tag do?",
-    "options": [
-      {
-        "key": "A",
-        "text": "Creates a bold text"
-      },
-      {
-        "key": "B",
-        "text": "Inserts a line break"
-      },
-      {
-        "key": "C",
-        "text": "Creates a border"
-      },
-      {
-        "key": "D",
-        "text": "Starts a new paragraph"
-      }
-    ],
-    "correctOption": "B",
-    "points": 2,
-    "section": "II",
-    "category": "Digital Environment"
-  },
-  {
-    "question": "Which CSS property changes the text color?",
-    "options": [
-      {
-        "key": "A",
-        "text": "background-color"
-      },
-      {
-        "key": "B",
-        "text": "font-color"
-      },
-      {
-        "key": "C",
-        "text": "text-color"
-      },
-      {
-        "key": "D",
-        "text": "color"
-      }
+      { "label": "A", "text": "10.0.0.0/8" },
+      { "label": "B", "text": "172.16.0.0/12" },
+      { "label": "C", "text": "192.168.0.0/16" },
+      { "label": "D", "text": "8.8.8.0/24" }
     ],
     "correctOption": "D",
-    "points": 2,
-    "section": "II",
-    "category": "Digital Environment"
+    "subject": ["IP Addressing", "Subnetting"],
+    "category": "Networking Fundamentals"
   },
   {
-    "question": "What is the correct HTML structure for an unordered list?",
+    "question": "What is the difference between Cache-Control: no-cache and no-store?",
     "options": [
-      {
-        "key": "A",
-        "text": "<ol><li>Item</li></ol>"
-      },
-      {
-        "key": "B",
-        "text": "<list><item>Item</item></list>"
-      },
-      {
-        "key": "C",
-        "text": "<ul><li>Item</li></ul>"
-      },
-      {
-        "key": "D",
-        "text": "<ul><list>Item</list></ul>"
-      }
+      { "label": "A", "text": "no-cache disables all caching; no-store allows caching with revalidation" },
+      { "label": "B", "text": "They are identical directives" },
+      { "label": "C", "text": "no-cache allows caching but requires revalidation; no-store prevents caching entirely" },
+      { "label": "D", "text": "no-store is only used for images; no-cache is for API responses" }
     ],
     "correctOption": "C",
-    "points": 2,
-    "section": "II",
-    "category": "Digital Environment"
+    "subject": ["HTTP", "Caching"],
+    "category": "Networking Fundamentals"
   },
   {
-    "question": "What does WIN+D shortcut do in Windows?",
+    "question": "What is CORS and why does the browser enforce it?",
     "options": [
-      {
-        "key": "A",
-        "text": "Opens the Downloads folder"
-      },
-      {
-        "key": "B",
-        "text": "Shows the desktop by minimizing all windows"
-      },
-      {
-        "key": "C",
-        "text": "Opens Device Manager"
-      },
-      {
-        "key": "D",
-        "text": "Opens the Start menu"
-      }
+      { "label": "A", "text": "A server-side firewall rule blocking external IPs" },
+      { "label": "B", "text": "A browser security mechanism enforcing the same-origin policy, requiring servers to explicitly allow cross-origin requests" },
+      { "label": "C", "text": "An encryption protocol for cross-domain cookies" },
+      { "label": "D", "text": "A CDN configuration for routing requests" }
     ],
     "correctOption": "B",
-    "points": 2,
-    "section": "II",
-    "category": "Digital Environment"
+    "subject": ["CORS", "Browser Security"],
+    "category": "Networking Fundamentals"
   },
   {
-    "question": "Which HTML tag makes text bold?",
+    "question": "What HTTP method does a CORS preflight request use?",
     "options": [
-      {
-        "key": "A",
-        "text": "<i>"
-      },
-      {
-        "key": "B",
-        "text": "<u>"
-      },
-      {
-        "key": "C",
-        "text": "<strong> or <b>"
-      },
-      {
-        "key": "D",
-        "text": "<em>"
-      }
+      { "label": "A", "text": "GET" },
+      { "label": "B", "text": "POST" },
+      { "label": "C", "text": "OPTIONS" },
+      { "label": "D", "text": "HEAD" }
     ],
     "correctOption": "C",
-    "points": 2,
-    "section": "II",
-    "category": "Digital Environment"
+    "subject": ["CORS", "Preflight"],
+    "category": "Networking Fundamentals"
   },
   {
-    "question": "What is the correct way to add an external CSS file to an HTML document?",
+    "question": "How does a WebSocket connection differ from a standard HTTP request?",
     "options": [
-      {
-        "key": "A",
-        "text": "<style src=\"style.css\">"
-      },
-      {
-        "key": "B",
-        "text": "<css href=\"style.css\">"
-      },
-      {
-        "key": "C",
-        "text": "<link rel=\"stylesheet\" href=\"style.css\">"
-      },
-      {
-        "key": "D",
-        "text": "<script src=\"style.css\">"
-      }
-    ],
-    "correctOption": "C",
-    "points": 3,
-    "section": "III",
-    "category": "Digital Environment"
-  },
-  {
-    "question": "In HTML, what is the difference between <div> and <span>?",
-    "options": [
-      {
-        "key": "A",
-        "text": "<div> is inline; <span> is block level"
-      },
-      {
-        "key": "B",
-        "text": "<div> is block level; <span> is inline"
-      },
-      {
-        "key": "C",
-        "text": "They are identical elements"
-      },
-      {
-        "key": "D",
-        "text": "<div> is for images; <span> is for text"
-      }
+      { "label": "A", "text": "WebSocket uses UDP; HTTP uses TCP" },
+      { "label": "B", "text": "WebSocket is a persistent, full-duplex connection; HTTP is a stateless request/response cycle" },
+      { "label": "C", "text": "WebSocket requires a new connection per message; HTTP reuses connections" },
+      { "label": "D", "text": "WebSocket only supports text; HTTP supports binary" }
     ],
     "correctOption": "B",
-    "points": 3,
-    "section": "III",
-    "category": "Digital Environment"
+    "subject": ["WebSockets", "Real-time"],
+    "category": "Networking Fundamentals"
+  },
+  {
+    "question": "In REST, which HTTP method is idempotent but NOT safe?",
+    "options": [
+      { "label": "A", "text": "GET" },
+      { "label": "B", "text": "POST" },
+      { "label": "C", "text": "PUT" },
+      { "label": "D", "text": "PATCH" }
+    ],
+    "correctOption": "C",
+    "subject": ["REST", "HTTP Methods"],
+    "category": "Networking Fundamentals"
+  },
+  {
+    "question": "What is the JavaScript event loop responsible for?",
+    "options": [
+      { "label": "A", "text": "Compiling JavaScript to bytecode" },
+      { "label": "B", "text": "Managing memory allocation for variables" },
+      { "label": "C", "text": "Moving callbacks from the task queue to the call stack when the stack is empty" },
+      { "label": "D", "text": "Handling CSS animations in sync with JS execution" }
+    ],
+    "correctOption": "C",
+    "subject": ["JavaScript", "Concurrency"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "Why does Promise.resolve().then() execute before setTimeout(() => {}, 0)?",
+    "options": [
+      { "label": "A", "text": "Promises are faster to parse" },
+      { "label": "B", "text": "setTimeout has a minimum delay of 4ms" },
+      { "label": "C", "text": "Microtasks (Promise callbacks) are processed before macrotasks (setTimeout callbacks) after each call stack flush" },
+      { "label": "D", "text": "They execute in the order they are written in source code" }
+    ],
+    "correctOption": "C",
+    "subject": ["JavaScript", "Event Loop", "Microtasks"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the difference between reflow and repaint in browser rendering?",
+    "options": [
+      { "label": "A", "text": "Reflow redraws pixels; repaint recalculates layout geometry" },
+      { "label": "B", "text": "Reflow recalculates layout geometry and is more expensive; repaint redraws pixels without geometry changes" },
+      { "label": "C", "text": "They are the same operation with different names" },
+      { "label": "D", "text": "Reflow applies to CSS; repaint applies to HTML structure" }
+    ],
+    "correctOption": "B",
+    "subject": ["Browser Rendering", "Performance"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "Why is CSS transform: translateX() preferred over left: Xpx for animations?",
+    "options": [
+      { "label": "A", "text": "translateX is supported in more browsers" },
+      { "label": "B", "text": "translateX runs on the compositor thread, skipping layout and paint, making it GPU-accelerated" },
+      { "label": "C", "text": "left property cannot be animated" },
+      { "label": "D", "text": "translateX automatically handles responsive units" }
+    ],
+    "correctOption": "B",
+    "subject": ["Browser Rendering", "CSS", "Performance"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the Virtual DOM in React and why does it exist?",
+    "options": [
+      { "label": "A", "text": "A browser API that speeds up DOM manipulation natively" },
+      { "label": "B", "text": "A server-side copy of the DOM used for SSR" },
+      { "label": "C", "text": "An in-memory representation of the real DOM; React diffs it to compute the minimal set of real DOM updates needed" },
+      { "label": "D", "text": "A shadow DOM used to isolate component styles" }
+    ],
+    "correctOption": "C",
+    "subject": ["React", "Virtual DOM"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "When does React re-render a component?",
+    "options": [
+      { "label": "A", "text": "Only when the component's props change" },
+      { "label": "B", "text": "On every browser event regardless of state" },
+      { "label": "C", "text": "When its state changes, its parent re-renders, or a consumed context value changes" },
+      { "label": "D", "text": "Only when explicitly called with forceUpdate()" }
+    ],
+    "correctOption": "C",
+    "subject": ["React", "Rendering"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What problem does useCallback solve in React?",
+    "options": [
+      { "label": "A", "text": "It prevents a function from being called more than once" },
+      { "label": "B", "text": "It memoizes a function reference so it doesn't change on every render, preventing unnecessary re-renders of child components that receive it as a prop" },
+      { "label": "C", "text": "It converts callback-style async functions to Promises" },
+      { "label": "D", "text": "It batches multiple state updates into one render" }
+    ],
+    "correctOption": "B",
+    "subject": ["React", "Hooks", "Performance"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the difference between useMemo and useCallback?",
+    "options": [
+      { "label": "A", "text": "useMemo is for class components; useCallback is for functional components" },
+      { "label": "B", "text": "useMemo memoizes a computed value; useCallback memoizes a function reference" },
+      { "label": "C", "text": "useCallback runs synchronously; useMemo runs asynchronously" },
+      { "label": "D", "text": "They are interchangeable" }
+    ],
+    "correctOption": "B",
+    "subject": ["React", "Hooks", "Memoization"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the React reconciliation algorithm (Fiber) responsible for?",
+    "options": [
+      { "label": "A", "text": "Compiling JSX to JavaScript" },
+      { "label": "B", "text": "Diffing the previous and next Virtual DOM trees to determine the minimum DOM mutations needed, with the ability to pause and resume work" },
+      { "label": "C", "text": "Managing global state across components" },
+      { "label": "D", "text": "Hydrating server-rendered HTML on the client" }
+    ],
+    "correctOption": "B",
+    "subject": ["React", "Reconciliation", "Fiber"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the key prop used for in React lists and what happens if you omit it?",
+    "options": [
+      { "label": "A", "text": "It sets the CSS ID; omitting it causes styling bugs" },
+      { "label": "B", "text": "It helps React identify which items changed, were added, or removed during reconciliation; omitting it forces full list re-renders and can cause state bugs" },
+      { "label": "C", "text": "It is required for TypeScript type inference" },
+      { "label": "D", "text": "It prevents duplicate elements from rendering" }
+    ],
+    "correctOption": "B",
+    "subject": ["React", "Lists", "Reconciliation"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the difference between useEffect with no dependency array, an empty array, and a populated array?",
+    "options": [
+      { "label": "A", "text": "No array = runs on mount only; empty array = runs on every render; populated = runs when listed deps change" },
+      { "label": "B", "text": "No array = runs on every render; empty array = runs on mount only; populated array = runs when listed deps change" },
+      { "label": "C", "text": "All three behave identically" },
+      { "label": "D", "text": "No array = never runs; empty array = runs once; populated = runs always" }
+    ],
+    "correctOption": "B",
+    "subject": ["React", "Hooks", "useEffect"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the difference between Next.js SSR and SSG?",
+    "options": [
+      { "label": "A", "text": "SSR generates HTML at build time; SSG generates HTML per request on the server" },
+      { "label": "B", "text": "SSR generates HTML per request on the server; SSG generates HTML at build time and serves static files" },
+      { "label": "C", "text": "SSR is client-side only; SSG is server-side only" },
+      { "label": "D", "text": "They are identical but SSG uses a CDN" }
+    ],
+    "correctOption": "B",
+    "subject": ["Next.js", "SSR", "SSG"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is Incremental Static Regeneration (ISR) in Next.js?",
+    "options": [
+      { "label": "A", "text": "A method to lazy-load React components incrementally" },
+      { "label": "B", "text": "A way to update static pages after build time by regenerating them in the background after a specified revalidation interval" },
+      { "label": "C", "text": "A technique to progressively hydrate SSR pages" },
+      { "label": "D", "text": "Streaming HTML from the server in chunks" }
+    ],
+    "correctOption": "B",
+    "subject": ["Next.js", "ISR", "SSG"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the App Router in Next.js 13+ and how does it differ from the Pages Router?",
+    "options": [
+      { "label": "A", "text": "App Router uses file-based routing under /pages; Pages Router uses config-based routing" },
+      { "label": "B", "text": "App Router uses the /app directory with React Server Components by default; Pages Router uses /pages with client-side rendering by default" },
+      { "label": "C", "text": "App Router is for mobile apps; Pages Router is for web apps" },
+      { "label": "D", "text": "They are identical with only cosmetic differences" }
+    ],
+    "correctOption": "B",
+    "subject": ["Next.js", "App Router", "React Server Components"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What are React Server Components (RSC) and what can they NOT do?",
+    "options": [
+      { "label": "A", "text": "They run on the server and can fetch data directly, but cannot use hooks, browser APIs, or event listeners" },
+      { "label": "B", "text": "They are components that only render on mobile devices" },
+      { "label": "C", "text": "They are components with no props — they cannot receive any data" },
+      { "label": "D", "text": "They run on the server and can use useState and useEffect freely" }
+    ],
+    "correctOption": "A",
+    "subject": ["Next.js", "React Server Components"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is hydration in the context of Next.js SSR?",
+    "options": [
+      { "label": "A", "text": "The process of fetching data from an API on the client" },
+      { "label": "B", "text": "Compressing HTML before sending it to the browser" },
+      { "label": "C", "text": "React attaching event listeners and state to server-rendered HTML on the client to make it interactive" },
+      { "label": "D", "text": "Injecting environment variables into the client bundle" }
+    ],
+    "correctOption": "C",
+    "subject": ["Next.js", "SSR", "Hydration"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is code splitting and how does Next.js handle it?",
+    "options": [
+      { "label": "A", "text": "Splitting CSS from JavaScript; Next.js does this manually" },
+      { "label": "B", "text": "Breaking the JS bundle into smaller chunks loaded on demand; Next.js automatically splits by route so only the code for the current page is loaded" },
+      { "label": "C", "text": "Dividing a codebase across multiple Git repositories" },
+      { "label": "D", "text": "Separating server code from client code at compile time" }
+    ],
+    "correctOption": "B",
+    "subject": ["Next.js", "Performance", "Code Splitting"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the purpose of the Next.js Image component over a plain <img> tag?",
+    "options": [
+      { "label": "A", "text": "It adds CSS filters automatically" },
+      { "label": "B", "text": "It provides automatic lazy loading, modern format conversion (WebP/AVIF), responsive sizing, and prevents Cumulative Layout Shift" },
+      { "label": "C", "text": "It is required for images to render in Next.js" },
+      { "label": "D", "text": "It stores images in a database automatically" }
+    ],
+    "correctOption": "B",
+    "subject": ["Next.js", "Performance", "Images"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the purpose of a Service Worker in a web app?",
+    "options": [
+      { "label": "A", "text": "A background thread for running heavy computation without blocking the UI" },
+      { "label": "B", "text": "A script that runs between the browser and network, enabling offline support, push notifications, and request interception/caching" },
+      { "label": "C", "text": "A Node.js process that handles server-side rendering" },
+      { "label": "D", "text": "A browser extension for monitoring network performance" }
+    ],
+    "correctOption": "B",
+    "subject": ["PWA", "Service Workers", "Caching"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the difference between localStorage, sessionStorage, and cookies?",
+    "options": [
+      { "label": "A", "text": "localStorage persists until cleared; sessionStorage clears on tab close; cookies can have expiry dates and are sent with every HTTP request" },
+      { "label": "B", "text": "They are identical storage mechanisms with different size limits" },
+      { "label": "C", "text": "Cookies persist forever; localStorage clears on tab close; sessionStorage expires after 24 hours" },
+      { "label": "D", "text": "localStorage is server-side; sessionStorage and cookies are client-side" }
+    ],
+    "correctOption": "A",
+    "subject": ["Browser Storage", "Web Security"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is a JWT and what are its three parts?",
+    "options": [
+      { "label": "A", "text": "A session cookie with three encryption layers: public key, private key, and salt" },
+      { "label": "B", "text": "A JSON Web Token with three base64url-encoded parts: Header (algorithm), Payload (claims), and Signature" },
+      { "label": "C", "text": "A hashing algorithm with three rounds: hash, salt, and verify" },
+      { "label": "D", "text": "A token with user ID, timestamp, and expiry stored in a database" }
+    ],
+    "correctOption": "B",
+    "subject": ["Authentication", "JWT", "Security"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the difference between authentication and authorization?",
+    "options": [
+      { "label": "A", "text": "They are the same concept — verifying a user's identity" },
+      { "label": "B", "text": "Authentication verifies who you are; authorization determines what you are allowed to do" },
+      { "label": "C", "text": "Authentication is server-side; authorization is client-side" },
+      { "label": "D", "text": "Authorization verifies who you are; authentication determines permissions" }
+    ],
+    "correctOption": "B",
+    "subject": ["Security", "Authentication", "Authorization"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is a XSS (Cross-Site Scripting) attack and how do you prevent it?",
+    "options": [
+      { "label": "A", "text": "An attack where a user submits too many requests; prevented with rate limiting" },
+      { "label": "B", "text": "An attack where malicious scripts are injected into web pages viewed by other users; prevented by escaping/sanitizing user input and using Content Security Policy headers" },
+      { "label": "C", "text": "An attack that intercepts HTTPS traffic; prevented with certificate pinning" },
+      { "label": "D", "text": "An attack that forges HTTP requests; prevented with CORS headers" }
+    ],
+    "correctOption": "B",
+    "subject": ["Security", "XSS"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is a CSRF attack and what is the primary defense?",
+    "options": [
+      { "label": "A", "text": "Injecting scripts into a page; defended with input sanitization" },
+      { "label": "B", "text": "Tricking a logged-in user's browser into making unwanted requests to a site; defended with CSRF tokens or SameSite cookie attribute" },
+      { "label": "C", "text": "Overloading a server with requests; defended with a WAF" },
+      { "label": "D", "text": "Stealing cookies via XSS; defended with HttpOnly flag" }
+    ],
+    "correctOption": "B",
+    "subject": ["Security", "CSRF"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What does the 'key' difference between == and === in JavaScript?",
+    "options": [
+      { "label": "A", "text": "== checks reference equality; === checks value equality" },
+      { "label": "B", "text": "== performs type coercion before comparison; === checks both value and type without coercion" },
+      { "label": "C", "text": "=== is only used for objects; == is used for primitives" },
+      { "label": "D", "text": "They are identical in modern JavaScript" }
+    ],
+    "correctOption": "B",
+    "subject": ["JavaScript", "Type Coercion"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is closure in JavaScript?",
+    "options": [
+      { "label": "A", "text": "A function that cannot be called more than once" },
+      { "label": "B", "text": "A function that has access to variables from its outer (enclosing) scope even after the outer function has returned" },
+      { "label": "C", "text": "The process of ending a Promise chain" },
+      { "label": "D", "text": "A design pattern for preventing memory leaks" }
+    ],
+    "correctOption": "B",
+    "subject": ["JavaScript", "Closures", "Scope"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the difference between null and undefined in JavaScript?",
+    "options": [
+      { "label": "A", "text": "They are identical and interchangeable" },
+      { "label": "B", "text": "null means a variable has been declared but not assigned; undefined is an intentional absence of value" },
+      { "label": "C", "text": "undefined means a variable has been declared but not assigned a value; null is an intentional assignment representing no value" },
+      { "label": "D", "text": "null is for objects; undefined is for primitives" }
+    ],
+    "correctOption": "C",
+    "subject": ["JavaScript", "Types"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the purpose of the package-lock.json file?",
+    "options": [
+      { "label": "A", "text": "To lock the Node.js version for a project" },
+      { "label": "B", "text": "To lock the exact versions of all installed dependencies and their sub-dependencies, ensuring deterministic installs across environments" },
+      { "label": "C", "text": "To prevent developers from adding new packages" },
+      { "label": "D", "text": "To store private API keys securely" }
+    ],
+    "correctOption": "B",
+    "subject": ["Node.js", "Package Management"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the difference between dependencies and devDependencies in package.json?",
+    "options": [
+      { "label": "A", "text": "dependencies are optional; devDependencies are required" },
+      { "label": "B", "text": "dependencies are required at runtime in production; devDependencies are only needed during development and are excluded from production builds" },
+      { "label": "C", "text": "devDependencies are installed globally; dependencies are installed locally" },
+      { "label": "D", "text": "They are identical — the naming is just a convention" }
+    ],
+    "correctOption": "B",
+    "subject": ["Node.js", "Package Management"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the purpose of a CDN (Content Delivery Network)?",
+    "options": [
+      { "label": "A", "text": "To compile and bundle frontend JavaScript" },
+      { "label": "B", "text": "To serve static assets from servers geographically close to the user, reducing latency" },
+      { "label": "C", "text": "To manage database replication across regions" },
+      { "label": "D", "text": "To encrypt data in transit between client and server" }
+    ],
+    "correctOption": "B",
+    "subject": ["Performance", "Infrastructure"],
+    "category": "Networking Fundamentals"
+  },
+  {
+    "question": "What is debouncing and when would you use it in a React app?",
+    "options": [
+      { "label": "A", "text": "A technique to delay component mounting for performance" },
+      { "label": "B", "text": "Delaying a function call until a specified time has passed since the last invocation — used for search inputs to avoid firing an API call on every keystroke" },
+      { "label": "C", "text": "Memoizing expensive calculations to avoid re-computation" },
+      { "label": "D", "text": "Batching multiple state updates into a single render" }
+    ],
+    "correctOption": "B",
+    "subject": ["JavaScript", "Performance", "React"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the difference between debouncing and throttling?",
+    "options": [
+      { "label": "A", "text": "Debouncing fires at a fixed interval; throttling waits for silence before firing" },
+      { "label": "B", "text": "Debouncing waits for a pause in calls before firing once; throttling fires at most once per interval regardless of call frequency" },
+      { "label": "C", "text": "They are the same technique with different names" },
+      { "label": "D", "text": "Throttling is for API calls; debouncing is only for UI events" }
+    ],
+    "correctOption": "B",
+    "subject": ["JavaScript", "Performance"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is Tree Shaking in modern JavaScript bundlers?",
+    "options": [
+      { "label": "A", "text": "Removing unused CSS from the final bundle" },
+      { "label": "B", "text": "Eliminating unused exported code from the final bundle by statically analyzing ES module imports" },
+      { "label": "C", "text": "Splitting a component tree into lazy-loaded chunks" },
+      { "label": "D", "text": "A React optimization that prevents deep component re-renders" }
+    ],
+    "correctOption": "B",
+    "subject": ["Build Tools", "Performance", "Webpack"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the difference between margin and padding in CSS?",
+    "options": [
+      { "label": "A", "text": "Margin is inside the border; padding is outside the border" },
+      { "label": "B", "text": "Padding is space inside the element between content and border; margin is space outside the border between elements" },
+      { "label": "C", "text": "They are identical — just shorthand aliases" },
+      { "label": "D", "text": "Padding affects layout; margin does not" }
+    ],
+    "correctOption": "B",
+    "subject": ["CSS", "Box Model"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is CSS specificity and what is the order from lowest to highest?",
+    "options": [
+      { "label": "A", "text": "Inline styles < IDs < classes/attributes < elements" },
+      { "label": "B", "text": "Elements < classes/attributes/pseudo-classes < IDs < inline styles" },
+      { "label": "C", "text": "Classes < elements < IDs < inline styles" },
+      { "label": "D", "text": "IDs < classes < elements < inline styles" }
+    ],
+    "correctOption": "B",
+    "subject": ["CSS", "Specificity"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What is the difference between async/await and raw Promises?",
+    "options": [
+      { "label": "A", "text": "async/await is synchronous; Promises are asynchronous" },
+      { "label": "B", "text": "async/await is syntactic sugar over Promises that makes asynchronous code read like synchronous code, improving readability and error handling via try/catch" },
+      { "label": "C", "text": "Promises allow parallel execution; async/await forces sequential execution" },
+      { "label": "D", "text": "They are entirely different mechanisms with no relationship" }
+    ],
+    "correctOption": "B",
+    "subject": ["JavaScript", "Async", "Promises"],
+    "category": "Web App Fundamentals"
+  },
+  {
+    "question": "What does Promise.all() do and how does it differ from Promise.allSettled()?",
+    "options": [
+      { "label": "A", "text": "Promise.all() waits for all promises regardless of outcome; Promise.allSettled() rejects immediately if any promise fails" },
+      { "label": "B", "text": "Promise.all() rejects immediately if any promise rejects; Promise.allSettled() waits for all to settle and returns each result regardless of success or failure" },
+      { "label": "C", "text": "They are identical" },
+      { "label": "D", "text": "Promise.all() runs promises sequentially; Promise.allSettled() runs them in parallel" }
+    ],
+    "correctOption": "B",
+    "subject": ["JavaScript", "Promises", "Async"],
+    "category": "Web App Fundamentals"
   }
 ]

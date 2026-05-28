@@ -2,7 +2,7 @@ import { customAlphabet, nanoid } from 'nanoid';
 import prisma from '../lib/prisma';
 import examquestions from '@/app/mockdata/examquestion.json';
 
-const ARTICLE_ID = '2026051901';
+const ARTICLE_ID = '2026052604';
 const USER_ID = 'user_3Dpu4aTKoFFLORhUlGjDKxmr3Ie';
 
 const normalizeOptions = (options: Record<string, string> | any): Array<{ label: string; text: string }> => {
@@ -32,10 +32,10 @@ async function main() {
     await prisma.article.upsert({
         where: { id: ARTICLE_ID },
         create: {
-            id: ARTICLE_ID,
-            title: 'Exam',
-            orgArticle: 'Seeded exam article for quiz data.',
-            sumArticle: 'Seeded quiz data article summary.',
+            id: '2026052604',
+            title: 'Fundamentals for fresh graduatee quiz',
+            orgArticle: 'Fundamentals for junior dev - networking basic',
+            sumArticle: 'Consists of hardcoded json data of quizzes. No re-generating quiz needed',
             userId: USER_ID,
             category: 'ETTAZ',
             subject: ['ETTAZ-proffesion'],
@@ -51,8 +51,10 @@ async function main() {
         articleId: ARTICLE_ID,
         userId: USER_ID,
         question: q.question as string,
-        correctOption: q.correctOption,
+        correctOption: q.correctOption as string,
         options: q.options,
+        subject: q.subject,
+        category: q.category,
     }));
 
     const result = await prisma.quiz.createMany({
